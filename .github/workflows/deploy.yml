@@ -3,10 +3,10 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - master
+      - source
   pull_request:
     branches:
-      - master
+      - source
   schedule:
     - cron:  '*/30 * * * *'
 
