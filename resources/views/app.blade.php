@@ -33,9 +33,11 @@
     <div class="px-5 bg-dark" style="background: #333333;">
         <div class="container">
             <div class="px-5 d-flex flex-column flex-md-row justify-content-start" style="align-items: center;">
-                <a href="{{url('/')}}" class="mr-5">
+                <a href="{{url('/')}}" class="mr-auto ml-auto">
                     <img src="/img/logo.svg" height="50px" alt="Responsive image">
                 </a>
+
+                {{--
                 <div class="my-2 my-md-0">
                 <span class="p-2 text-white">
                     <span class="text-muted">USD:</span>
@@ -53,7 +55,7 @@
                     <span class="text-danger">&#8595; 0,01</span>
                 </span>
                 </div>
-
+                   --}}
             </div>
         </div>
     </div>
@@ -71,8 +73,8 @@
 
                     @foreach($news as $key => $group)
                         <div class="row">
-                            <div class="py-3 w-75">
-                                <h2 class="text-dark font-weight-bolder">{{ $key }}</h2>
+                            <div class="py-3 w-50 mr-auto ml-auto">
+                                <h2 class="text-dark font-weight-bolder text-center">{{ $key }}</h2>
                             </div>
                         </div>
 
