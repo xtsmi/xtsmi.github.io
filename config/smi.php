@@ -32,6 +32,7 @@ return [
         'https://meduza.io/rss/news',
         'https://tjournal.ru/rss',
         'https://zona.media/rss',
+        'https://rtvi.com/rss',
     ],
 
 
