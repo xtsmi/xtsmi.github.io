@@ -73,7 +73,7 @@
 
                     @foreach($news as $key => $group)
                         <div class="row">
-                            <div class="py-3 mr-auto ml-auto">
+                            <div class="py-3 px-md-5 mr-auto ml-auto">
                                 <h2 class="text-dark font-weight-bolder text-center">{{ $key }}</h2>
                             </div>
                         </div>
