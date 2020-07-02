@@ -64,16 +64,16 @@
 <div class="container">
     <main id="app" class="p-md-5">
 
-
+{{--
         <div class="pb-3 border-bottom">
             <h1 class="h5 text-muted font-weight-light">Последние темы</h1>
         </div>
-
+--}}
                 <div class="col-md-12">
 
                     @foreach($news as $key => $group)
                         <div class="row">
-                            <div class="py-3 w-50 mr-auto ml-auto">
+                            <div class="py-3 mr-auto ml-auto">
                                 <h2 class="text-dark font-weight-bolder text-center">{{ $key }}</h2>
                             </div>
                         </div>
