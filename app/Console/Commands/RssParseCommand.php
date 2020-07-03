@@ -73,24 +73,30 @@ class RssParseCommand extends Command
 
 
         $similar = Similar::build($forSimilar, 65)
-            ->filter(function (array $group) {
-                return count($group) > 2;
-            })
-            ->filter(function (array $group){
-
-                $hosts = array_map(function ($url){
-                    return parse_url($url, PHP_URL_HOST);
-                }, array_keys($group));
-
-                $hosts = array_unique($hosts);
-
-                return count($hosts) > 1;
-            })
             ->map(function (array $items) use ($rss) {
                 return collect($items)
                     ->map(function ($item, $key) use ($rss) {
                         return $rss->get($key);
                     });
+            })
+
+            ->filter(function (Collection $items) {
+                return $items->count() > 2;
+            })
+            ->filter(function (Collection $items){
+                return $items->map(function (News $news) {
+                        return parse_url($news->link, PHP_URL_HOST);
+                    })
+                        ->unique()
+                        ->count() > 1;
+            })
+            ->map(function (Collection $items) {
+
+                $fresh = $items->filter(function (News $news){
+                    return now()->subHours(12)->greaterThan($news->pubDate);
+                });
+
+                return $fresh->count() > 5 ? $fresh : $items;
             })
             ->keyBy(function (Collection $items) {
                 return $items
@@ -115,7 +121,7 @@ class RssParseCommand extends Command
     {
         $pubDate = Carbon::parse((string)$item->pubDate);
 
-        if (now()->sub('1 day')->greaterThan($pubDate)) {
+        if (now()->subDay()->greaterThan($pubDate)) {
             return null;
         }
 
