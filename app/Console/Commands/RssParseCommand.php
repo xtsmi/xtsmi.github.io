@@ -48,20 +48,7 @@ class RssParseCommand extends Command
                 return Http::get($url)->body();
             })
             ->map(function (string $rss) {
-                $elements = new \SimpleXMLElement($rss);
-
-                $news = [];
-                foreach ($elements->channel->item as $item) {
-                    $model = $this->createModelForXMLElement($item);
-
-                    if ($model === null) {
-                        continue;
-                    }
-
-                    $news[$model->link] = $model;
-                }
-
-                return $news;
+                return $this->transformRssToModels($rss);
             })
             ->mapWithKeys(function ($news) {
                 return $news;
@@ -79,11 +66,10 @@ class RssParseCommand extends Command
                         return $rss->get($key);
                     });
             })
-
             ->filter(function (Collection $items) {
                 return $items->count() > 2;
             })
-            ->filter(function (Collection $items){
+            ->filter(function (Collection $items) {
                 return $items->map(function (News $news) {
                         return parse_url($news->link, PHP_URL_HOST);
                     })
@@ -92,7 +78,7 @@ class RssParseCommand extends Command
             })
             ->map(function (Collection $items) {
 
-                $fresh = $items->filter(function (News $news){
+                $fresh = $items->filter(function (News $news) {
                     return Carbon::parse($news->pubDate)
                         ->addHours(8)
                         ->isAfter(now());
@@ -113,6 +99,32 @@ class RssParseCommand extends Command
         $this->info('Latest News Received');
     }
 
+    /**
+     * @param string $rss
+     *
+     * @return News[]
+     */
+    private function transformRssToModels(string $rss): array
+    {
+        try {
+            $elements = new \SimpleXMLElement($rss);
+
+            $news = [];
+            foreach ($elements->channel->item as $item) {
+                $model = $this->createModelForXMLElement($item);
+
+                if ($model === null) {
+                    continue;
+                }
+
+                $news[$model->link] = $model;
+            }
+
+            return $news;
+        } catch (\Exception $exception) {
+            return [];
+        }
+    }
 
     /**
      * @param \SimpleXMLElement $item
