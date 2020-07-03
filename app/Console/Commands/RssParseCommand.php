@@ -72,9 +72,19 @@ class RssParseCommand extends Command
             ->toArray();
 
 
-        $similar = Similar::build($forSimilar, 70)
+        $similar = Similar::build($forSimilar, 65)
             ->filter(function (array $group) {
                 return count($group) > 2;
+            })
+            ->filter(function (array $group){
+
+                $hosts = array_map(function ($url){
+                    return parse_url($url, PHP_URL_HOST);
+                }, array_keys($group));
+
+                $hosts = array_unique($hosts);
+
+                return count($hosts) > 1;
             })
             ->map(function (array $items) use ($rss) {
                 return collect($items)
