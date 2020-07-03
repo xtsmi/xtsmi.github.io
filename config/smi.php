@@ -26,7 +26,6 @@ return [
         'http://www.vedomosti.ru/newsline/out/rss.xml',
         'http://tass.ru/rss/v2.xml?sections=MjU%3D',
         'http://www.vesti.ru/vesti.rss',
-        'http://www.gazetanv.ru/rss.xml',
         'https://www.mk.ru/rss/news/index.xml',
         'https://tvrain.ru/export/rss/all.xml',
         'https://meduza.io/rss/news',
