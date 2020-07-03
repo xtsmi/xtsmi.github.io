@@ -93,7 +93,7 @@ class RssParseCommand extends Command
             ->map(function (Collection $items) {
 
                 $fresh = $items->filter(function (News $news){
-                    return now()->subHours(12)->greaterThan($news->pubDate);
+                    return now()->subHours(8)->greaterThan($news->pubDate);
                 });
 
                 return $fresh->count() > 5 ? $fresh : $items;
