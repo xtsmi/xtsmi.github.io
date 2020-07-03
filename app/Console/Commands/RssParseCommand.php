@@ -72,7 +72,7 @@ class RssParseCommand extends Command
             ->toArray();
 
 
-        $similar = Similar::build($forSimilar, 65)
+        $similar = Similar::build($forSimilar, 70)
             ->filter(function (array $group) {
                 return count($group) > 2;
             })
