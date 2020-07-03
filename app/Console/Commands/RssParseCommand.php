@@ -84,7 +84,7 @@ class RssParseCommand extends Command
             })
             ->keyBy(function (Collection $items) {
                 return $items
-                    ->sortByDesc('pubDate')
+                    ->sortBy('pubDate')
                     ->first()
                     ->title;
             });
