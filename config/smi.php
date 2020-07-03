@@ -32,6 +32,7 @@ return [
         'https://tjournal.ru/rss',
         'https://zona.media/rss',
         'https://rtvi.com/rss',
+        'https://dailystorm.ru/media/rss.xml',
     ],
 
 
