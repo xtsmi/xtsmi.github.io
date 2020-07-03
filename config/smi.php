@@ -33,6 +33,7 @@ return [
         'https://zona.media/rss',
         'https://rtvi.com/rss',
         'https://dailystorm.ru/media/rss.xml',
+        'https://360tv.ru/rss/'
     ],
 
 
