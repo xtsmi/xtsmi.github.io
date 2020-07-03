@@ -93,7 +93,7 @@ class RssParseCommand extends Command
             ->map(function (Collection $items) {
 
                 $fresh = $items->filter(function (News $news){
-                    return now()->subHours(8)->greaterThan($news->pubDate);
+                    return now()->subHours(8)->isAfter($news->pubDate);
                 });
 
                 return $fresh->count() > 5 ? $fresh : $items;
@@ -121,7 +121,7 @@ class RssParseCommand extends Command
     {
         $pubDate = Carbon::parse((string)$item->pubDate);
 
-        if (now()->subDay()->greaterThan($pubDate)) {
+        if (now()->subDay()->isAfter($pubDate)) {
             return null;
         }
 
