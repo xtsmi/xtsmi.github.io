@@ -24,7 +24,8 @@ jobs:
           composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
       - name: Artisan 🔮
         run: |
-          php artisan rss:parse
+          php artisan rss:download
+          php artisan rss:similar
           php artisan rss:page
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3

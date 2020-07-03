@@ -113,17 +113,17 @@ class Similar
             });
         });
 
-        $this->matrix = $this->matrix->map(static function ($item, $key) use ($removes) {
+        $this->matrix = $this->matrix
+            ->map(static function ($item, $key) use ($removes) {
 
-            if (in_array($key, $removes, true)) {
-                return [];
-            }
+                if (in_array($key, $removes, true)) {
+                    return [];
+                }
 
-            asort($item);
+                asort($item);
 
-            return $item;
-
-        })
+                return $item;
+            })
             ->filter()
             ->unique(function ($item) {
                 return implode(',', $item);

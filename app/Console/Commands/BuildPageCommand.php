@@ -23,29 +23,21 @@ class BuildPageCommand extends Command
     protected $description = 'Generate page';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-        $lastNews = json_decode(Storage::get('last-news.json'), true);
+        $similarNews = json_decode(Storage::get('similar-news.json'), true);
 
-        $news = collect($lastNews)->map(function ($news) {
-            return collect($news)->map(function ($new) {
+        $news = collect($similarNews)
+            ->map(function ($news) {
+                return collect($news);
+            })
+            ->map->map(function ($new) {
                 return new News($new);
             });
-        });
 
 
         $html = view('app', ['news' => $news])->render();

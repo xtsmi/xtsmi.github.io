@@ -4,20 +4,18 @@ namespace App\Console\Commands;
 
 use App\News;
 use App\Similar;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
-class RssParseCommand extends Command
+class SimilarParseCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'rss:parse';
+    protected $signature = 'rss:similar';
 
     /**
      * The console command description.
@@ -27,32 +25,20 @@ class RssParseCommand extends Command
     protected $description = 'Command description';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-        $rss = collect(config('smi.rss'))
-            ->map(function (string $url) {
-                return Http::get($url)->body();
-            })
-            ->map(function (string $rss) {
-                return $this->transformRssToModels($rss);
-            })
-            ->mapWithKeys(function ($news) {
-                return $news;
-            });
+        $lastNews = Storage::get('last-news.json');
+
+        $rss = collect(
+            json_decode($lastNews, true)
+        )->map(function (array $item) {
+            return new News($item);
+        });
+
 
         $forSimilar = $rss
             ->pluck('title', 'link')
@@ -79,7 +65,7 @@ class RssParseCommand extends Command
             ->map(function (Collection $items) {
 
                 $fresh = $items->filter(function (News $news) {
-                    return Carbon::parse($news->pubDate)
+                    return $news->pubDate
                         ->addHours(8)
                         ->isAfter(now());
                 });
@@ -94,51 +80,8 @@ class RssParseCommand extends Command
             });
 
 
-        Storage::put('last-news.json', $similar->toJson());
+        Storage::put('similar-news.json', $similar->toJson());
 
-        $this->info('Latest News Received');
-    }
-
-    /**
-     * @param string $rss
-     *
-     * @return News[]
-     */
-    private function transformRssToModels(string $rss): array
-    {
-        try {
-            $elements = new \SimpleXMLElement($rss);
-
-            $news = [];
-            foreach ($elements->channel->item as $item) {
-                $model = $this->createModelForXMLElement($item);
-
-                if ($model === null) {
-                    continue;
-                }
-
-                $news[$model->link] = $model;
-            }
-
-            return $news;
-        } catch (\Exception $exception) {
-            return [];
-        }
-    }
-
-    /**
-     * @param \SimpleXMLElement $item
-     *
-     * @return News|null
-     */
-    private function createModelForXMLElement(\SimpleXMLElement $item): ?News
-    {
-        $pubDate = Carbon::parse((string)$item->pubDate);
-
-        if ($pubDate->addDay()->isBefore(now())) {
-            return null;
-        }
-
-        return new News((array)$item);
+        $this->info('Similar News Received');
     }
 }
