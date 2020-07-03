@@ -6,6 +6,7 @@ use App\News;
 use App\Similar;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -46,28 +47,25 @@ class RssParseCommand extends Command
             ->map(function (string $url) {
                 return Http::get($url)->body();
             })
-            ->map(static function (string $rss) {
+            ->map(function (string $rss) {
                 $elements = new \SimpleXMLElement($rss);
 
                 $news = [];
                 foreach ($elements->channel->item as $item) {
+                    $model = $this->createModelForXMLElement($item);
 
-                    $pubDate = Carbon::parse((string)$item->pubDate);
-                    $limit = now()->sub('1 day');
-
-                    if (!$limit->lt($pubDate)) {
+                    if ($model === null) {
                         continue;
                     }
 
-                    $news[(string)$item->link] = new News((array)$item);
+                    $news[$model->link] = $model;
                 }
 
                 return $news;
             })
             ->mapWithKeys(function ($news) {
                 return $news;
-            })
-            ->sortBy('pubDate');
+            });
 
         $forSimilar = $rss
             ->pluck('title', 'link')
@@ -77,25 +75,40 @@ class RssParseCommand extends Command
         $similar = Similar::build($forSimilar, 65)
             ->filter(function (array $group) {
                 return count($group) > 2;
+            })
+            ->map(function (array $items) use ($rss) {
+                return collect($items)
+                    ->map(function ($item, $key) use ($rss) {
+                        return $rss->get($key);
+                    });
+            })
+            ->keyBy(function (Collection $items) {
+                return $items
+                    ->sortByDesc('pubDate')
+                    ->first()
+                    ->title;
             });
 
 
-        $rssArray = $rss->toArray();
-
-
-        $lastNews = $similar
-            ->keyBy(function (array $items, string $key) use ($rssArray) {
-                return $rssArray[$key]['title'];
-            })
-            ->map(function (array $items) use ($rssArray) {
-                return collect($items)->map(function ($item, $key) use ($rssArray) {
-                    return $rssArray[$key];
-                })->toArray();
-            })->toJson();
-
-
-        Storage::put('last-news.json', $lastNews);
+        Storage::put('last-news.json', $similar->toJson());
 
         $this->info('Latest News Received');
+    }
+
+
+    /**
+     * @param \SimpleXMLElement $item
+     *
+     * @return News|null
+     */
+    private function createModelForXMLElement(\SimpleXMLElement $item): ?News
+    {
+        $pubDate = Carbon::parse((string)$item->pubDate);
+
+        if (now()->sub('1 day')->greaterThan($pubDate)) {
+            return null;
+        }
+
+        return new News((array)$item);
     }
 }
