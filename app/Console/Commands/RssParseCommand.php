@@ -123,7 +123,7 @@ class RssParseCommand extends Command
     {
         $pubDate = Carbon::parse((string)$item->pubDate);
 
-        if ($pubDate->addDay()->isAfter(now())) {
+        if ($pubDate->addDay()->isBefore(now())) {
             return null;
         }
 
