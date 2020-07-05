@@ -45,6 +45,7 @@ class Source
             json_decode($lastNews, true)
         )->map(function (array $item) {
             return new News($item);
-        });
+        })
+            ->sortByDesc('pubDate');
     }
 }

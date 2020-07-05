@@ -27,7 +27,7 @@
             box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
 ">
                     @foreach($group as $new)
-                        <div class="col mb-5" data-topic="{{ \Illuminate\Support\Str::slug($key) }}">
+                        <div class="col mb-5">
 
                             <div class="media v-center mb-2">
                                 <img src="{{ $new->favicon() }}" class="mr-2">
