@@ -2,12 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Source;
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\App;
 
 class BuildPageCommand extends Command
 {
@@ -35,15 +33,19 @@ class BuildPageCommand extends Command
         /** @var \Illuminate\Routing\Route $route */
         foreach (Route::getRoutes() as $route) {
 
-            $page = $route->getName().'.html';
+            $page = $route->getName() . '.html';
+            $request = Request::create($route->uri());
 
-            $response = app()->handle(
-                Request::create($route->uri())
+            $request->headers->set(
+                'host',
+                parse_url(config('app.url'), PHP_URL_HOST)
             );
+
+            $response = app()->handle($request);
 
             Storage::put(
                 $page,
-                (string) $response->getContent()
+                (string)$response->getContent()
             );
 
             $this->info("Page '$page' generated");
