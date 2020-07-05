@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\News;
 use App\Similar;
+use App\Source;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
@@ -31,13 +32,7 @@ class SimilarParseCommand extends Command
      */
     public function handle()
     {
-        $lastNews = Storage::get('last-news.json');
-
-        $rss = collect(
-            json_decode($lastNews, true)
-        )->map(function (array $item) {
-            return new News($item);
-        });
+        $rss = Source::getLastNews();
 
 
         $forSimilar = $rss

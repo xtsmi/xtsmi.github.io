@@ -2,9 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\News;
+use App\Source;
 use Illuminate\Console\Command;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\App;
 
 class BuildPageCommand extends Command
 {
@@ -29,21 +32,21 @@ class BuildPageCommand extends Command
      */
     public function handle()
     {
-        $similarNews = json_decode(Storage::get('similar-news.json'), true);
+        /** @var \Illuminate\Routing\Route $route */
+        foreach (Route::getRoutes() as $route) {
 
-        $news = collect($similarNews)
-            ->map(function ($news) {
-                return collect($news);
-            })
-            ->map->map(function ($new) {
-                return new News($new);
-            });
+            $page = $route->getName().'.html';
 
+            $response = app()->handle(
+                Request::create($route->uri())
+            );
 
-        $html = view('app', ['news' => $news])->render();
+            Storage::put(
+                $page,
+                (string) $response->getContent()
+            );
 
-        Storage::put('index.html', $html);
-
-        $this->info('Page generated');
+            $this->info("Page '$page' generated");
+        }
     }
 }
