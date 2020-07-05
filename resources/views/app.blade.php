@@ -33,19 +33,17 @@
     <div class="px-5 bg-dark" style="background: #333333;">
         <div class="container">
             <div class="px-5 d-flex flex-column flex-md-row justify-content-start" style="align-items: center;">
-                <a href="{{url('/')}}" class="mr-auto ml-auto">
-                    <img src="/img/logo.svg" height="50px" alt="Responsive image">
+                <a href="{{url('/')}}" class="mr-3">
+                    <img src="/img/logo.svg" height="50px" alt="TSMI">
                 </a>
 
-                {{--
-                <nav class="my-2 my-md-0 mr-md-3">
-                    <a class="p-2 text-white" href="#">Features</a>
-                    <a class="p-2 text-white" href="#">Enterprise</a>
-                    <a class="p-2 text-white" href="#">Support</a>
-                    <a class="p-2 text-white" href="#">Pricing</a>
+                <nav class="my-2 my-md-0 mr-auto">
+                    <a class="p-2 text-white" href="{{ route('index') }}">Главные новости</a>
+                    <a class="p-2 text-white" href="{{ route('list') }}">Лента</a>
                 </nav>
 
-                <div class="my-2 my-md-0">
+
+                <div class="my-2 my-md-0 d-none d-md-block">
                     <span class="p-2 text-white">
                         <span class="text-muted">USD:</span>
                         63,05
@@ -62,7 +60,7 @@
                         <span class="text-danger">&#8595; 0,01</span>
                     </span>
                 </div>
-                --}}
+
             </div>
         </div>
     </div>
@@ -78,7 +76,7 @@
 
         <div class="row">
             <div class="col-12 col-md-6">
-                <img class="mb-2" height="50px" src="/img/logo2.svg">
+                <img class="mb-2" height="50px" src="/img/logo2.svg" alt="TSMI">
                 <p class="text-muted">
                     Актуальные новости из различных источников.
                 </p>
