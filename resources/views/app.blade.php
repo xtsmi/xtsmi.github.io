@@ -167,5 +167,7 @@
 </div>
 
 
+@include('particles.analytics')
+
 </body>
 </html>
