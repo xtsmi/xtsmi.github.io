@@ -53,7 +53,7 @@ class News extends Model implements Feedable
         return FeedItem::create()
             ->id(base64_encode($this->link))
             ->title($this->title)
-            ->summary($this->description ?? $this->title)
+            ->summary(strip_tags($this->description ?? $this->title))
             ->updated($this->pubDate)
             ->author($this->domain())
             ->link($this->link);
@@ -66,6 +66,6 @@ class News extends Model implements Feedable
     {
         return Source::getSimilarNews()->map(function (Collection $group, string $title){
             return $group->where('title', $title)->first() ?? $group->first();
-        });
+        })->take(10);
     }
 }
