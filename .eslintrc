@@ -17,5 +17,14 @@
     "env": {
         "browser": true,
         "node": true
+    },
+    "rules": {
+        "prettier/prettier": [
+            2,
+            {
+              "singleQuote": true,
+              "trailingComma": "all"
+            }
+        ]
     }
 }
