@@ -25,6 +25,7 @@ jobs:
       - name: Artisan 🔮
         run: |
           php artisan rss:download
+          php artisan rss:exchange
           php artisan rss:similar
           php artisan rss:page
       - name: Deploy 🚀
