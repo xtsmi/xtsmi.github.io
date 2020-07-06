@@ -18,6 +18,9 @@ Route::view('/', 'index', [
     'news' => Source::getSimilarNews(),
 ])->name('index');
 
+Route::view('/news/{id}', 'news')
+    ->name('news');
+
 Route::view('/list', 'list', [
     'news' => Source::getLastNews(),
 ])->name('list');

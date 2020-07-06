@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +16,13 @@ class News extends Model implements Feedable
      */
     protected $fillable = [
         'title', 'pubDate', 'description', 'link',
+    ];
+
+    /**
+     * @var array
+     */
+    protected $appends = [
+        'id',
     ];
 
     /**
@@ -46,12 +52,20 @@ class News extends Model implements Feedable
     }
 
     /**
+     * @return string|null
+     */
+    public function getIdAttribute(): ?string
+    {
+        return Base64Url::encode($this->link);
+    }
+
+    /**
      * @return array|FeedItem
      */
     public function toFeedItem()
     {
         return FeedItem::create()
-            ->id(base64_encode($this->link))
+            ->id($this->id)
             ->title($this->title)
             ->summary(strip_tags($this->description ?? $this->title))
             ->updated($this->pubDate)
@@ -64,7 +78,7 @@ class News extends Model implements Feedable
      */
     public static function getFeedItems()
     {
-        return Source::getSimilarNews()->map(function (Collection $group, string $title){
+        return Source::getSimilarNews()->map(function (Collection $group, string $title) {
             return $group->where('title', $title)->first() ?? $group->first();
         })->take(10);
     }
