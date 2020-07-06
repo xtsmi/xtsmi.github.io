@@ -3,8 +3,9 @@
 namespace App\Console\Commands;
 
 use App\News;
+use App\Robot\Client;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 class DownloadRssCommand extends Command
@@ -30,19 +31,24 @@ class DownloadRssCommand extends Command
      */
     public function handle()
     {
-        $rss = collect(config('smi.rss'))
-            ->map(function (string $url) {
-                return Http::get($url)->body();
-            })
-            ->map(function (string $rss) {
-                return $this->transformRssToModels($rss);
-            })
+        $client = new Client();
+
+        $rss = collect();
+
+        $client->browse(config('smi.rss'), function (Response $response) use ($rss) {
+            $rss->push($response->getBody());
+        });
+
+        $json = $rss->map(function (string $rss) {
+            return $this->transformRssToModels($rss);
+        })
             ->sortBy('pubDate')
             ->mapWithKeys(function ($news) {
                 return $news;
-            });
+            })
+            ->toJson();
 
-        Storage::put('last-news.json', $rss->toJson());
+        Storage::put('last-news.json', $json);
 
         $this->info('Latest News Received');
     }
