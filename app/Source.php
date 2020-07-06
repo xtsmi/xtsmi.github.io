@@ -15,11 +15,11 @@ class Source
      */
     public static function getSimilarNews()
     {
-        if (!Storage::exists('similar-news.json')) {
+        if (!Storage::exists('/api/similar-news.json')) {
             return collect();
         }
 
-        $similarNews = json_decode(Storage::get('similar-news.json'), true);
+        $similarNews = json_decode(Storage::get('/api/similar-news.json'), true);
 
         return collect($similarNews)
             ->map(function ($news) {
@@ -35,11 +35,11 @@ class Source
      */
     public static function getLastNews(){
 
-        if (!Storage::exists('last-news.json')) {
+        if (!Storage::exists('/api/last-news.json')) {
             return collect();
         }
 
-        $lastNews = Storage::get('last-news.json');
+        $lastNews = Storage::get('/api/last-news.json');
 
         return collect(
             json_decode($lastNews, true)
