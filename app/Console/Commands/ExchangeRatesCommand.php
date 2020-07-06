@@ -47,7 +47,7 @@ class ExchangeRatesCommand extends Command
                 return $infoForCamel;
             });
 
-        Storage::put('exchange.json', $exchange->toJson());
+        Storage::put('/api/exchange.json', $exchange->toJson());
 
         $this->info('Exchange Received');
     }

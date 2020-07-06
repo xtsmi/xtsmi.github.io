@@ -48,7 +48,7 @@ class DownloadRssCommand extends Command
             })
             ->toJson();
 
-        Storage::put('last-news.json', $json);
+        Storage::put('/api/last-news.json', $json);
 
         $this->info('Latest News Received');
     }

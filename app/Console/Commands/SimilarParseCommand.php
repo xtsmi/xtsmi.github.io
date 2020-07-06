@@ -75,7 +75,7 @@ class SimilarParseCommand extends Command
             });
 
 
-        Storage::put('similar-news.json', $similar->toJson());
+        Storage::put('/api/similar-news.json', $similar->toJson());
 
         $this->info('Similar News Received');
     }
