@@ -29,7 +29,7 @@
 <body>
 
 
-<nav class="site-header bg-white">
+<nav class="site-header">
     <div class="px-5 bg-dark" style="background: #333333;">
         <div class="container">
             <div class="px-5 d-flex flex-column flex-md-row justify-content-start" style="align-items: center;">

@@ -23,5 +23,7 @@ Route::view('/list', 'list', [
 ])->name('list');
 
 
+Route::feeds();
+
 Route::view('/404', '404')
     ->name('404');
