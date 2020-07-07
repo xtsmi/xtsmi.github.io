@@ -25,6 +25,17 @@
     <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
     <script src="{{ mix('/js/app.js')}}" type="text/javascript"></script>
+    <script type="text/javascript">
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+            .then(function(registration) {
+                console.log('sw activated!');
+            })
+            .catch(function(error) {
+                console.error('sw failed:', error);
+            });
+        }
+    </script>
 </head>
 <body>
 
