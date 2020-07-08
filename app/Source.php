@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App;
 
-
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\HigherOrderCollectionProxy;
-use Illuminate\Support\Collection;
 
 class Source
 {
@@ -15,13 +13,7 @@ class Source
      */
     public static function getSimilarNews()
     {
-        if (!Storage::exists('/api/similar-news.json')) {
-            return collect();
-        }
-
-        $similarNews = json_decode(Storage::get('/api/similar-news.json'), true);
-
-        return collect($similarNews)
+        return collect(self::getJsonData('/api/similar-news.json'))
             ->map(function ($news) {
                 return collect($news);
             })
@@ -33,19 +25,30 @@ class Source
     /**
      * @return Collection|HigherOrderCollectionProxy
      */
-    public static function getLastNews(){
+    public static function getLastNews()
+    {
+        return collect(self::getJsonData('/api/last-news.json'))
+            ->map(function (array $item) {
+                return new News($item);
+            })
+            ->sortByDesc('pubDate');
+    }
 
-        if (!Storage::exists('/api/last-news.json')) {
-            return collect();
+
+    /**
+     * @param string $path
+     *
+     * @return array|mixed
+     */
+    private static function getJsonData(string $path)
+    {
+        if (!Storage::exists($path)) {
+            return [];
         }
 
-        $lastNews = Storage::get('/api/last-news.json');
-
-        return collect(
-            json_decode($lastNews, true)
-        )->map(function (array $item) {
-            return new News($item);
-        })
-            ->sortByDesc('pubDate');
+        return json_decode(
+            Storage::get($path),
+            true
+        );
     }
 }

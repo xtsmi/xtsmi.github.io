@@ -6,6 +6,7 @@ use App\News;
 use App\Robot\Client;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 
 class DownloadRssCommand extends Command
@@ -56,17 +57,17 @@ class DownloadRssCommand extends Command
     /**
      * @param string $rss
      *
-     * @return News[]
+     * @return News[]|Collection
      */
-    private function transformRssToModels(string $rss): array
+    private function transformRssToModels(string $rss): Collection
     {
         try {
             $elements = new \SimpleXMLElement($rss);
         } catch (\Exception $exception) {
-            return [];
+            return collect();
         }
 
-        $news = [];
+        $news = collect();
 
         foreach ($elements->channel->item as $item) {
             $model = $this->createModelForXMLElement($item);
@@ -75,7 +76,10 @@ class DownloadRssCommand extends Command
                 continue;
             }
 
-            $news[$model->link] = $model;
+            $news->put(
+                $model->link,
+                $model
+            );
         }
 
         return $news;
@@ -88,7 +92,22 @@ class DownloadRssCommand extends Command
      */
     private function createModelForXMLElement(\SimpleXMLElement $item): ?News
     {
-        $news = new News((array)$item);
+        $item = (array)$item;
+        $news = new News($item);
+
+        $media = collect();
+
+        $enclosure = $item['enclosure'] ?? [];
+
+        collect(
+            (array)$enclosure
+        )->each(static function ($info) use ($media) {
+            $media->push((array)$info);
+        });
+
+        $news->fill([
+            'media' => $media
+        ]);
 
         if ($news->pubDate->addDay()->isBefore(now())) {
             return null;

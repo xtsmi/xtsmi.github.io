@@ -16,7 +16,7 @@ class News extends Model implements Feedable
      * @var array
      */
     protected $fillable = [
-        'title', 'pubDate', 'description', 'link', 'image'
+        'title', 'pubDate', 'description', 'link', 'media'
     ];
 
     /**
@@ -34,7 +34,7 @@ class News extends Model implements Feedable
         'pubDate'     => 'datetime',
         'description' => 'string',
         'link'        => 'string',
-        'image'       => 'string',
+        'media'       => 'array',
     ];
 
     /**

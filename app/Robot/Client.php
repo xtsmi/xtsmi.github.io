@@ -44,7 +44,7 @@ class Client
     /**
      * @var int
      */
-    public $concurrency = 10;
+    public $concurrency = 100;
 
     /**
      * Client constructor.

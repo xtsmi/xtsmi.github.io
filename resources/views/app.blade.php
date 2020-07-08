@@ -21,6 +21,9 @@
     <meta name="theme-color" content="#ffffff">
     {{-- /favicon --}}
 
+
+    @include('feed::links')
+
     <meta name="turbolinks-root" content="/">
     <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
