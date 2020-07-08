@@ -16,7 +16,7 @@ class News extends Model implements Feedable
      * @var array
      */
     protected $fillable = [
-        'title', 'pubDate', 'description', 'link', 'media'
+        'title', 'pubDate', 'description', 'link', 'media',
     ];
 
     /**
@@ -51,6 +51,23 @@ class News extends Model implements Feedable
     public function favicon(): string
     {
         return 'https://www.google.com/s2/favicons?domain=' . $this->domain();
+    }
+
+    public function image(): ?string
+    {
+        if (empty($this->media)) {
+            return '';
+        }
+
+        $media = collect($this->media)->filter(function (array $info) {
+            if (!isset($info['type'], $info['url'])) {
+                return false;
+            }
+
+            return Str::contains($info['type'], 'image');
+        })->first();
+
+        return $media['url'] ?? '';
     }
 
     /**
