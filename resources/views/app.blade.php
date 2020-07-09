@@ -36,15 +36,9 @@
     <div class="px-5 bg-dark" style="background: #333333;">
         <div class="container">
             <div class="px-5 d-flex flex-column flex-md-row justify-content-start" style="align-items: center;">
-                <a href="{{url('/')}}" class="mr-3">
+                <a href="{{url('/')}}" class="mr-auto">
                     <img src="/img/logo.svg" height="50px" alt="TSMI">
                 </a>
-
-                <nav class="my-2 my-md-0 mr-auto">
-                    <a class="p-2 text-white" href="{{ route('index') }}">Главные новости</a>
-                    <a class="p-2 text-white" href="{{ route('list') }}">Лента</a>
-                </nav>
-
 
                 <div class="my-2 my-md-0 d-none d-md-block">
                     <span class="p-2 text-white">
