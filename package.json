@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "@arkweid/lefthook": "^0.7.2",
+        "@babel/plugin-proposal-class-properties": "^7.10.4",
         "axios": "^0.19",
         "cross-env": "^7.0",
         "eslint": "^7.4.0",
@@ -28,6 +29,8 @@
     "dependencies": {
         "alpinejs": "^2.2.5",
         "bootstrap": "^4.4.1",
+        "handlebars": "^4.7.6",
+        "scrollwatch": "^2.0.1",
         "stimulus": "^1.1.1",
         "turbolinks": "^5.2.0"
     }
