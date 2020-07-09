@@ -20,12 +20,20 @@
                     <div class="card border-0 mb-3">
                         <div class="row no-gutters">
                             <div class="col-md-4">
-                                <img
-                                    src="https://cdn25.img.ria.ru/images/07e4/07/08/1574042551_0:38:2483:1434_600x0_80_0_0_32af95f047cf20ca4cb319042ee1c7b0.jpg"
-                                    class="card-img"
-                                    alt="..."
-                                    style="object-fit: cover; height: 100%; width: 100%"
-                                >
+
+                                {{-- Вынести --}}
+                                @php $find = false @endphp
+                                @foreach($group as $new)
+                                    @if(!empty($new->image()) && $find === false)
+                                        <img
+                                            src="{{ $new->image() }}"
+                                            class="card-img"
+                                            alt="..."
+                                            style="object-fit: cover; height: 100%; width: 100%"
+                                        >
+                                        @php $find = true @endphp
+                                    @endif
+                                @endforeach
                             </div>
                             <div class="col-md-8">
                                 <div class="py-3 px-md-5 mr-auto ml-auto">
