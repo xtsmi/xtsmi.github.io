@@ -35,12 +35,15 @@ class News extends Model implements Feedable
         'description' => 'string',
         'link'        => 'string',
         'media'       => 'array',
+        'domain'      => 'string',
+        'favicon'     => 'string',
+        'image'       => 'string',
     ];
 
     /**
      * @return string
      */
-    public function domain(): string
+    public function getDomainAttribute(): string
     {
         return parse_url($this->link, PHP_URL_HOST);
     }
@@ -48,12 +51,12 @@ class News extends Model implements Feedable
     /**
      * @return string
      */
-    public function favicon(): string
+    public function getFaviconAttribute(): string
     {
-        return 'https://www.google.com/s2/favicons?domain=' . $this->domain();
+        return 'https://www.google.com/s2/favicons?domain=' . $this->domain;
     }
 
-    public function image(): ?string
+    public function getImageAttribute(): ?string
     {
         if (empty($this->media)) {
             return '';

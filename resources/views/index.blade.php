@@ -24,9 +24,9 @@
                                 {{-- Вынести --}}
                                 @php $find = false @endphp
                                 @foreach($group as $new)
-                                    @if(!empty($new->image()) && $find === false)
+                                    @if(!empty($new->image) && $find === false)
                                         <img
-                                            src="{{ $new->image() }}"
+                                            src="{{ $new->image }}"
                                             class="card-img"
                                             alt="..."
                                             style="object-fit: cover; height: 100%; width: 100%"
@@ -52,8 +52,8 @@
                             <div class="col mb-5">
 
                                 <div class="media v-center mb-2">
-                                    <img src="{{ $new->favicon() }}" class="mr-2">
-                                    <div class="media-body">{{ $new->domain() }}</div>
+                                    <img src="{{ $new->favicon }}" class="mr-2">
+                                    <div class="media-body">{{ $new->domain }}</div>
                                 </div>
                                 <h5>
                                     <a href="{{ $new->link }}" target="_blank" rel="noopener noreferrer"
@@ -61,7 +61,7 @@
                                 </h5>
 
                                 <time class="mr-1 text-muted small" datetime=" {{ $new->pubDate }}">
-                                    {{ $new->pubDate->diffForHumans() }}
+                                    {{ $new->pubDate }}
                                 </time>
                             </div>
                         @endforeach
@@ -80,13 +80,13 @@
                 <div class="row mb-5">
                     <div class="col">
 
-                        @empty(!$new->image())
-                            <img src="{{ $new->image() }}" class="img-fluid">
+                        @empty(!$new->image)
+                            <img src="{{ $new->image }}" class="img-fluid">
                         @endempty
 
                         <div class="media v-center mb-2">
-                            <img src="{{ $new->favicon() }}" class="mr-2">
-                            <div class="media-body">{{ $new->domain() }}</div>
+                            <img src="{{ $new->favicon }}" class="mr-2">
+                            <div class="media-body">{{ $new->domain }}</div>
                         </div>
                         <h5>
                             <a href="{{ $new->link }}" target="_blank" rel="noopener noreferrer"
@@ -94,7 +94,7 @@
                         </h5>
 
                         <time class="mr-1 text-muted small" datetime=" {{ $new->pubDate }}">
-                            {{ $new->pubDate->diffForHumans() }}
+                            {{ $new->pubDate }}
                         </time>
 
                     </div>
