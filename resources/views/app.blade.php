@@ -67,7 +67,7 @@
         @yield('content')
     </main>
 
-    <footer class="footer mt-auto py-3 px-5">
+    <footer class="footer mt-auto py-3">
 
         <div class="row">
             <div class="col-12 col-md-6">
@@ -127,7 +127,7 @@
                     </li>
                 </ul>
 
-                <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+                <small class="d-block mb-3 text-muted">&copy; 2017-{{ date('Y') }}</small>
             </div>
             <div class="col-6 col-md">
                 <h5>About</h5>
