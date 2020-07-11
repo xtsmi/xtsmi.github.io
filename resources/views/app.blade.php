@@ -35,7 +35,7 @@
 <nav class="site-header">
     <div class="px-5 bg-dark" style="background: #333333;">
         <div class="container">
-            <div class="px-5 d-flex flex-column flex-md-row justify-content-start" style="align-items: center;">
+            <div class="d-flex flex-column flex-md-row justify-content-start align-items-center">
                 <a href="{{url('/')}}" class="mr-auto">
                     <img src="/img/logo.svg" height="50px" alt="TSMI">
                 </a>
@@ -46,15 +46,13 @@
                         63,05
                         <span class="text-success">&#8593; 0,45</span>
                     </span>
-                        <span class="p-2 text-white">
+                    <span class="p-2 text-white">
                         <span class="text-muted">EUR:</span>
                         73,26
-                        <span class="text-success">&#8593; 0,30</span>
+                        <span class="text-danger">&#8595; 0,30</span>
                     </span>
-                        <span class="p-2 text-white">
-                        <span class="text-muted">Brent:</span>
-                        71,74
-                        <span class="text-danger">&#8595; 0,01</span>
+                    <span class="p-2 text-white">
+                        11 июля, <strong>суббота</strong>, 15<span class="blinker">:</span>47
                     </span>
                 </div>
 
@@ -65,7 +63,7 @@
 
 <div class="container">
 
-    <main id="app" class="p-md-5">
+    <main id="app" class="py-md-4">
         @yield('content')
     </main>
 
