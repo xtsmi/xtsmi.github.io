@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
@@ -15,7 +16,7 @@ class News extends Model implements Feedable
      * @var array
      */
     protected $fillable = [
-        'title', 'pubDate', 'description', 'link',
+        'title', 'pubDate', 'description', 'link', 'media',
     ];
 
     /**
@@ -33,6 +34,7 @@ class News extends Model implements Feedable
         'pubDate'     => 'datetime',
         'description' => 'string',
         'link'        => 'string',
+        'media'       => 'array',
     ];
 
     /**
@@ -51,6 +53,23 @@ class News extends Model implements Feedable
         return 'https://www.google.com/s2/favicons?domain=' . $this->domain();
     }
 
+    public function image(): ?string
+    {
+        if (empty($this->media)) {
+            return '';
+        }
+
+        $media = collect($this->media)->filter(function (array $info) {
+            if (!isset($info['type'], $info['url'])) {
+                return false;
+            }
+
+            return Str::contains($info['type'], 'image');
+        })->first();
+
+        return $media['url'] ?? '';
+    }
+
     /**
      * @return string|null
      */
@@ -67,7 +86,9 @@ class News extends Model implements Feedable
         return FeedItem::create()
             ->id($this->id)
             ->title($this->title)
-            ->summary(strip_tags($this->description ?? $this->title))
+            ->summary(
+                Str::before(strip_tags($this->description ?? $this->title), '.')
+            )
             ->updated($this->pubDate)
             ->author($this->domain())
             ->link($this->link);
