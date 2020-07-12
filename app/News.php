@@ -93,7 +93,7 @@ class News extends Model implements Feedable
                 Str::before(strip_tags($this->description ?? $this->title), '.')
             )
             ->updated($this->pubDate)
-            ->author($this->domain())
+            ->author($this->domain)
             ->link($this->link);
     }
 
