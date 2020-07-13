@@ -16,7 +16,7 @@ return [
             /*
              * The feed will be available on this url.
              */
-            'url' => 'feed',
+            'url' => 'feeds.main',
 
             'title' => 'My feed',
             'description' => 'The description of the feed.',
