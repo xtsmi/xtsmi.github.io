@@ -24,6 +24,7 @@ jobs:
       - name: Artisan 🔮
         env:
           TZ: Europe/Moscow
+          APP_ENV: production
         run: |
           php artisan rss:download
           php artisan rss:exchange
