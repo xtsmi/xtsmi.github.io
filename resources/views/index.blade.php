@@ -70,12 +70,6 @@
             @foreach($lastNews->take(50) as $new)
                 <div class="row mb-3 pb-3 border-bottom">
                     <div class="col">
-                        @empty(!$new->image)
-                            <a href="{{ $new->link }}" target="_blank" rel="noopener noreferrer">
-                                <img src="{{ $new->image }}" class="img-fluid mb-2">
-                            </a>
-                        @endempty
-
                         <div class="media v-center mb-1">
                             <img src="{{ $new->favicon }}" class="mr-1">
                             <div class="media-body">{{ $new->domain }}</div>
