@@ -92,6 +92,9 @@ class News extends Model implements Feedable
             ->summary(
                 Str::before(strip_tags($this->description ?? $this->title), '.')
             )
+            ->enclosure($this->image)
+            ->enclosureType('image')
+            ->enclosureLength(0)
             ->updated($this->pubDate)
             ->author($this->domain)
             ->link($this->link);
