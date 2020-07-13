@@ -11,13 +11,6 @@ use Spatie\Feed\FeedItem;
 class News extends Model implements Feedable
 {
     /**
-     * The storage format of the model's date columns.
-     *
-     * @var string
-     */
-    protected $dateFormat = \DateTime::ATOM;
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
