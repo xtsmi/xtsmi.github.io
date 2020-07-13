@@ -11,6 +11,13 @@ use Spatie\Feed\FeedItem;
 class News extends Model implements Feedable
 {
     /**
+     * The storage format of the model's date columns.
+     *
+     * @var string
+     */
+    protected $dateFormat = \DateTime::ATOM;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -31,7 +38,7 @@ class News extends Model implements Feedable
      */
     protected $casts = [
         'title'       => 'string',
-        'pubDate'     => 'datetime',
+        'pubDate'     => 'datetime|\DateTime::ATOM',
         'description' => 'string',
         'link'        => 'string',
         'media'       => 'array',
@@ -104,6 +111,6 @@ class News extends Model implements Feedable
     {
         return Source::getSimilarNews()->map(function (Collection $group, string $title) {
             return $group->where('title', $title)->first() ?? $group->first();
-        })->take(10);
+        })->take(4);
     }
 }
