@@ -11,6 +11,14 @@
           content="@yield('keywords','Новости, вести, события, последние, горячее, в мире, в России, в США.')">
     <link rel="stylesheet" type="text/css" href="{{mix('/css/app.css')}}">
 
+    {{-- Open Graph --}}
+    <meta property="og:title" content="@yield('title','Твоё СМИ - Новостной агрегатор. Самые последний и свежие новости в России, в сети, в мире. Узнавайте новости первыми.')"/>
+    <meta property="og:description" content="@yield('description','Самые горячие новости в России, в США, в мире. Последние события в мире новостей.')"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="@yield('title',asset('/img/cover.jpg'))"/>
+    <meta property="og:url" content="{{ url()->current() }}">
+    {{-- /Open Graph --}}
+
     {{-- favicon --}}
     <link rel="icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
