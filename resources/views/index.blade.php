@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-md-9">
-            @foreach($story as $key => $group)
+            @foreach($story->take(12) as $key => $group)
 
 
                 <div class="read bg-white pt-3 px-3 mb-4 rounded shadow-sm">
