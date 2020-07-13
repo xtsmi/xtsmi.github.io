@@ -42,11 +42,11 @@
                         @foreach($group as $new)
                             <div class="col mb-3">
 
-                                <div class="media v-center mb-2">
-                                    <img src="{{ $new->favicon }}" class="mr-2">
+                                <div class="media v-center mb-1">
+                                    <img src="{{ $new->favicon }}" class="mr-1">
                                     <div class="media-body">{{ $new->domain }}</div>
                                 </div>
-                                <h5>
+                                <h5 class="mb-0">
                                     <a href="{{ $new->link }}" target="_blank" rel="noopener noreferrer"
                                        class="text-dark">{{ $new->title }}</a>
                                 </h5>
@@ -76,11 +76,11 @@
                             </a>
                         @endempty
 
-                        <div class="media v-center mb-2">
-                            <img src="{{ $new->favicon }}" class="mr-2">
+                        <div class="media v-center mb-1">
+                            <img src="{{ $new->favicon }}" class="mr-1">
                             <div class="media-body">{{ $new->domain }}</div>
                         </div>
-                        <h5>
+                        <h5 class="mb-0">
                             <a href="{{ $new->link }}" target="_blank" rel="noopener noreferrer"
                                class="text-dark">{{ $new->title }}</a>
                         </h5>
