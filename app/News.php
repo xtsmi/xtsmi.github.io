@@ -31,7 +31,7 @@ class News extends Model implements Feedable
      */
     protected $casts = [
         'title'       => 'string',
-        'pubDate'     => 'datetime|\DateTime::ATOM',
+        'pubDate'     => 'datetime',
         'description' => 'string',
         'link'        => 'string',
         'media'       => 'array',
