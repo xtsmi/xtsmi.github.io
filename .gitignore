@@ -1,3 +1,4 @@
+.env
 .idea
 .phpstorm.meta.php
 .phpunit.result.cache

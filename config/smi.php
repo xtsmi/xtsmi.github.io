@@ -35,8 +35,10 @@ return [
         'https://dailystorm.ru/media/rss.xml',
         'https://360tv.ru/rss/',
         'https://www.interfax.ru/rss.asp',
-        'https://ura.news/rss',
-        'https://www.znak.com/rss'
+        'https://www.forbes.ru/newrss.xml',
+        //'https://ura.news/rss',
+        'https://www.znak.com/rss',
+        'https://takiedela.ru/feed'
     ],
 
 

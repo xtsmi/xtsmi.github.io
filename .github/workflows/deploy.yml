@@ -24,6 +24,11 @@ jobs:
       - name: Artisan 🔮
         env:
           TZ: Europe/Moscow
+          APP_NAME: TSMI
+          APP_ENV: production
+          APP_KEY: base64:hh+C71dWj0tmdKkazohGJh5vxSGNkvN1H9o6IDwEyaA=
+          APP_DEBUG: false
+          APP_URL: https://xtsmi.github.io
         run: |
           php artisan rss:download
           php artisan rss:exchange

@@ -92,8 +92,11 @@ class News extends Model implements Feedable
             ->summary(
                 Str::before(strip_tags($this->description ?? $this->title), '.')
             )
+            ->enclosure($this->image)
+            ->enclosureType('image')
+            ->enclosureLength(0)
             ->updated($this->pubDate)
-            ->author($this->domain())
+            ->author($this->domain)
             ->link($this->link);
     }
 
@@ -104,6 +107,6 @@ class News extends Model implements Feedable
     {
         return Source::getSimilarNews()->map(function (Collection $group, string $title) {
             return $group->where('title', $title)->first() ?? $group->first();
-        })->take(10);
+        })->take(4);
     }
 }

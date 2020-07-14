@@ -16,7 +16,7 @@ return [
             /*
              * The feed will be available on this url.
              */
-            'url' => 'feed',
+            'url' => 'feeds.main',
 
             'title' => 'My feed',
             'description' => 'The description of the feed.',
@@ -25,7 +25,7 @@ return [
             /*
              * The view that will render the feed.
              */
-            'view' => 'feed::rss',
+            'view' => 'rss',
 
             /*
              * The type to be used in the <link> tag

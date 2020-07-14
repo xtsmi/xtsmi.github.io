@@ -5,6 +5,12 @@
 @import '~bootstrap/scss/bootstrap';
 
 
+.v-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .img-full{
     width: 100%;
     height: 100%;

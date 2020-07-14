@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Http\Response;
 
 class BuildPageCommand extends Command
 {
@@ -45,7 +46,12 @@ class BuildPageCommand extends Command
                 parse_url(config('app.url'), PHP_URL_HOST)
             );
 
+            /** @var Response $response */
             $response = app()->handle($request);
+
+            if($response->status() !== 200){
+                $this->warn("Url: $route->uri() response not 200");
+            }
 
             Storage::put(
                 $page,

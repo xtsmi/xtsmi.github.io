@@ -57,6 +57,7 @@ class SimilarParseCommand extends Command
                         ->unique()
                         ->count() > 1;
             })
+            /*
             ->map(function (Collection $items) {
 
                 $fresh = $items->filter(function (News $news) {
@@ -67,6 +68,7 @@ class SimilarParseCommand extends Command
 
                 return $fresh->count() > 5 ? $fresh : $items;
             })
+            */
             ->keyBy(function (Collection $items) {
                 return $items
                     ->sortBy('pubDate')
