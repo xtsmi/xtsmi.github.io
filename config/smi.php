@@ -37,7 +37,8 @@ return [
         'https://www.interfax.ru/rss.asp',
         'https://www.forbes.ru/newrss.xml',
         //'https://ura.news/rss',
-        'https://www.znak.com/rss'
+        'https://www.znak.com/rss',
+        'https://takiedela.ru/feed'
     ],
 
 
