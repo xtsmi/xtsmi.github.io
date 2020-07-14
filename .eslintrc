@@ -1,5 +1,6 @@
 {
     "root": true,
+    "parser": "babel-eslint",
     "plugins": [
         "prettier"
     ],
@@ -20,8 +21,8 @@
         "prettier/prettier": [
             2,
             {
-              "singleQuote": true,
-              "trailingComma": "all"
+                "singleQuote": true,
+                "trailingComma": "all"
             }
         ]
     }

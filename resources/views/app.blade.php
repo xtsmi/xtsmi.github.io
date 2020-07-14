@@ -28,7 +28,7 @@
     <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
     <script src="{{ mix('/js/app.js')}}" type="text/javascript"></script>
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
             .then(function(registration) {
@@ -38,7 +38,7 @@
                 console.error('sw failed:', error);
             });
         }
-    </script>
+    </script> --}}
 </head>
 <body>
 
@@ -170,8 +170,9 @@
     </footer>
 </div>
 
-
-@include('particles.analytics')
+@if ((env('APP_ENV')!='local'))
+    @include('particles.analytics')
+@endif
 
 </body>
 </html>
