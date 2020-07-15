@@ -11,8 +11,22 @@ return [
     | Indicate in hours: 1,2..n
     |
     */
+
     'period' => 12,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Story
+    |--------------------------------------------------------------------------
+    |
+    | Options for defining similar articles and combining them
+    |
+    */
+
+    'story'  => [
+        'percent'  => 65,
+        'minCount' => 3,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -48,7 +62,7 @@ return [
         'https://www.forbes.ru/newrss.xml',
         //'https://ura.news/rss',
         'https://www.znak.com/rss',
-        'https://takiedela.ru/feed'
+        'https://takiedela.ru/feed',
     ],
 
 

@@ -40,7 +40,7 @@ class SimilarParseCommand extends Command
             ->toArray();
 
 
-        $similar = Similar::build($forSimilar, 65)
+        $similar = Similar::build($forSimilar, config('smi.story.percent'))
             ->map(function (array $items) use ($rss) {
                 return collect($items)
                     ->map(function ($item, $key) use ($rss) {
@@ -48,7 +48,7 @@ class SimilarParseCommand extends Command
                     });
             })
             ->filter(function (Collection $items) {
-                return $items->count() > 2;
+                return $items->count() >= config('smi.story.minCount');
             })
             ->filter(function (Collection $items) {
                 return $items->map(function (News $news) {
