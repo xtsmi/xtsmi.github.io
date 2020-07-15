@@ -74,6 +74,14 @@ class SimilarParseCommand extends Command
                     ->sortBy('pubDate')
                     ->first()
                     ->title;
+            })->map(function (Collection $group, string $title) {
+
+                $main = $group->where('title', $title)->first() ?? $group->first();
+
+                return collect([
+                    'main' => $main,
+                    'items' => $group->except($main->title),
+                ]);
             });
 
 

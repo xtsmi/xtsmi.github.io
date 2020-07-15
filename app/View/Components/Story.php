@@ -2,10 +2,10 @@
 
 namespace App\View\Components;
 
-use App\News;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
-class LastNews extends Component
+class Story extends Component
 {
     /**
      * @var string|null
@@ -38,18 +38,29 @@ class LastNews extends Component
     public $pubDate;
 
     /**
+     * @var Collection
+     */
+    public $items;
+
+    /**
      * Create a new component instance.
      *
-     * @param News $news
+     * @param Collection $story
      */
-    public function __construct(News $news)
+    public function __construct(Collection $story)
     {
-        $this->title = $news->title;
-        $this->domain = $news->domain;
-        $this->favicon = $news->favicon;
-        $this->image = $news->image;
-        $this->link = $news->link;
-        $this->pubDate = $news->pubDate;
+        $main = $story->get('main');
+
+        $this->title = $main->title;
+        $this->domain = $main->domain;
+        $this->favicon = $main->favicon;
+        $this->image = $main->image;
+        $this->link = $main->link;
+        $this->pubDate = $main->pubDate;
+
+
+        $this->main = $story->get('main');
+        $this->items = $story->get('items');
     }
 
     /**
@@ -59,6 +70,6 @@ class LastNews extends Component
      */
     public function render()
     {
-        return view('components.last-news');
+        return view('components.story');
     }
 }

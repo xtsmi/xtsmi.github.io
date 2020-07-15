@@ -107,8 +107,8 @@ class News extends Model implements Feedable
      */
     public static function getFeedItems()
     {
-        return Source::getSimilarNews()->map(function (Collection $group, string $title) {
-            return $group->where('title', $title)->first() ?? $group->first();
+        return Source::getSimilarNews()->map(function (Collection $group) {
+            return $group->get('main');
         })->take(4);
     }
 }

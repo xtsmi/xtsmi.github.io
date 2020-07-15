@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'index', [
-    'story' => Source::getSimilarNews(),
-    'lastNews'  => Source::getLastNews(),
+    'stories'  => Source::getSimilarNews(),
+    'lastNews' => Source::getLastNews(),
 ])->name('index');
 
 Route::view('/news/{id}', 'news')

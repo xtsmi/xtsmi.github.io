@@ -14,11 +14,18 @@ class Source
     public static function getSimilarNews()
     {
         return collect(self::getJsonData('/api/similar-news.json'))
-            ->map(function ($news) {
-                return collect($news);
-            })
-            ->map->map(function ($new) {
-                return new News($new);
+            ->map(function (array $group) {
+
+                $main = new News($group['main']);
+
+                $items = collect($group['items'])->map(function ($new) {
+                    return new News($new);
+                });
+
+                return collect([
+                    'main'  => $main,
+                    'items' => $items,
+                ]);
             });
     }
 

@@ -11014,3 +11014,7 @@ a.text-dark:focus {
   }
 }
 
+article .border-bottom {
+  border-bottom: none !important;
+}
+
