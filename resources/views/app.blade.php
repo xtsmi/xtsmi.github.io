@@ -72,13 +72,25 @@
 @endenv
 
 
-<template id="last-news-template" type="text/x-handlebars-template">
+<template id="news-template" type="text/x-handlebars-template">
     @includeVerbatim('components.news')
 </template>
 
-<script id="group-template" type="text/x-handlebars-template">
+<template id="story-template" type="text/x-handlebars-template">
     @includeVerbatim('components.news')
-</script>
+</template>
+
+<template id="article-template">
+    @verbatim
+        <article class="bg-white pt-3 px-3 mb-4 rounded shadow-sm" data-target="main.groupsItem">
+            {{ $story }}
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+                {{ $news }}
+            </div>
+        </article>
+    @endverbatim
+</template>
 
 </body>
 </html>
