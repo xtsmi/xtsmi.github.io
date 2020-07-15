@@ -1,5 +1,3 @@
-import './bootstrap';
-
 import Turbolinks from 'turbolinks';
 
 import { Application } from 'stimulus';
