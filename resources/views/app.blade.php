@@ -77,7 +77,7 @@
 </template>
 
 <template id="story-template" type="text/x-handlebars-template">
-    @includeVerbatim('components.news')
+    @includeVerbatim('components.story')
 </template>
 
 <template id="article-template">
