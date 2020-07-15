@@ -12,35 +12,24 @@ export default class extends Controller {
     loadingGroups = false;
 
     async connect() {
-        this.lastNewsTemplate = document.getElementById(
-            'last-news-template',
-        ).innerHTML;
-        this.groupWrapperTemplate = document.getElementById(
-            'group-wrapper-template',
-        ).innerHTML;
-        this.groupHeaderTemplate = document.getElementById(
-            'group-header-template',
-        ).innerHTML;
-        this.groupItemTemplate = document.getElementById(
-            'group-item-template',
+        this.newsTemplate = document.getElementById('news-template').innerHTML;
+        this.storyTemplate = document.getElementById(
+            'story-template',
         ).innerHTML;
 
         document.addEventListener('scroll', () => {
-            this.loadingLastNews ||
-                (this.needLoad(this.groupsItemTargets) &&
-                    this.loadMoreGroups());
-            this.loadingGroups ||
-                (this.needLoad(this.lastNewsItemTargets) &&
-                    this.loadMoreNews());
+            if (!(this.loadingLastNews && this.loadingGroups)) {
+                if (this.needLoad(this.groupsItemTargets)) {
+                    this.loadMoreGroups();
+                    this.groupsTarget.classList.add('news-ended');
+                }
+
+                this.needLoad(this.lastNewsItemTargets) && this.loadMoreNews();
+            }
         });
 
         this.news = Object.values(await this.getNews());
-        this.groups = Object.entries(await this.getGroups()).map(
-            ([title, items]) => ({
-                title,
-                items,
-            }),
-        );
+        this.groups = Object.values(await this.getGroups());
     }
 
     async getNews() {
@@ -74,7 +63,10 @@ export default class extends Controller {
     }
 
     loadMoreGroups() {
-        return;
+        if (!this.groups) {
+            return;
+        }
+
         this.loadingGroups = true;
 
         const lastIndex = this.groupsItemTargets.length;
@@ -82,13 +74,15 @@ export default class extends Controller {
         this.groupsTarget.innerHTML += this.groups
             .slice(lastIndex, lastIndex + LOAD_GROUPS_COUNT)
             .reduce((memo, item) => {
-                return (
-                    memo +
-                    this.renderTemplate(this.groupWrapperTemplate, {
-                        groupHeader: '',
-                        groupNews: '',
-                    })
+                console.log(item);
+                const { main } = item;
+                const template = this.storyTemplate.replace(
+                    main.image
+                        ? /(\@empty)|(\@endempty)/
+                        : /\@empty.*\@endempty/gs,
+                    '',
                 );
+                return memo + this.renderTemplate(template, item.main);
             }, '');
 
         this.loadingGroups = false;
@@ -103,10 +97,14 @@ export default class extends Controller {
 
         const lastIndex = this.lastNewsItemTargets.length;
 
+        if (lastIndex === this.news.length) {
+            this.lastNewsTarget.classList.add('news-ended');
+        }
+
         this.lastNewsTarget.innerHTML += this.news
             .slice(lastIndex, lastIndex + LOAD_LAST_NEWS_COUNT)
             .reduce((memo, item) => {
-                return memo + this.renderTemplate(this.lastNewsTemplate, item);
+                return memo + this.renderTemplate(this.newsTemplate, item);
             }, '');
 
         this.loadingLastNews = false;
@@ -115,6 +113,11 @@ export default class extends Controller {
     needLoad(targets) {
         const lastTarget = targets[targets.length - 1];
         const rect = lastTarget.getBoundingClientRect();
+        console.log(
+            rect.top - rect.height - LOADING_DISTANCE,
+            rect.top,
+            rect.height,
+        );
 
         return rect.top - rect.height - LOADING_DISTANCE < 0;
     }
