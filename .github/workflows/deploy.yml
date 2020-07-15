@@ -28,7 +28,7 @@ jobs:
           APP_ENV: production
           APP_KEY: base64:hh+C71dWj0tmdKkazohGJh5vxSGNkvN1H9o6IDwEyaA=
           APP_DEBUG: false
-          APP_URL: https://xtsmi.github.io
+          APP_URL: https://tsmi.live
         run: |
           php artisan rss:download
           php artisan rss:exchange
