@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-7 d-flex">
             <div class="px-md-4 m-auto">
-                <h2 class="text-dark font-weight-bolder">{{$key}}</h2>
+                <h2 class="text-dark font-weight-bolder">{{$title}}</h2>
             </div>
         </div>
     </div>

@@ -24,6 +24,8 @@ class News extends Model implements Feedable
      */
     protected $appends = [
         'id',
+        'favicon',
+        'domain'
     ];
 
     /**

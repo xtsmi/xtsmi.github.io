@@ -5,7 +5,7 @@
     <div class="row" data-controller="main">
         <div class="col-md-9" data-target="main.groups">
             @foreach($story->take(3) as $key => $group)
-                @include('particles/group', (array) $group)
+                <x-group-news :title="$key" :group="$group"/>
             @endforeach
         </div>
 
@@ -16,24 +16,16 @@
             </div>
 
             @foreach($lastNews->take(8) as $new)
-                @include('particles/news_item', (array) $new)
+                <x-last-news :news="$new"/>
             @endforeach
         </div>
     </div>
 
-    {{-- <script id="group-template" type="text/x-handlebars-template">
-        @verbatim
-            @include('particles/group_item', [
-                'group' => null,
-                'key'  => null
-            ])
-        @endverbatim
+    <script id="last-news-template" type="text/x-handlebars-template">
+        @includeVerbatim('components.last-news')
     </script>
 
-    <script id="last-news-template" type="text/x-handlebars-template">
-        @verbatim
-            @include('particles/news_item')
-        @endverbatim
-    </script> --}}
-
+    <script id="group-template" type="text/x-handlebars-template">
+        @includeVerbatim('components.last-news')
+    </script>
 @endsection
