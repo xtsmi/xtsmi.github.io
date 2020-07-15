@@ -21,9 +21,9 @@
         </div>
     </div>
 
-    <script id="last-news-template" type="text/x-handlebars-template">
+    <template id="last-news-template" type="text/x-handlebars-template">
         @includeVerbatim('components.last-news')
-    </script>
+    </template>
 
     <script id="group-template" type="text/x-handlebars-template">
         @includeVerbatim('components.last-news')

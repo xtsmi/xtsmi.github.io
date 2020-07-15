@@ -1,5 +1,5 @@
-import { Controller } from 'stimulus';
-// import Handlebars from 'handlebars'
+import {Controller} from 'stimulus';
+import Handlebars from 'handlebars'
 
 const LOADING_DISTANCE = 100;
 
@@ -32,9 +32,19 @@ export default class extends Controller {
 
     loadMoreNews() {
         this.loadingLastNews = true;
-        const el = document.createElement('div');
-        el.innerHTML = 'news';
-        this.lastNewsTarget.appendChild(el);
+
+        const template = Handlebars.compile(
+            document.getElementById('last-news-template').innerHTML
+        );
+
+        this.lastNewsTarget.innerHTML += template({
+            $title: 'Загрузка...',
+            $domain: 'Загрузка...',
+            $favicon: 'Загрузка...',
+            $link: 'Загрузка...',
+            $pubDate: 'Загрузка...',
+        })
+
         console.log('load more news');
         this.loadingLastNews = false;
     }
