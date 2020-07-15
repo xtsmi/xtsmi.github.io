@@ -4,7 +4,7 @@
 
     <div class="row" data-controller="main">
         <div class="col-md-9" data-target="main.groups">
-            @foreach($story->take(3) as $key => $group)
+            @foreach($story->take(6) as $key => $group)
                 <x-group-news :title="$key" :group="$group"/>
             @endforeach
         </div>
@@ -15,7 +15,7 @@
                 <h1 class="h5 text-muted font-weight-bold text-uppercase">Последние новости</h1>
             </div>
 
-            @foreach($lastNews->take(8) as $new)
+            @foreach($lastNews->take(12) as $new)
                 <x-last-news :news="$new"/>
             @endforeach
         </div>
