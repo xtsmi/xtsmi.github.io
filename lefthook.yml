@@ -2,6 +2,7 @@ pre-commit:
   parallel: true
   commands:
     linter:
-      files: git diff --name-only @{push}
+      root: "resources/"
+      #files: git diff --name-only @{push}
       glob: "*.{js,ts}"
       run: npx eslint {files}
