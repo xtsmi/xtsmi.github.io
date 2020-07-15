@@ -109,7 +109,7 @@ class DownloadRssCommand extends Command
             'media' => $media
         ]);
 
-        if ($news->pubDate->addDay()->isBefore(now())) {
+        if ($news->pubDate->addHours(config('smi.period'))->isBefore(now())) {
             return null;
         }
 
