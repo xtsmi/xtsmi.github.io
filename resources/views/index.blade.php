@@ -29,6 +29,27 @@
             @endforeach
         </div>
     </div>
+
+     <script id="last-news-template" type="text/x-handlebars-template">
+        @includeVerbatim('components.last-news')
+    </script>
+
+    <script id="group-wrapper-template" type="text/x-handlebars-template">
+        <div class="read bg-white pt-3 px-3 mb-4 rounded shadow-sm" data-target="main.groupsItem">
+            @{{ groupHeader }}
+                <div class="row py-md-3 row-cols-xl-3 row-cols-sm-2 row-cols-sm-1">
+                    @{{ groupNews }}}
+                </div>
+            </div>
+    </script>
+
+    <script id="group-header-template" type="text/x-handlebars-template">
+        @includeVerbatim('particles.group-header')
+    </script>
+
+    <script id="group-item-template" type="text/x-handlebars-template">
+        @includeVerbatim('particles.group-item')
+    </script>
 @endsection
 
 
