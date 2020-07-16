@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
+use Symfony\Component\Mime\MimeTypes;
 
 class News extends Model implements Feedable
 {
@@ -106,14 +107,17 @@ class News extends Model implements Feedable
      */
     public function toFeedItem()
     {
+        $image = $this->image ?? url('/img/cover.jpg');
+        $mimeTypes = (new MimeTypes())->getMimeTypes(pathinfo($image, PATHINFO_EXTENSION));
+
         return FeedItem::create()
-            ->id(Str::slug($this->pubDate.'/'.$this->id))
+            ->id(Str::slug($this->pubDate . '/' . $this->id))
             ->title($this->title)
             ->summary(
                 Str::before(strip_tags($this->description ?? $this->title), '.')
             )
-            ->enclosure($this->image ?? '/img/cover.jpg')
-            ->enclosureType('image')
+            ->enclosure($image)
+            ->enclosureType(array_shift($mimeTypes))
             ->enclosureLength(0)
             ->updated($this->pubDate)
             ->author($this->domain)
