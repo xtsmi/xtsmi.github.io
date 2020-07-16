@@ -1,4 +1,4 @@
-<div class="card border-0 mb-3">
+<div class="card border-0 mb-3" data-target="main.groupsItem">
     <div class="row">
         @empty(!$image)
             <div class="col-12 col-md-5">

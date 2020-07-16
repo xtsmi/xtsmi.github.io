@@ -58,7 +58,7 @@
 <div class="container">
 
     <main id="app" class="py-md-4 py-3">
-        <div class="row" data-controller="main">
+        <div class="row">
             @yield('left-column')
             @yield('right-column')
         </div>

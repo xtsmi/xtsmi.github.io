@@ -1,6 +1,6 @@
+/* eslint-disable no-useless-escape */
 import { Controller } from 'stimulus';
 
-const LOADING_DISTANCE = 100;
 const LOAD_LAST_NEWS_COUNT = 7;
 const LOAD_GROUPS_COUNT = 2;
 
@@ -19,12 +19,13 @@ export default class extends Controller {
 
         document.addEventListener('scroll', () => {
             if (!(this.loadingLastNews && this.loadingGroups)) {
-                if (this.needLoad(this.groupsItemTargets)) {
+                if (this.needLoad(this.groupsItemTargets, 'groups')) {
                     this.loadMoreGroups();
                     this.groupsTarget.classList.add('news-ended');
                 }
 
-                this.needLoad(this.lastNewsItemTargets) && this.loadMoreNews();
+                this.needLoad(this.lastNewsItemTargets, 'news') &&
+                    this.loadMoreNews();
             }
         });
 
@@ -74,15 +75,31 @@ export default class extends Controller {
         this.groupsTarget.innerHTML += this.groups
             .slice(lastIndex, lastIndex + LOAD_GROUPS_COUNT)
             .reduce((memo, item) => {
-                console.log(item);
-                const { main } = item;
-                const template = this.storyTemplate.replace(
+                const { main, items } = item;
+                const headerTemplate = this.storyTemplate.replace(
                     main.image
-                        ? /(\@empty)|(\@endempty)/
+                        ? /(?:(\@empty\(\!\$image\))|(\@endempty))/gs
                         : /\@empty.*\@endempty/gs,
                     '',
                 );
-                return memo + this.renderTemplate(template, item.main);
+                const newsContent = Object.values(items)
+                    .slice(0, 3)
+                    .reduce((memo, item) => {
+                        console.log(item);
+                        return (
+                            memo + this.renderTemplate(this.newsTemplate, item)
+                        );
+                    }, '');
+
+                //todo: убрать хардкод
+                return `${memo}
+                    <article class="bg-white pt-3 px-3 mb-4 rounded shadow-sm" data-target="main.groupsItem">
+                        ${this.renderTemplate(headerTemplate, item.main)}
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+                            ${newsContent}
+                        </div>
+                    </article>
+                    `;
             }, '');
 
         this.loadingGroups = false;
@@ -113,12 +130,11 @@ export default class extends Controller {
     needLoad(targets) {
         const lastTarget = targets[targets.length - 1];
         const rect = lastTarget.getBoundingClientRect();
-        console.log(
-            rect.top - rect.height - LOADING_DISTANCE,
-            rect.top,
-            rect.height,
-        );
 
-        return rect.top - rect.height - LOADING_DISTANCE < 0;
+        return (
+            rect.bottom > 0 &&
+            rect.top <
+                (window.innerHeight || document.documentElement.clientHeight)
+        );
     }
 }

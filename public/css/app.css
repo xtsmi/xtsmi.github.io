@@ -11018,6 +11018,7 @@ a.text-dark:focus {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0;
+  align-self: flex-end;
 }
 
 article .border-bottom {
