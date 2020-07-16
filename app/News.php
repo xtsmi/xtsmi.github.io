@@ -71,7 +71,7 @@ class News extends Model implements Feedable
     public function getImageAttribute(): ?string
     {
         if (empty($this->media)) {
-            return '';
+            return null;
         }
 
         $media = collect($this->media)->filter(function (array $info) {
