@@ -58,6 +58,12 @@ class BuildPageCommand extends Command
                 (string)$response->getContent()
             );
 
+            Storage::put('/ap/generated.json',
+                json_encode([
+                    'generated' => config('smi.generated')
+                ])
+            );
+
             $this->info("Page '$page' generated");
         }
     }

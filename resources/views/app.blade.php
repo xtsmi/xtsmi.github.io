@@ -36,6 +36,7 @@
 
     @include('feed::links')
 
+    <meta name="generated" content="{{ config('smi.generated') }}">
     <meta name="turbolinks-root" content="/">
     <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
