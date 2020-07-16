@@ -82,7 +82,7 @@ class News extends Model implements Feedable
             return Str::contains($info['type'], 'image');
         })->first();
 
-        return $media['url'] ?? '';
+        return $media['url'] ?? url('/img/cover.jpg');
     }
 
     /**
