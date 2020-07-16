@@ -3,7 +3,7 @@
         <div class="container">
             <div class="d-flex flex-md-row justify-content-start align-items-center">
                 <a href="{{url('/')}}" class="mr-auto">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="50px" class="text-white" viewBox="0 0 88.91 50" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="logo text-white" viewBox="0 0 88.91 50" fill="currentColor">
                         <g>
                             <rect width="36.23" height="50" fill="#82c502"/>
                             <path

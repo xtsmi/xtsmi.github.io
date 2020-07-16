@@ -35,3 +35,14 @@ svg{
     vertical-align: middle;
     border-style: none;
 }
+
+
+.logo{
+    height: 50px;
+}
+
+@include media-breakpoint-down(sm) {
+    .logo{
+        height: 40px!important;
+    }
+}
