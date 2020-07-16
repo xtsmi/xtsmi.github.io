@@ -82,7 +82,7 @@ class News extends Model implements Feedable
             return Str::contains($info['type'], 'image');
         })->first();
 
-        return $media['url'] ?? url('/img/cover.jpg');
+        return $media['url'] ?? null;
     }
 
     /**
@@ -112,7 +112,7 @@ class News extends Model implements Feedable
             ->summary(
                 Str::before(strip_tags($this->description ?? $this->title), '.')
             )
-            ->enclosure($this->image)
+            ->enclosure($this->image ?? '/img/cover.jpg')
             ->enclosureType('image')
             ->enclosureLength(0)
             ->updated($this->pubDate)
