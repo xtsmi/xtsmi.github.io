@@ -32,6 +32,7 @@
     <meta name="theme-color" content="#ffffff">
     {{-- /favicon --}}
 
+    <meta name="yandex-verification" content="0e693be926f4cc9c" />
 
     @include('feed::links')
 
