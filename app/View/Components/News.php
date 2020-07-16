@@ -14,7 +14,7 @@ class News extends Component
     /**
      * @var string
      */
-    public $link;
+    public $internalLink;
 
     /**
      * @var string
@@ -47,7 +47,7 @@ class News extends Component
         $this->domain = $news->domain;
         $this->favicon = $news->favicon;
         $this->image = $news->image;
-        $this->link = $news->link;
+        $this->internalLink = $news->internalLink;
         $this->pubDate = $news->pubDate;
     }
 

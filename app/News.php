@@ -16,7 +16,12 @@ class News extends Model implements Feedable
      * @var array
      */
     protected $fillable = [
-        'title', 'pubDate', 'description', 'link', 'media',
+        'title',
+        'pubDate',
+        'description',
+        'link',
+        'media',
+        'internalLink',
     ];
 
     /**
@@ -26,7 +31,8 @@ class News extends Model implements Feedable
         'id',
         'favicon',
         'domain',
-        'image'
+        'image',
+        'internalLink',
     ];
 
     /**
@@ -59,6 +65,9 @@ class News extends Model implements Feedable
         return 'https://www.google.com/s2/favicons?domain=' . $this->domain;
     }
 
+    /**
+     * @return string|null
+     */
     public function getImageAttribute(): ?string
     {
         if (empty($this->media)) {
@@ -85,6 +94,14 @@ class News extends Model implements Feedable
     }
 
     /**
+     * @return string
+     */
+    public function getInternalLinkAttribute(): string
+    {
+        return route('news', $this->id);
+    }
+
+    /**
      * @return array|FeedItem
      */
     public function toFeedItem()
@@ -100,7 +117,7 @@ class News extends Model implements Feedable
             ->enclosureLength(0)
             ->updated($this->pubDate)
             ->author($this->domain)
-            ->link($this->link);
+            ->link($this->internalLink);
     }
 
     /**

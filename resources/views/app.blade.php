@@ -17,7 +17,7 @@
     <meta property="og:description"
           content="@yield('description','Самые горячие новости в России, в США, в мире. Последние события в мире новостей.')"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:image" content="@yield('title',asset('/img/cover.jpg'))"/>
+    <meta property="og:image" content="@yield('image',asset('/img/cover.jpg'))"/>
     <meta property="og:url" content="{{ url()->current() }}">
     {{-- /Open Graph --}}
 

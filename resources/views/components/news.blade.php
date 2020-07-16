@@ -4,7 +4,7 @@
         <div class="media-body">{{ $domain }}</div>
     </div>
     <h5 class="mb-1">
-        <a href="{{ $link }}" target="_blank" rel="noopener noreferrer"
+        <a href="{{ $internalLink }}" target="_blank" rel="noopener noreferrer"
            class="text-dark">{{ $title }}</a>
     </h5>
     <time class="mr-1 text-muted small" datetime=" {{ $pubDate }}">

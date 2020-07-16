@@ -13,20 +13,22 @@ class Source
      */
     public static function getSimilarNews()
     {
-        return collect(self::getJsonData('/api/similar-news.json'))
-            ->map(function (array $group) {
+        return once(function () {
+            return collect(self::getJsonData('/api/similar-news.json'))
+                ->map(function (array $group) {
 
-                $main = new News($group['main']);
+                    $main = new News($group['main']);
 
-                $items = collect($group['items'])->map(function ($new) {
-                    return new News($new);
+                    $items = collect($group['items'])->map(function ($new) {
+                        return new News($new);
+                    });
+
+                    return collect([
+                        'main'  => $main,
+                        'items' => $items,
+                    ]);
                 });
-
-                return collect([
-                    'main'  => $main,
-                    'items' => $items,
-                ]);
-            });
+        });
     }
 
     /**
@@ -34,11 +36,13 @@ class Source
      */
     public static function getLastNews()
     {
-        return collect(self::getJsonData('/api/last-news.json'))
-            ->map(function (array $item) {
-                return new News($item);
-            })
-            ->sortByDesc('pubDate');
+        return once(function () {
+            return collect(self::getJsonData('/api/last-news.json'))
+                ->map(function (array $item) {
+                    return new News($item);
+                })
+                ->sortByDesc('pubDate');
+        });
     }
 
 

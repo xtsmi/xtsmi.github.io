@@ -1,5 +1,6 @@
 <?php
 
+use App\News;
 use App\Source;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +20,23 @@ Route::view('/', 'index', [
     'lastNews' => Source::getLastNews(),
 ])->name('index');
 
-Route::view('/news/{id}', 'news')
-    ->name('news');
+Route::get('/news/{id}', function (string $id) {
+
+    $news = Source::getLastNews()
+        ->filter(static function (News $news) use ($id) {
+            return $news->id === $id;
+        })->first();
+
+
+    if ($news === null) {
+        return redirect()->route('404');
+    }
+
+    return view('news', [
+        'news' => $news,
+    ]);
+
+})->name('news');
 
 Route::feeds();
 
