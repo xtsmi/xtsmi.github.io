@@ -107,7 +107,7 @@ class News extends Model implements Feedable
     public function toFeedItem()
     {
         return FeedItem::create()
-            ->id($this->id)
+            ->id(Str::slug($this->pubDate.'/'.$this->id))
             ->title($this->title)
             ->summary(
                 Str::before(strip_tags($this->description ?? $this->title), '.')
