@@ -16,7 +16,7 @@
                 <link>{{ url($item->link) }}</link>
                 <description><![CDATA[{!! $item->summary !!}]]></description>
                 <author><![CDATA[{{ $item->author }}]]></author>
-                <guid>{{ url($item->id) }}</guid>
+                <guid>{{ $item->id }}</guid>
                 <pubDate>{{ $item->updated->toRssString() }}</pubDate>
                 @if($item->__isset('enclosure'))
                     <enclosure url="{{ url($item->enclosure) }}" length="{{ $item->enclosureLength }}" type="{{ $item->enclosureType }}" />
