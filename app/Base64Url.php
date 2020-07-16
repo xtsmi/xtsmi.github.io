@@ -15,7 +15,7 @@ class Base64Url
      */
     public static function encode(string $data, bool $usePadding = false): string
     {
-        $encoded = strtr(base64_encode($data), '+/', '-_');
+        $encoded = strtr(base64_encode(gzcompress($data, 9)), '+/', '-_');
 
         return true === $usePadding
             ? $encoded
@@ -31,7 +31,7 @@ class Base64Url
      */
     public static function decode(string $data): string
     {
-        $decoded = base64_decode(strtr($data, '-_', '+/'), true);
+        $decoded = gzuncompress(base64_decode(strtr($data, '-_', '+/'), true), 9);
 
         throw_if(false === $decoded,
             \InvalidArgumentException::class,

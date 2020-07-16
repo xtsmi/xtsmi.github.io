@@ -90,7 +90,9 @@ class News extends Model implements Feedable
      */
     public function getIdAttribute(): ?string
     {
-        return Base64Url::encode($this->link);
+        $url = str_replace(['http://', 'https://'],'//',  $this->link);
+
+        return Base64Url::encode($url);
     }
 
     /**
