@@ -6,6 +6,7 @@
                     src="{{ $image }}"
                     class="img-full border"
                     alt="{{$title}}"
+                    loading="lazy"
                 >
             </div>
         @endempty
