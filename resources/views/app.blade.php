@@ -17,7 +17,7 @@
     <meta property="og:description"
           content="@yield('description','Самые горячие новости в России, в США, в мире. Последние события в мире новостей.')"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:image" content="@yield('title',asset('/img/cover.jpg'))"/>
+    <meta property="og:image" content="@yield('image',asset('/img/cover.jpg'))"/>
     <meta property="og:url" content="{{ url()->current() }}">
     {{-- /Open Graph --}}
 
@@ -32,9 +32,11 @@
     <meta name="theme-color" content="#ffffff">
     {{-- /favicon --}}
 
+    <meta name="yandex-verification" content="0e693be926f4cc9c" />
 
     @include('feed::links')
 
+    <meta name="generated" content="{{ config('smi.generated') }}">
     <meta name="turbolinks-root" content="/">
     <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>

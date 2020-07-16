@@ -1,10 +1,12 @@
 @extends('app')
 
-@section('title', '')
-@section('description', '')
-@section('keywords', '')
+@section('title', $news->title)
+@section('description', $news->description)
+@section('image', $news->image)
 
-@section('content')
+@section('left-column')
 
+    <x-news :news="$news"/>
+    {{-- Какой то редирект на страницу новости и на открытие главной?  --}}
 
 @endsection

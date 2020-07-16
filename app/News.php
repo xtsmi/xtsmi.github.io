@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
+use Symfony\Component\Mime\MimeTypes;
 
 class News extends Model implements Feedable
 {
@@ -16,7 +17,12 @@ class News extends Model implements Feedable
      * @var array
      */
     protected $fillable = [
-        'title', 'pubDate', 'description', 'link', 'media',
+        'title',
+        'pubDate',
+        'description',
+        'link',
+        'media',
+        'internalLink',
     ];
 
     /**
@@ -26,7 +32,8 @@ class News extends Model implements Feedable
         'id',
         'favicon',
         'domain',
-        'image'
+        'image',
+        'internalLink',
     ];
 
     /**
@@ -59,10 +66,13 @@ class News extends Model implements Feedable
         return 'https://www.google.com/s2/favicons?domain=' . $this->domain;
     }
 
+    /**
+     * @return string|null
+     */
     public function getImageAttribute(): ?string
     {
         if (empty($this->media)) {
-            return '';
+            return null;
         }
 
         $media = collect($this->media)->filter(function (array $info) {
@@ -73,7 +83,7 @@ class News extends Model implements Feedable
             return Str::contains($info['type'], 'image');
         })->first();
 
-        return $media['url'] ?? '';
+        return $media['url'] ?? null;
     }
 
     /**
@@ -81,7 +91,15 @@ class News extends Model implements Feedable
      */
     public function getIdAttribute(): ?string
     {
-        return Base64Url::encode($this->link);
+        return hash('crc32b', $this->link);
+    }
+
+    /**
+     * @return string
+     */
+    public function getInternalLinkAttribute(): string
+    {
+        return route('news', $this->id);
     }
 
     /**
@@ -89,18 +107,21 @@ class News extends Model implements Feedable
      */
     public function toFeedItem()
     {
+        $image = $this->image ?? url('/img/cover.jpg');
+        $mimeTypes = (new MimeTypes())->getMimeTypes(pathinfo($image, PATHINFO_EXTENSION));
+
         return FeedItem::create()
-            ->id($this->id)
+            ->id(Str::slug($this->pubDate . '/' . $this->id))
             ->title($this->title)
             ->summary(
                 Str::before(strip_tags($this->description ?? $this->title), '.')
             )
-            ->enclosure($this->image)
-            ->enclosureType('image')
+            ->enclosure($image)
+            ->enclosureType(array_shift($mimeTypes))
             ->enclosureLength(0)
             ->updated($this->pubDate)
             ->author($this->domain)
-            ->link($this->link);
+            ->link($this->internalLink);
     }
 
     /**

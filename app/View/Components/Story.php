@@ -15,7 +15,7 @@ class Story extends Component
     /**
      * @var string
      */
-    public $link;
+    public $internalLink;
 
     /**
      * @var string
@@ -55,7 +55,7 @@ class Story extends Component
         $this->domain = $main->domain;
         $this->favicon = $main->favicon;
         $this->image = $main->image;
-        $this->link = $main->link;
+        $this->internalLink = $main->internalLink;
         $this->pubDate = $main->pubDate;
 
 

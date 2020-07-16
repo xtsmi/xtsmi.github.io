@@ -19,13 +19,12 @@ export default class extends Controller {
 
         document.addEventListener('scroll', () => {
             if (!(this.loadingLastNews && this.loadingGroups)) {
-                if (this.needLoad(this.groupsItemTargets, 'groups')) {
+                if (this.needLoad(this.groupsItemTargets)) {
                     this.loadMoreGroups();
                     this.groupsTarget.classList.add('news-ended');
                 }
 
-                this.needLoad(this.lastNewsItemTargets, 'news') &&
-                    this.loadMoreNews();
+                this.needLoad(this.lastNewsItemTargets) && this.loadMoreNews();
             }
         });
 

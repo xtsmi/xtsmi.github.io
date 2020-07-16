@@ -17,7 +17,9 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "spatie/laravel-feed": "^2.7",
-        "symfony/dom-crawler": "^5.1"
+        "spatie/once": "^2.2",
+        "symfony/dom-crawler": "^5.1",
+        "ext-zlib": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
