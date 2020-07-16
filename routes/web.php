@@ -27,7 +27,6 @@ Route::get('/news/{id}', function (string $id) {
             return $news->id === $id;
         })->first();
 
-
     if ($news === null) {
         return redirect()->route('404');
     }

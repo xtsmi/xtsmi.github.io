@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\News;
 use App\Source;
 use Illuminate\Console\Command;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
@@ -121,6 +122,13 @@ class BuildPageCommand extends Command
             'host',
             parse_url(config('app.url'), PHP_URL_HOST)
         );
+
+        /** @var Response $response */
+        $response = app()->handle($request);
+
+        if (is_a($response, RedirectResponse::class)) {
+            return $this->createRequest($response->getTargetUrl());
+        }
 
         /** @var Response $response */
         return app()->handle($request);
