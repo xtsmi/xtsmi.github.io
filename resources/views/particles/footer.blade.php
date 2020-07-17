@@ -29,7 +29,7 @@
         <div class="col-6 col-md-2">
             <h5>Resources</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Resource</a></li>
+                <li><a class="text-muted" href="https://vk.com/xtsmi" target="_blank">Вконтакте</a></li>
                 <li><a class="text-muted" href="#">Resource name</a></li>
                 <li><a class="text-muted" href="#">Another resource</a></li>
             </ul>
