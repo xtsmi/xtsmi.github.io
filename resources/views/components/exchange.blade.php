@@ -14,7 +14,12 @@
 
     @endforeach
 
-    <span class="p-2 text-white d-none d-md-inline">
-       11 июля, <strong>суббота</strong>, 15<span class="blinker">:</span>47
-    </span>
+    <div class="p-2 text-white d-none d-md-inline" data-controller="current-time">
+        <span data-target="current-time.day">-</span>
+        <span data-target="current-time.month">-</span>,
+        <strong data-target="current-time.week">-</strong>,
+        <span data-target="current-time.hours">-</span>
+        <span class="blinker">:</span>
+        <span data-target="current-time.minutes">-</span>
+    </div>
 </div>

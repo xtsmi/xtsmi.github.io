@@ -69,11 +69,6 @@
     @include('particles.footer')
 </div>
 
-@env('production')
-    @include('particles.analytics')
-@endenv
-
-
 <template id="news-template" type="text/x-handlebars-template">
     @includeVerbatim('components.news')
 </template>
@@ -93,6 +88,11 @@
         </article>
     @endverbatim
 </template>
+
+
+@env('production')
+    @include('particles.analytics')
+@endenv
 
 </body>
 </html>
