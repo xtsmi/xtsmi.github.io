@@ -45,6 +45,15 @@ class Source
         });
     }
 
+    /**
+     * @return Collection|HigherOrderCollectionProxy
+     */
+    public static function getExchange()
+    {
+        return once(function () {
+            return collect(self::getJsonData('/api/exchange.json'));
+        });
+    }
 
     /**
      * @param string $path

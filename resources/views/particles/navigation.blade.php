@@ -15,21 +15,7 @@
                     </svg>
                 </a>
 
-                <div class="my-2 my-md-0">
-                    <span class="p-2 text-white">
-                        <span class="text-muted">USD:</span>
-                        63,05
-                        <span class="text-success d-none d-md-inline">&#8593; 0,45</span>
-                    </span>
-                    <span class="p-2 text-white">
-                        <span class="text-muted">EUR:</span>
-                        73,26
-                        <span class="text-danger d-none d-md-inline">&#8595; 0,30</span>
-                    </span>
-                    <span class="p-2 text-white d-none d-md-inline">
-                        11 июля, <strong>суббота</strong>, 15<span class="blinker">:</span>47
-                    </span>
-                </div>
+                <x-exchange/>
 
             </div>
         </div>
