@@ -2,7 +2,7 @@ import {Controller} from 'stimulus';
 
 export default class extends Controller {
 
-    connect() {
+    initialize() {
         const baseURI = document.baseURI;
 
         if (document.referrer.includes(baseURI)) {
