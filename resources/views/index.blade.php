@@ -8,8 +8,7 @@
                 <x-story :story="$story"/>
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-                    {{-- ->take(3) --}}
-                    @foreach($story->get('items') as $news)
+                    @foreach($story->get('items')->take(3) as $news)
                         <x-news :news="$news"/>
                     @endforeach
                 </div>
