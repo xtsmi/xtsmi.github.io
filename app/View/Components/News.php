@@ -14,7 +14,7 @@ class News extends Component
     /**
      * @var string
      */
-    public $internalLink;
+    public $link;
 
     /**
      * @var string
@@ -39,16 +39,20 @@ class News extends Component
     /**
      * Create a new component instance.
      *
-     * @param News $news
+     * @param \App\News $news
+     * @param bool      $direct
      */
-    public function __construct(\App\News $news)
+    public function __construct(\App\News $news, bool $direct = false)
     {
         $this->title = $news->title;
         $this->domain = $news->domain;
         $this->favicon = $news->favicon;
         $this->image = $news->image;
-        $this->internalLink = $news->internalLink;
         $this->pubDate = $news->pubDate;
+
+        $this->link = $direct
+            ? $news->link
+            : $news->internalLink;
     }
 
     /**

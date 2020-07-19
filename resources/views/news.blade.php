@@ -6,7 +6,9 @@
 
 @section('left-column')
 
-    <x-news :news="$news"/>
-    {{-- Какой то редирект на страницу новости и на открытие главной?  --}}
+    <div data-controller="one-news"
+         data-one-news-url="{{ $news->link }}">
+        <x-news :news="$news" direct="true"/>
+    </div>
 
 @endsection

@@ -2,7 +2,6 @@
 
 @section('left-column')
     <div class="col-md-9 col-sm-12" data-target="main.groups">
-        {{-- ->take(6) --}}
         @foreach($stories as $story)
             <article class="bg-white pt-3 px-3 mb-4 rounded shadow-sm" data-target="main.groupsItem">
                 <x-story :story="$story"/>
@@ -25,7 +24,6 @@
         </div>
 
         <div class="row row-cols-1">
-            {{-- ->take(12) --}}
             @foreach($lastNews->take(12) as $news)
                 <x-news :news="$news"/>
             @endforeach
