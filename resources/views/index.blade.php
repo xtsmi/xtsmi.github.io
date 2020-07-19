@@ -27,7 +27,7 @@
 
         <div class="row row-cols-1">
             {{-- ->take(12) --}}
-            @foreach($lastNews as $news)
+            @foreach($lastNews->take(12) as $news)
                 <x-news :news="$news"/>
             @endforeach
         </div>
