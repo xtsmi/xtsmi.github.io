@@ -16,4 +16,5 @@ yarn-error.log
 /public/index.html
 /public/api/*.json
 /public/*.html
+/public/news
 
