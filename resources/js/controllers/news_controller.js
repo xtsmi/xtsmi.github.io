@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-escape */
 import { Controller } from 'stimulus';
+import { formatLong } from '../lib/format_date';
 
 const PORTION_COUNT = 7;
 
@@ -13,7 +14,9 @@ export default class extends Controller {
 
         document.addEventListener('scroll', () => this.loadMoreNews());
 
-        this.news = Object.values(await this.getNews());
+        this.news = Object.values(await this.getNews()).sort(
+            (a, b) => new Date(b.pubDate) - new Date(a.pubDate),
+        );
         this.loadMoreNews();
     }
 
@@ -52,8 +55,14 @@ export default class extends Controller {
         this.element.innerHTML += this.news
             .slice(lastIndex, lastIndex + PORTION_COUNT)
             .reduce(
-                (memo, item) =>
-                    memo + this.renderTemplate(this.newsTemplate, item),
+                (memo, _item) => {
+                    const item = {
+                        ..._item,
+                        pubDate: formatLong(_item.pubDate),
+                    };
+                    return memo + this.renderTemplate(this.newsTemplate, item);
+                },
+
                 '',
             );
 
