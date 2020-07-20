@@ -53,7 +53,7 @@
         }
     </script> --}}
 </head>
-<body data-controller="main">
+<body>
 
 @include('particles.navigation')
 
@@ -84,7 +84,7 @@
 
 <script id="article-template" type="text/x-handlebars-template">
     @verbatim
-        <article class="bg-white pt-3 px-3 mb-4 rounded shadow-sm" data-target="main.groupsItem">
+        <article class="bg-white pt-3 px-3 mb-4 rounded shadow-sm" data-target="groups.item">
             {{ $story }}
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
