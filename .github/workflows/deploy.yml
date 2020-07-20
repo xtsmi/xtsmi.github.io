@@ -21,6 +21,10 @@ jobs:
       - name: Install 🔧
         run: |
           composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+      - name: TimeZone ⏰
+        run: |
+          sudo timedatectl set-timezone Europe/Moscow
+          timedatectl
       - name: Artisan 🔮
         env:
           TZ: Europe/Moscow
