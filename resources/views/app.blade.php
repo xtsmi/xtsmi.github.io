@@ -54,7 +54,7 @@
         }
     </script> --}}
 </head>
-<body data-controller="main">
+<body>
 
 @include('particles.navigation')
 
@@ -74,22 +74,6 @@
 
 <script id="news-template" type="text/x-handlebars-template">
     @includeVerbatim('components.news')
-</script>
-
-<script id="story-template" type="text/x-handlebars-template">
-    @includeVerbatim('components.story')
-</script>
-
-<script id="article-template" type="text/x-handlebars-template">
-    @verbatim
-        <article class="bg-white pt-3 px-3 mb-4 rounded shadow-sm" data-target="groups.item">
-            {{ $story }}
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-                {{ $news }}
-            </div>
-        </article>
-    @endverbatim
 </script>
 
 
