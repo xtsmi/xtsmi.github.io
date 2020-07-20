@@ -11,11 +11,10 @@ export default class extends Controller {
     async connect() {
         this.newsTemplate = document.getElementById('news-template').innerHTML;
 
-        this.loadMoreNews();
-
         document.addEventListener('scroll', () => this.loadMoreNews());
 
         this.news = Object.values(await this.getNews());
+        this.loadMoreNews();
     }
 
     async getNews() {
