@@ -18,4 +18,5 @@ yarn-error.log
 /public/api/*.json
 /public/*.html
 /public/news
+/public/feeds.main.xml
 

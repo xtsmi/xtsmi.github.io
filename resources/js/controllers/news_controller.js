@@ -20,8 +20,7 @@ export default class extends Controller {
     async getNews() {
         const response = await fetch('/api/last-news.json');
         if (response.ok) {
-            let json = await response.json();
-            return json;
+            return response.json();
         }
     }
 

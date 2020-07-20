@@ -72,7 +72,7 @@
 
 
 
-<script id="news-template" type="text/x-handlebars-template">
+<script id="news-template" type="text/template">
     @includeVerbatim('components.news')
 </script>
 

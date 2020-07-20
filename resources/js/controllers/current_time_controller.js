@@ -20,7 +20,7 @@ export default class extends Controller {
 
         tick();
 
-        this.timer = setTimeout(tick, 10000);
+        this.timer = setInterval(tick, 10000);
     }
 
     /**
@@ -122,6 +122,6 @@ export default class extends Controller {
      * Clear time
      */
     disconnect() {
-        clearTimeout(this.timer);
+        clearInterval(this.timer);
     }
 }
