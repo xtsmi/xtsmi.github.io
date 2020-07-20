@@ -23,7 +23,7 @@
             <h1 class="h5 text-muted font-weight-bold text-uppercase">Последние новости</h1>
         </div>
 
-        <div class="row row-cols-1">
+        <div class="row row-cols-1" data-target="news.news">
             @foreach($lastNews->take(12) as $news)
                 <x-news :news="$news"/>
             @endforeach

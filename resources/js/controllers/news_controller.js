@@ -5,7 +5,7 @@ import { formatLong } from '../lib/format_date';
 const PORTION_COUNT = 7;
 
 export default class extends Controller {
-    static targets = ['item'];
+    static targets = ['item', 'news'];
 
     loading = false;
 
@@ -52,7 +52,7 @@ export default class extends Controller {
             this.element.classList.add('news-ended');
         }
 
-        this.element.innerHTML += this.news
+        this.newsTarget.innerHTML += this.news
             .slice(lastIndex, lastIndex + PORTION_COUNT)
             .reduce(
                 (memo, _item) => {
