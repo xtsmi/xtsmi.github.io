@@ -1,5 +1,6 @@
 .env
 .idea
+.vscode
 .phpstorm.meta.php
 .phpunit.result.cache
 /node_modules
@@ -16,4 +17,6 @@ yarn-error.log
 /public/index.html
 /public/api/*.json
 /public/*.html
+/public/news
+/public/feeds.main.xml
 

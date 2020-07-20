@@ -1,41 +1,33 @@
-import {Controller} from 'stimulus';
+import { Controller } from 'stimulus';
 
 export default class extends Controller {
-
     /**
      *
      * @type {[string, string]}
      */
-    static targets = [
-        "minutes",
-        "hours",
-        "month",
-        "day",
-        "week"
-    ]
+    static targets = ['minutes', 'hours', 'month', 'day', 'week'];
 
     /**
      *
      */
     connect() {
-        let tick = () => {
+        const tick = () =>
             this.updateDay()
                 .updateWeek()
                 .updateHours()
                 .updateMinutes()
-                .updateMonth()
-        };
+                .updateMonth();
 
         tick();
 
-        this.timer = setTimeout(tick, 10000);
+        this.timer = setInterval(tick, 10000);
     }
 
     /**
      *
-     * @returns {string[]}
+     * @returns {string}
      */
-    getWeek() {
+    getWeekDay(dayNumber) {
         return [
             'воскресенье',
             'понедельник',
@@ -44,35 +36,35 @@ export default class extends Controller {
             'четверг',
             'пятница',
             'суббота',
-        ];
+        ][dayNumber];
     }
 
     /**
      *
-     * @returns {string[]}
+     * @returns {string}
      */
-    getMonth() {
+    getMonth(monthNumber) {
         return [
-            "января",
-            "февраля",
-            "марта",
-            "апреля",
-            "мая",
-            "июня",
-            "июля",
-            "августа",
-            "сентября",
-            "октября",
-            "ноября",
-            "декабря"
-        ];
+            'января',
+            'февраля',
+            'марта',
+            'апреля',
+            'мая',
+            'июня',
+            'июля',
+            'августа',
+            'сентября',
+            'октября',
+            'ноября',
+            'декабря',
+        ][monthNumber];
     }
 
     /**
      *
      */
     updateDay() {
-        this.dayTarget.textContent = (new Date()).getDate();
+        this.dayTarget.textContent = new Date().getDate();
 
         return this;
     }
@@ -81,7 +73,7 @@ export default class extends Controller {
      *
      */
     updateHours() {
-        let hours = (new Date()).getHours();
+        let hours = new Date().getHours();
         this.hoursTarget.textContent = this.pad(hours);
 
         return this;
@@ -91,7 +83,7 @@ export default class extends Controller {
      *
      */
     updateMinutes() {
-        let minutes = (new Date()).getMinutes();
+        let minutes = new Date().getMinutes();
         this.minutesTarget.textContent = this.pad(minutes);
 
         return this;
@@ -101,8 +93,8 @@ export default class extends Controller {
      *
      */
     updateMonth() {
-        let month = (new Date()).getMonth();
-        this.monthTarget.textContent = this.getMonth()[month];
+        let month = new Date().getMonth();
+        this.monthTarget.textContent = this.getMonth(month);
 
         return this;
     }
@@ -111,8 +103,8 @@ export default class extends Controller {
      *
      */
     updateWeek() {
-        let week = (new Date()).getDay();
-        this.weekTarget.textContent = this.getWeek()[week];
+        let week = new Date().getDay();
+        this.weekTarget.textContent = this.getWeekDay(week);
 
         return this;
     }
@@ -123,15 +115,13 @@ export default class extends Controller {
      * @returns {string|*}
      */
     pad(number) {
-        return number < 10
-            ? '0' + number
-            : number;
+        return number.toString().padStart(2, 0);
     }
 
     /**
      * Clear time
      */
     disconnect() {
-        clearTimeout(this.timer);
+        clearInterval(this.timer);
     }
 }

@@ -61,7 +61,7 @@
 <div class="container">
 
     <main id="app" class="py-md-4 py-3">
-        <div class="row" data-controller="main">
+        <div class="row">
             @yield('left-column')
             @yield('right-column')
         </div>
@@ -70,25 +70,11 @@
     @include('particles.footer')
 </div>
 
-<template id="news-template" type="text/x-handlebars-template">
+
+
+<script id="news-template" type="text/template">
     @includeVerbatim('components.news')
-</template>
-
-<template id="story-template" type="text/x-handlebars-template">
-    @includeVerbatim('components.story')
-</template>
-
-<template id="article-template">
-    @verbatim
-        <article class="bg-white pt-3 px-3 mb-4 rounded shadow-sm" data-target="main.groupsItem">
-            {{ $story }}
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-                {{ $news }}
-            </div>
-        </article>
-    @endverbatim
-</template>
+</script>
 
 
 @env('production')
