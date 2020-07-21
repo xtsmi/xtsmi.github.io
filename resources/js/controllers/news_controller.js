@@ -59,6 +59,7 @@ export default class extends Controller {
                     const item = {
                         ..._item,
                         pubDate: formatLong(_item.pubDate),
+                        link: _item.internalLink,
                     };
                     return memo + this.renderTemplate(this.newsTemplate, item);
                 },
