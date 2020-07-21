@@ -76,8 +76,10 @@ export default class extends Controller {
         const rect = lastTarget.getBoundingClientRect();
 
         return (
+            rect.bottom !== 0 &&
             rect.top <
-            (window.innerHeight || document.documentElement.clientHeight) + 300
+                (window.innerHeight || document.documentElement.clientHeight) +
+                    300
         );
     }
 }
