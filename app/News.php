@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -84,6 +85,14 @@ class News extends Model implements Feedable
         })->first();
 
         return $media['url'] ?? null;
+    }
+
+    /**
+     * @param $date
+     */
+    public function setPubDateAttribute($date): void
+    {
+        $this->attributes['pubDate'] = Carbon::parse($date, 'Europe/Moscow');
     }
 
     /**
