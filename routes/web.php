@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index', [
     'stories'  => Source::getSimilarNews(),
-    'lastNews' => Source::getLastNews(),
+    'lastNews' => Source::getLastNews()->take(config('smi.news.renderCount')),
 ])->name('index');
 
 Route::get('/news/{id}', function (string $id) {
