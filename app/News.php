@@ -134,7 +134,7 @@ class News extends Model implements Feedable
                 Str::before(strip_tags($this->description ?? $this->title), '.')
             )
             ->enclosure($image)
-            ->enclosureType(array_shift($mimeTypes))
+            ->enclosureType(array_shift($mimeTypes) ?? 'image/unknown')
             ->enclosureLength(0)
             ->updated($this->pubDate)
             ->author($this->domain)
