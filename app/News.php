@@ -96,6 +96,14 @@ class News extends Model implements Feedable
     }
 
     /**
+     * @param string $title
+     */
+    public function setTitleAttribute(string $title): void
+    {
+        $this->attributes['title'] = trim(htmlspecialchars_decode($title));
+    }
+
+    /**
      * @return string|null
      */
     public function getIdAttribute(): ?string
