@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <main data-controller="one-news"
+    <div data-controller="one-news"
           data-one-news-url="{{ $news->link }}">
 
         @empty($story)
@@ -22,6 +22,6 @@
                 </div>
             </article>
         @endempty
-    </main>
+    </div>
 
 @endsection
