@@ -146,9 +146,17 @@ class News extends Model implements Feedable
      */
     public static function getFeedItems()
     {
+        // Не генерировать в ночное время rss фид
+        $startSilence = now()->startOfDay()->addHours(22);
+        $endSilence = now()->startOfDay()->addHours(9);
+
+        if (now()->isAfter($startSilence) || now()->isBefore($endSilence)) {
+            return [];
+        }
+
         return Source::getSimilarNews()->map(function (Collection $group) {
             return $group->get('main');
-        })->take(8)->filter(function (News $news) {
+        })->take(4)->filter(function (News $news) {
             return $news->pubDate->addHours(6)->isAfter(now());
         });
     }
