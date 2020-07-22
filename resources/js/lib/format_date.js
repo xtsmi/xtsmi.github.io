@@ -28,3 +28,51 @@ exports.formatLong = dateStr => {
 
     return `${YY}-${MM}-${DD} ${HH}:${mm}:${SS}`;
 };
+
+const getTimeSinceArrow = seconds =>
+    seconds > 0 ? t => `${t} назад` : t => `через ${t}`;
+
+const getTimeSinceInterval = seconds => {
+    const cases = [2, 0, 1, 1, 1, 2];
+
+    const periods = [
+        [31536000, ['год', 'года', 'лет']],
+        [2592000, ['месяц', 'месяца', 'месяцев']],
+        [86400, ['день', 'дня', 'дней']],
+        [3600, ['час', 'часа', 'часов']],
+        [60, ['минуту', 'минуты', 'минут']],
+    ];
+
+    for (const [amount, periodCases] of periods) {
+        const _interval = seconds / amount;
+        const interval = Math.floor(_interval);
+
+        if (_interval > 1) {
+            return {
+                interval,
+                periodText:
+                    periodCases[
+                        interval % 100 > 4 && interval % 100 < 20
+                            ? 2
+                            : cases[interval % 10 < 5 ? interval % 10 : 5]
+                    ],
+            };
+        }
+    }
+    return { interval: 0 };
+};
+
+exports.timeSince = dateStr => {
+    const seconds = Math.floor(
+        (new Date().getTime() - new Date(dateStr).getTime()) / 1000,
+    );
+    const { interval, periodText } = getTimeSinceInterval(seconds);
+
+    if (interval === 0) {
+        return 'только что' + seconds + dateStr;
+    }
+
+    const arrowFun = getTimeSinceArrow(seconds);
+
+    return arrowFun(`${interval} ${periodText}`);
+};
