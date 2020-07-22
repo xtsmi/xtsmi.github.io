@@ -58,7 +58,7 @@
 
 @include('particles.navigation')
 
-<div class="container">
+<div class="container" data-controller="redirect" data-redirect-url="@yield('redirect')">
 
     <main id="app" class="py-md-4 py-3">
         <div class="row">
