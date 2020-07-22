@@ -48,7 +48,7 @@ class News extends Component
         $this->domain = $news->domain;
         $this->favicon = $news->favicon;
         $this->image = $news->image;
-        $this->pubDate = $news->pubDate;
+        $this->pubDate = $news->pubDate->jsonSerialize();
 
         $this->link = $direct
             ? $news->link

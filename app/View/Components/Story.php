@@ -56,7 +56,7 @@ class Story extends Component
         $this->favicon = $main->favicon;
         $this->image = $main->image;
         $this->internalLink = $main->internalLink;
-        $this->pubDate = $main->pubDate;
+        $this->pubDate = $main->pubDate->jsonSerialize();
 
 
         $this->main = $story->get('main');
