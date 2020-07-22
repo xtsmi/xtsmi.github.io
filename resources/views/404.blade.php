@@ -6,9 +6,8 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="error-template">
+
+    <div class="error-template">
                 <h2 class="display-4">
                     404 Страница не найдена</h2>
                 <div class="lead">
@@ -20,7 +19,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-    </div>
+
 
 @endsection

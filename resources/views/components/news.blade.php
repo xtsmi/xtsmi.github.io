@@ -7,7 +7,7 @@
         <a href="{{ $link }}" target="_blank" rel="noopener"
            class="text-dark">{{ $title }}</a>
     </h5>
-    <time class="mr-1 text-muted small" datetime=" {{ $pubDate }}">
+    <time class="mr-1 text-muted small" datetime="{{ $pubDate }}">
         {{ $pubDate }}
     </time>
 </div>

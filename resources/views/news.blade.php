@@ -4,11 +4,27 @@
 @section('description', $news->description)
 @section('image', $news->image)
 
-@section('left-column')
+@section('content')
 
-    <div data-controller="one-news"
-         data-one-news-url="{{ $news->link }}">
-        <x-news :news="$news" direct="true"/>
-    </div>
+
+    @empty($story)
+        <div data-controller="one-news"
+             data-one-news-url="{{ $news->link }}">
+            <x-news :news="$news" direct="true"/>
+        </div>
+
+    @else
+
+        <article class="bg-white pt-3 px-3 mb-4 rounded shadow-sm">
+            <x-story :story="$story"/>
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+                @foreach($story->get('items') as $news)
+                    <x-news :news="$news"/>
+                @endforeach
+            </div>
+        </article>
+
+    @endempty
 
 @endsection

@@ -2,6 +2,7 @@
 
 use App\News;
 use App\Source;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,13 @@ Route::view('/', 'index', [
 
 Route::get('/news/{id}', function (string $id) {
 
+    $story = Source::getSimilarNews()
+        ->filter(static function (Collection $stories) use ($id) {
+            return $stories->get('items')->filter(function (News $news) use ($id) {
+                return $news->id === $id;
+            })->isNotEmpty();
+        })->first();
+
     $news = Source::getLastNews()
         ->filter(static function (News $news) use ($id) {
             return $news->id === $id;
@@ -31,8 +39,14 @@ Route::get('/news/{id}', function (string $id) {
         return redirect()->route('404');
     }
 
+    if ($story !== null) {
+        $story->put('main', $news);
+    }
+
     return view('news', [
-        'news' => $news,
+        'story'    => $story,
+        'news'     => $news,
+        'lastNews' => Source::getLastNews()->take(config('smi.news.renderCount')),
     ]);
 
 })->name('news');

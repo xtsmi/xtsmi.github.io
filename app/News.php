@@ -148,6 +148,8 @@ class News extends Model implements Feedable
     {
         return Source::getSimilarNews()->map(function (Collection $group) {
             return $group->get('main');
-        })->take(4);
+        })->take(8)->filter(function (News $news) {
+            return $news->pubDate->addHours(6)->isAfter(now());
+        });
     }
 }
