@@ -69,7 +69,7 @@ exports.timeSince = dateStr => {
     const { interval, periodText } = getTimeSinceInterval(seconds);
 
     if (interval === 0) {
-        return 'только что' + seconds + dateStr;
+        return 'только что';
     }
 
     const arrowFun = getTimeSinceArrow(seconds);
