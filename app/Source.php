@@ -21,7 +21,7 @@ class Source
 
                     $items = collect($group['items'])->map(function ($new) {
                         return new News($new);
-                    });
+                    })->sortByDesc('pubDate');
 
                     return collect([
                         'main'  => $main,
