@@ -142,16 +142,14 @@ class News extends Model implements Feedable
     }
 
     /**
-     * @return mixed
+     * @return Collection
      */
-    public static function getFeedItems()
+    public static function getFeedItems(): Collection
     {
         // Не генерировать в ночное время rss фид
-        $startSilence = now()->startOfDay()->addHours(22);
-        $endSilence = now()->startOfDay()->addHours(9);
-
-        if (now()->isAfter($startSilence) || now()->isBefore($endSilence)) {
-            return [];
+        $currentHour = now('Europe/Moscow')->format('H');
+        if ($currentHour > 22 || $currentHour < 9) {
+            return collect();
         }
 
         return Source::getSimilarNews()->map(function (Collection $group) {
