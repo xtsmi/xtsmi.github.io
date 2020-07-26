@@ -87,7 +87,7 @@
         <hr>
     @endif
 
-    <div>
+    <div data-controller="story-items">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
             @foreach($items->take(3) as $news)
                 <x-news :news="$news"/>
@@ -100,7 +100,7 @@
 
         @if($items->count() > 3)
             <div class="text-center pb-3">
-                <a href="#" title="Больше источников">
+                <button class="btn" data-action="story-items#show" title="Больше источников">
                     <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-down-short"
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -108,7 +108,7 @@
                         <path fill-rule="evenodd"
                               d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"/>
                     </svg>
-                </a>
+                </button>
             </div>
         @endif
     </div>
