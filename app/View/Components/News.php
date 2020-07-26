@@ -37,18 +37,25 @@ class News extends Component
     public $pubDate;
 
     /**
+     * @var string|null
+     */
+    public $class;
+
+    /**
      * Create a new component instance.
      *
-     * @param \App\News $news
-     * @param bool      $direct
+     * @param \App\News   $news
+     * @param bool        $direct
+     * @param string|null $class
      */
-    public function __construct(\App\News $news, bool $direct = false)
+    public function __construct(\App\News $news, bool $direct = false, string $class = null)
     {
         $this->title = $news->title;
         $this->domain = $news->domain;
         $this->favicon = $news->favicon;
         $this->image = $news->image;
         $this->pubDate = $news->pubDate->jsonSerialize();
+        $this->class = $class;
 
         $this->link = $direct
             ? $news->link

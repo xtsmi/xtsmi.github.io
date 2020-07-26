@@ -38,9 +38,19 @@ class Story extends Component
     public $pubDate;
 
     /**
+     * @var string
+     */
+    public $link;
+
+    /**
      * @var Collection
      */
     public $items;
+
+    /**
+     * @var Collection
+     */
+    public $sources;
 
     /**
      * Create a new component instance.
@@ -56,11 +66,15 @@ class Story extends Component
         $this->favicon = $main->favicon;
         $this->image = $main->image;
         $this->internalLink = $main->internalLink;
+        $this->link = $main->link;
         $this->pubDate = $main->pubDate->jsonSerialize();
 
 
         $this->main = $story->get('main');
         $this->items = $story->get('items');
+
+
+        $this->sources = $story->get('items')->pluck('favicon', 'domain')->unique();
     }
 
     /**
