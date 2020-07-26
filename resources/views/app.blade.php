@@ -75,9 +75,11 @@
                 </div>
 
                 <div class="row row-cols-1" data-target="news.news">
-                    @foreach($lastNews as $news)
-                        <x-news :news="$news"/>
-                    @endforeach
+                    @isset($lastNews)
+                        @foreach($lastNews as $news)
+                            <x-news :news="$news"/>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
