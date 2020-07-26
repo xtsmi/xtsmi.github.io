@@ -7,21 +7,10 @@
 
 @section('content')
 
-    <article class="bg-white pt-3 px-3 mb-4 rounded shadow-sm">
-        <x-story :story="$story" single="true"/>
-
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-            @foreach($story->get('items') as $news)
-                <x-news :news="$news"/>
-            @endforeach
-        </div>
-    </article>
+    <x-story :story="$story" single="true"/>
 
     @foreach($stories as $story)
-        <article class="bg-white pt-3 px-3 mb-4 rounded shadow-sm">
             <x-story :story="$story"/>
-        </article>
     @endforeach
-
 
 @endsection
