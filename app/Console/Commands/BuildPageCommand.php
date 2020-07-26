@@ -72,7 +72,8 @@ class BuildPageCommand extends Command
             $response = $this->createRequest($route->uri());
 
             if ($response->status() !== 200) {
-                $this->warn("Url: $route->uri() response not 200");
+                $url = $route->uri();
+                $this->warn("Url: $url response not 200");
             }
 
             Storage::put(
