@@ -10,7 +10,8 @@
             </p>
             <small class="d-block mb-2 text-muted">&copy; 2017-{{ date('Y') }}</small>
         </div>
-        <div class="col-6 col-md-2">
+        {{--
+            <div class="col-6 col-md-2">
             <h5>About</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="text-muted" href="#">Team</a></li>
@@ -18,12 +19,12 @@
                 <li><a class="text-muted" href="#">Privacy</a></li>
             </ul>
         </div>
+        --}}
         <div class="col-6 col-md-2">
             <h5>Каналы</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="text-muted" href="https://vk.com/xtsmi" target="_blank">Вконтакте</a></li>
-                <li><a class="text-muted" href="#">Resource name</a></li>
-                <li><a class="text-muted" href="#">Another resource</a></li>
+                <li><a class="text-muted" href="https://twitter.com/xtsmi">Twitter</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
