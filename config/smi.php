@@ -88,6 +88,10 @@ return [
         //'https://ura.news/rss',
         'https://www.znak.com/rss',
         'https://takiedela.ru/feed',
+        'https://regnum.ru/rss/russian/',
+        'https://rg.ru/xml/index.xml',
+        'https://www.ng.ru/rss/',
+        'https://www.rosbalt.ru/feed/'
     ],
 
 
