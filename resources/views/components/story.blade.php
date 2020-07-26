@@ -75,4 +75,6 @@
     </div>
 @endif
 
-<hr>
+@if($items->isNotEmpty())
+    <hr>
+@endif
