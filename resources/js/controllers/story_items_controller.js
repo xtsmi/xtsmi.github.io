@@ -11,8 +11,6 @@ export default class extends Controller {
         }
 
         event.target.parentElement.classList.add("d-none")
-        event.default();
-        return false;
     }
 
 }
