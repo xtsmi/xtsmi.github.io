@@ -37,7 +37,8 @@ jobs:
           php artisan rss:exchange
           php artisan rss:similar
           php artisan rss:page
-      - uses: actions/upload-artifact@v2
+      - name: Logs 📑️
+        uses: actions/upload-artifact@v2
         with:
           name: Logs
           path: storage/logs/
