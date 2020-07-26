@@ -23,6 +23,7 @@ Route::view('/', 'index', [
 
 Route::get('/news/{id}', function (string $id) {
 
+    // News in story
     $story = Source::getSimilarNews()
         ->filter(static function (Collection $stories) use ($id) {
             return $stories->get('items')->filter(function (News $news) use ($id) {
@@ -30,22 +31,30 @@ Route::get('/news/{id}', function (string $id) {
             })->isNotEmpty();
         })->first();
 
+    // Random
+    $stories = Source::getSimilarNews()
+        ->filter(static function (Collection $stories) use ($story) {
+            return $stories->get('main')->id !== $story->get('main')->id;
+        })->random(4);
+
+    // Simple news
     $news = Source::getLastNews()
         ->filter(static function (News $news) use ($id) {
             return $news->id === $id;
+        })->whenEmpty(function () {
+            abort(404);
         })->first();
 
-    if ($news === null) {
-        return redirect()->route('404');
-    }
-
-    if ($story !== null) {
-        $story->put('main', $news);
-    }
+    $story = $story !== null
+        ? $story->put('main', $news)
+        : collect([
+            'main'  => $news,
+            'items' => collect(),
+        ]);
 
     return view('news', [
         'story'    => $story,
-        'news'     => $news,
+        'stories'  => $stories,
         'lastNews' => Source::getLastNews()->take(config('smi.news.renderCount')),
     ]);
 

@@ -53,18 +53,31 @@ class Story extends Component
     public $sources;
 
     /**
+     * @var string|null
+     */
+    public $description;
+
+    /**
+     * @var bool
+     */
+    public $single;
+
+    /**
      * Create a new component instance.
      *
      * @param Collection $story
+     * @param bool       $single
      */
-    public function __construct(Collection $story)
+    public function __construct(Collection $story, bool $single = false)
     {
         $main = $story->get('main');
+        $this->single = $single;
 
         $this->title = $main->title;
         $this->domain = $main->domain;
         $this->favicon = $main->favicon;
         $this->image = $main->image;
+        $this->description = $main->description;
         $this->internalLink = $main->internalLink;
         $this->link = $main->link;
         $this->pubDate = $main->pubDate->jsonSerialize();

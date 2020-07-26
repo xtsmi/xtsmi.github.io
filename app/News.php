@@ -104,6 +104,14 @@ class News extends Model implements Feedable
     }
 
     /**
+     * @param string $description
+     */
+    public function setDescriptionAttribute(string $description): void
+    {
+        $this->attributes['description'] = trim(strip_tags($description));
+    }
+
+    /**
      * @return string|null
      */
     public function getIdAttribute(): ?string
