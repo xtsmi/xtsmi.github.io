@@ -100,7 +100,7 @@
 
         @if($items->count() > 3)
             <div class="text-center pb-3">
-                <button class="btn" data-action="story-items#show" title="Больше источников">
+                <button class="btn" data-action="story-items#show" title="Больше источников" data-target="story-items.showMoreBtn">
                     <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-down-short"
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"

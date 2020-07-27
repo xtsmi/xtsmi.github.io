@@ -1,13 +1,17 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
-    show(event) {
+    static get targets() {
+        return ['showMoreBtn'];
+    }
+
+    show() {
         const items = this.element.getElementsByClassName('d-none');
 
         for (const item of items) {
             item.classList.remove('d-none');
         }
 
-        event.target.parentElement.classList.add('d-none');
+        this.showMoreBtnTarget.classList.add('d-none');
     }
 }
