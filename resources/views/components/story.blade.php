@@ -26,37 +26,37 @@
                     @endif
 
                 </div>
-            </div>
 
-            <div class="d-flex mt-auto">
-                @if($single)
-                    <div class="d-flex ml-auto">
+                <div class="d-flex mt-auto">
+                    @if($single)
+                        <div class="d-flex ml-auto">
+                            @include('particles.share')
+
+
+                            <a href="{{ $internalLink }}" target="_blank" class="btn btn-secondary ml-2">Читать далее</a>
+                        </div>
+                    @else
+                        <div class="media v-center mb-1 mr-auto">
+                            @if($sources->count() > 10)
+                                @foreach($sources->take(5) as $domain => $favicon)
+                                    <img src="{{ $favicon }}" class="mr-1" alt="{{ $domain }}" loading="lazy">
+                                @endforeach
+
+                                <small class="text-muted">И ещё {{ $sources->count() - 5 }} источников написали об
+                                    этом</small>
+
+                            @else
+
+                                @foreach($sources as $domain => $favicon)
+                                    <img src="{{ $favicon }}" class="mr-1" alt="{{ $domain }}" loading="lazy">
+                                @endforeach
+
+                            @endif
+                        </div>
+
                         @include('particles.share')
-
-
-                        <a href="{{ $internalLink }}" target="_blank" class="btn btn-secondary ml-2">Читать далее</a>
-                    </div>
-                @else
-                    <div class="media v-center mb-1 mr-auto">
-                        @if($sources->count() > 10)
-                            @foreach($sources->take(5) as $domain => $favicon)
-                                <img src="{{ $favicon }}" class="mr-1" alt="{{ $domain }}" loading="lazy">
-                            @endforeach
-
-                            <small class="text-muted">И ещё {{ $sources->count() - 5 }} источников написали об
-                                этом</small>
-
-                        @else
-
-                            @foreach($sources as $domain => $favicon)
-                                <img src="{{ $favicon }}" class="mr-1" alt="{{ $domain }}" loading="lazy">
-                            @endforeach
-
-                        @endif
-                    </div>
-
-                    @include('particles.share')
-                @endif
+                    @endif
+                </div>
             </div>
         </div>
     </div>
