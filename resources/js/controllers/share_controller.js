@@ -7,7 +7,9 @@ export default class extends Controller {
      * @param event
      */
     openVK(event) {
-        this.popupCenter('http://vk.com/share.php?url=', '', 600, 400);
+        let url = 'http://vk.com/share.php?url=' + this.data.get('url');
+
+        this.popupCenter(url, '', 600, 400);
     }
 
     /**
@@ -15,15 +17,19 @@ export default class extends Controller {
      * @param event
      */
     openOk(event) {
-        this.popupCenter('http://www.ok.ru/dk?st.cmd=addShare&st.s=1&st._surl=', '', 600, 400);
-    }
+        let url = 'http://www.ok.ru/dk?st.cmd=addShare&st.s=1&st._surl=' + this.data.get('url');
+
+        this.popupCenter(url, '', 600, 400);
+   }
 
     /**
      *
      * @param event
      */
     openFacebook(event) {
-        this.popupCenter('http://www.facebook.com/sharer.php?u=', '', 600, 400);
+        let url = 'http://www.facebook.com/sharer.php?u=' + this.data.get('url');
+
+        this.popupCenter(url, '', 600, 400);
     }
 
     /**
@@ -31,7 +37,9 @@ export default class extends Controller {
      * @param event
      */
     openTwitter(event) {
-        this.popupCenter('https://twitter.com/share?url=', '', 600, 400);
+        let url = 'https://twitter.com/share?url=' + this.data.get('url');
+
+        this.popupCenter(url, '', 600, 400);
     }
 
     /**

@@ -30,7 +30,7 @@
                 <div class="d-flex mt-auto">
                     @if($single)
                         <div class="d-flex ml-auto">
-                            @include('particles.share')
+                            @include('particles.share', ['url' => $internalLink])
 
 
                             <a href="{{ $internalLink }}" target="_blank" class="btn btn-secondary ml-2">Читать далее</a>
@@ -54,7 +54,7 @@
                             @endif
                         </div>
 
-                        @include('particles.share')
+                        @include('particles.share', ['url' => $internalLink])
                     @endif
                 </div>
             </div>

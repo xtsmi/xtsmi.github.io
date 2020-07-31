@@ -1,4 +1,4 @@
-<div class="btn-group">
+<div class="btn-group" data-controller="share" data-share-url="{{ $url }}">
     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static"
             aria-haspopup="true" aria-expanded="false">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-share" fill="currentColor"
@@ -12,7 +12,7 @@
     <div class="dropdown-menu dropdown-menu-lg-right">
         <p class="dropdown-header text-uppercase font-weight-bold">Поделиться:</p>
 
-        <button class="dropdown-item d-flex align-items-center" type="button">
+        <button data-action="click->share#openVK" class="dropdown-item d-flex align-items-center" type="button">
             <svg style="color: #4a76a8" class="mr-1" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="1em" viewBox="0 0 24 24"
                  fill="currentColor" width="1em">
                 <path
@@ -21,7 +21,7 @@
             ВКонтакте
         </button>
 
-        <button class="dropdown-item d-flex align-items-center" type="button">
+        <button data-action="click->share#openOk" class="dropdown-item d-flex align-items-center" type="button">
             <svg style="color: #fa860e"  class="mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 95.481 95.481" height="1em" fill="currentColor"
                  width="1em">
                 <g>
@@ -66,7 +66,7 @@
             Однокласники
         </button>
 
-        <button class="dropdown-item d-flex align-items-center" type="button">
+        <button data-action="click->share#openFacebook" class="dropdown-item d-flex align-items-center" type="button">
             <svg style="color: #0771e6" class="mr-1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                  viewBox="0 0 60.734 60.733">
                 <g>
@@ -106,7 +106,8 @@
             </svg>
             Facebook
         </button>
-        <button class="dropdown-item d-flex align-items-center" type="button">
+
+        <button data-action="click->share#openTwitter" class="dropdown-item d-flex align-items-center" type="button">
             <svg style="color: #1da1f2" class="mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor">
                 <g>
                     <g>
