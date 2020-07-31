@@ -48,16 +48,10 @@ svg{
     height: 50px;
 }
 
+/*
 @include media-breakpoint-down(sm) {
     .logo{
         height: 40px!important;
     }
 }
-
-
-a{
-    text-decoration: none;
-    &:hover:not(.btn){
-        text-decoration: underline;
-    }
-}
+*/

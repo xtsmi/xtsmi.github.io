@@ -3,7 +3,7 @@
 $body-bg: #f2f2f2;//#f8f9fa;
 
 // Colors
-$primary: #343a40;//#82c502;
+$primary: #353a40;//#82c502;
 $secondary: #f1f1f1;//#adb5bd;
 
 // Typography
@@ -32,3 +32,8 @@ $container-max-widths: (
     lg: 960px,
     xl: 1140px,
 );
+
+
+$link-color: #343a40;
+$link-decoration: none;
+$link-hover-decoration: underline;
