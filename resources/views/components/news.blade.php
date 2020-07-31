@@ -1,7 +1,7 @@
 <div class="col my-2 pb-3 border-bottom {{ $class }}" data-target="news.item">
-    <div class="media v-center mb-1">
+    <div class="v-center mb-1">
         <img src="{{ $favicon }}" class="mr-2" alt="{{ $domain }}" loading="lazy">
-        <div class="media-body">{{ $domain }}</div>
+        <div>{{ $domain }}</div>
     </div>
     <h5 class="mb-1">
         <a href="{{ $link }}" target="_blank" rel="noopener">{{ $title }}</a>

@@ -14,9 +14,9 @@
         <div class="col d-flex flex-column">
             <div class="row">
                 <div class="pt-3 col d-flex flex-column">
-                    <div class="media v-center mb-1">
+                    <div class="v-center mb-1">
                         <img src="{{ $favicon }}" class="mr-2" alt="{{ $domain }}" loading="lazy">
-                        <div class="media-body">{{ $domain }}</div>
+                        <div>{{ $domain }}</div>
                     </div>
                     <h2 class="text-dark font-weight-bolder">{{$title}}</h2>
                     @if($single)
@@ -36,7 +36,7 @@
                             <a href="{{ $internalLink }}" target="_blank" class="btn btn-secondary ml-2">Читать далее</a>
                         </div>
                     @else
-                        <div class="media v-center mb-1 mr-auto">
+                        <div class="v-center mb-1 mr-auto">
                             @if($sources->count() > 10)
                                 @foreach($sources->take(5) as $domain => $favicon)
                                     <img src="{{ $favicon }}" class="mr-1" alt="{{ $domain }}" loading="lazy">
