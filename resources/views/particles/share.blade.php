@@ -10,7 +10,7 @@
         </svg>
     </button>
     <div class="dropdown-menu dropdown-menu-lg-right">
-        <p class="dropdown-header text-uppercase font-weight-bold">Поделиться:</p>
+        <p class="dropdown-header font-weight-bold">Поделиться:</p>
 
         <button data-action="click->share#openVK" class="dropdown-item d-flex align-items-center" type="button">
             <svg style="color: #4a76a8" class="mr-1" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="1em" viewBox="0 0 24 24"
