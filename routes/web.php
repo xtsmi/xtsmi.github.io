@@ -16,10 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'index', [
+$index = [
     'stories'  => Source::getSimilarNews(),
     'lastNews' => Source::getLastNews()->take(config('smi.news.renderCount')),
-])->name('index');
+];
+
+Route::view('/', 'index', $index)->name('index');
+Route::view('/404', 'index', $index)->name('404');
 
 Route::get('/news/{id}', function (string $id) {
 
@@ -65,6 +68,3 @@ Route::get('/news/{id}', function (string $id) {
 })->name('news');
 
 Route::feeds();
-
-Route::view('/404', '404')
-    ->name('404');
