@@ -149,6 +149,7 @@
             Twitter
         </button>
 
+        {{--
         <div class="dropdown-divider"></div>
 
         <button class="dropdown-item d-flex align-items-center" type="button">
@@ -160,7 +161,7 @@
             </svg>
             Скопировать ссылку
         </button>
-
+        --}}
 
     </div>
 </div>
