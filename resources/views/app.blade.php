@@ -97,6 +97,7 @@
 
 @env('production')
     @include('particles.analytics')
+    @include('particles.adsense')
 @endenv
 
 </body>
