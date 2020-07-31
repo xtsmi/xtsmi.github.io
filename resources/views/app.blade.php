@@ -53,6 +53,11 @@
             });
         }
     </script> --}}
+
+    @env('production')
+        @include('particles.analytics')
+        @include('particles.adsense')
+    @endenv
 </head>
 <body>
 
@@ -94,11 +99,6 @@
     @includeVerbatim('components.news')
 </script>
 
-
-@env('production')
-    @include('particles.analytics')
-    @include('particles.adsense')
-@endenv
 
 </body>
 </html>
