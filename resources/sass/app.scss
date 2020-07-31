@@ -19,6 +19,13 @@
     max-height: 10em;
 }
 
+@include media-breakpoint-down(sm) {
+    .img-full{
+        max-height: 100%;
+    }
+}
+
+
 .blinker {
     animation: blinker 1s linear infinite;
 }
