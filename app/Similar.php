@@ -17,9 +17,9 @@ class Similar
     protected $matrix;
 
     /**
-     * @return Collection|null
+     * @return Collection
      */
-    private function getMatrix(): ?Collection
+    private function getMatrix(): Collection
     {
         return $this->matrix;
     }
@@ -32,21 +32,18 @@ class Similar
      */
     private function create(Collection $titles, float $percent): Similar
     {
-        $matrix = [];
+        $this->matrix = $titles->transform(static function ($item) use ($titles, $percent) {
+            return $titles->filter(static function ($title) use ($item, $percent) {
 
-        $titles->each(static function ($item, $key) use ($titles, &$matrix, $percent) {
+                similar_text(
+                    SimilarText::clearWords($item),
+                    SimilarText::clearWords($title),
+                    $copy
+                );
 
-            $titles->each(static function ($title, $relation) use ($item, $key, &$matrix, $percent) {
-                similar_text($item, $title, $copy);
-
-                if ($percent < $copy) {
-                    $matrix[$key][] = $relation;
-                }
-
+                return $percent < $copy;
             });
         });
-
-        $this->matrix = collect($matrix);
 
         return $this;
     }
@@ -56,21 +53,15 @@ class Similar
      */
     private function merge(): Similar
     {
-        $similarGroup = [];
+        $this->matrix->transform(function (Collection $group) {
+            return $this->matrix->map(function (Collection $simGroup) use ($group) {
 
-        $this->matrix->each(function ($group, $key) use (&$similarGroup) {
+                return $group->intersect($simGroup)->isNotEmpty()
+                    ? $group->merge($simGroup)
+                    : null;
 
-            $this->matrix->each(function ($simGroup) use ($group, $key, &$similarGroup) {
-
-                if (empty(array_intersect($group, $simGroup))) {
-                    return;
-                }
-
-                $similarGroup[$key] = collect(array_merge($group, $simGroup))->unique()->toArray();
-            });
+            })->flatten()->filter()->unique();
         });
-
-        $this->matrix = collect($similarGroup);
 
         return $this;
     }
@@ -83,19 +74,12 @@ class Similar
     {
         $removes = [];
 
-        $this->matrix->each(function ($items) use (&$removes) {
+        $this->matrix->each(function (Collection $items, $keys) use (&$removes) {
 
-            sort($items, SORT_NUMERIC);
-            $items = array_values($items);
-
-            $this->matrix->each(function ($collect, $keyCollect) use ($items, &$removes) {
-
-                sort($collect, SORT_NUMERIC);
-                $collect = array_values($collect);
-
+            $this->matrix->each(function (Collection $collect, $keyCollect) use ($keys, $items, &$removes) {
 
                 // Проверяемый блок больше, то его нельзя удалить
-                if (count($items) < count($collect)) {
+                if ($items->count() < $collect->count()) {
                     return;
                 }
 
@@ -104,29 +88,20 @@ class Similar
                     return;
                 }
 
-                if (count(array_intersect($collect, $items)) > 0) {
-                    $removes[] = $keyCollect;
+                if ($collect->intersect($items)->isNotEmpty()) {
+                    $removes[$keys][] = $keyCollect;
                     return;
                 }
-
-
             });
         });
 
+
         $this->matrix = $this->matrix
-            ->map(static function ($item, $key) use ($removes) {
-
-                if (in_array($key, $removes, true)) {
-                    return [];
-                }
-
-                asort($item);
-
-                return $item;
+            ->filter(function ($item, $key) use ($removes) {
+                return isset($removes[$key]);
             })
-            ->filter()
-            ->unique(function ($item) {
-                return implode(',', $item);
+            ->unique(function (Collection $item) {
+                return $item->sort()->implode('~~~');
             });
 
         return $this;
@@ -140,24 +115,13 @@ class Similar
      */
     public static function build(array $titles, float $percent = 51): Collection
     {
-        $matrix = (new self())
+        return (new self())
             ->create(collect($titles), $percent)
             ->merge()
             ->removeDuplicated()
-            ->getMatrix();
-
-        $realGroup = [];
-
-
-        foreach ($matrix as $key => $groups) {
-            foreach ($groups as $titleKey) {
-                $realGroup[$key][$titleKey] = $titles[$titleKey];
-            }
-        }
-
-        return collect($realGroup)
-            ->sortByDesc(function ($product) {
-                return count($product);
+            ->getMatrix()
+            ->sortByDesc(function (Collection $items) {
+                return $items->count();
             });
     }
 }
