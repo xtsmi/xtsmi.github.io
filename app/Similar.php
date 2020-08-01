@@ -105,6 +105,20 @@ class Similar
 
     /**
      * @param array $titles
+     *
+     * @return Similar
+     */
+    private function recoveryKeys(array $titles): Similar
+    {
+        $this->matrix = $this->matrix->map->keyBy(function ($value) use ($titles) {
+            return array_search($value, $titles, true);
+        });
+
+        return $this;
+    }
+
+    /**
+     * @param array $titles
      * @param float $percent
      *
      * @return Collection
@@ -115,6 +129,7 @@ class Similar
             ->create(collect($titles), $percent)
             ->merge()
             ->removeDuplicated()
+            ->recoveryKeys($titles)
             ->getMatrix()
             ->sortByDesc(function (Collection $items) {
                 return $items->count();

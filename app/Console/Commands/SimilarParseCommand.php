@@ -41,9 +41,8 @@ class SimilarParseCommand extends Command
 
 
         $similar = Similar::build($forSimilar, config('smi.story.percent'))
-            ->map(function (array $items) use ($rss) {
-                return collect($items)
-                    ->map(function ($item, $key) use ($rss) {
+            ->map(function (Collection $items) use ($rss) {
+                return $items->map(function ($item, $key) use ($rss) {
                         return $rss->get($key);
                     });
             })
