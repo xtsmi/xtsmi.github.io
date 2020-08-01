@@ -35,11 +35,7 @@ class Similar
         $this->matrix = $titles->transform(static function ($item) use ($titles, $percent) {
             return $titles->filter(static function ($title) use ($item, $percent) {
 
-                similar_text(
-                    SimilarText::clearWords($item),
-                    SimilarText::clearWords($title),
-                    $copy
-                );
+                similar_text($item, $title, $copy);
 
                 return $percent < $copy;
             });
