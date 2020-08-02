@@ -42,31 +42,24 @@
     <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
     <script src="{{ mix('/js/app.js')}}" type="text/javascript"></script>
-    {{-- <script type="text/javascript">
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-            .then(function(registration) {
-                console.log('sw activated!');
-            })
-            .catch(function(error) {
-                console.error('sw failed:', error);
-            });
-        }
-    </script> --}}
 
     @env('production')
         @include('particles.analytics')
         @include('particles.adsense')
     @endenv
 </head>
-<body>
+<body data-controller="main">
 
 @include('particles.navigation')
 
 <div class="container" data-controller="redirect" data-redirect-url="@yield('redirect')">
 
     <main id="app" class="py-md-4 py-3">
-        <div class="row">
+        <div class="d-md-none py-1">
+            <x-exchange/>
+        </div>
+        
+        <div class="row" data-target="main.content">
             <div class="col-md-9 col-sm-12 news-ended">
                 @yield('content')
             </div>

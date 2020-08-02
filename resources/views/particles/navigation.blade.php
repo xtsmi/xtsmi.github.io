@@ -5,8 +5,11 @@
                 <a href="{{url('/')}}" class="mr-auto text-white" title="Твоё СМИ - Новостной агрегатор.">
                     <x-logo/>
                 </a>
-
-                <div class="my-2 my-md-0">
+                <div class="form-check form-switch d-sm-none">
+                    <input class="form-check-input" type="checkbox" id="toggleMobileView" data-action="change->main#toggleMobileView">
+                    <label class="form-check-label text-white" for="toggleMobileView">Последние</label>
+                </div>
+                <div class="my-2 my-md-0 d-none d-md-inline">
                     <x-exchange/>
 
                     <div class="p-2 text-white d-none d-md-inline" data-controller="current-time">

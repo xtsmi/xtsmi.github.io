@@ -25,6 +25,12 @@
     }
 }
 
+@include media-breakpoint-up(md) {
+    .text-md-white {
+        color: #fff!important;
+    }
+}
+
 
 .blinker {
     animation: blinker 1s linear infinite;
@@ -55,6 +61,54 @@ svg{
 .logo{
     height: 50px;
 }
+
+.text-white-md {
+    color: #fff !important;
+}
+
+@include media-breakpoint-down(sm) {
+    html {
+        position: relative;
+
+        body {
+            position: relative;
+            width: 100%;
+            padding-top: 50px;
+
+            .container {
+                overflow-x: hidden;
+            }
+
+            .site-header {
+                position: fixed;
+                top: 0;
+                z-index: 1;
+                width: 100%;
+            }
+
+            [data-target="main.content"] {
+                transition: 0.3s ease;
+
+                > div + div {
+                    display: none;
+                }
+
+                &.last-news {
+                    > div {
+                        display: none;
+                    }
+                    > div + div {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
 
 /*
 @include media-breakpoint-down(sm) {

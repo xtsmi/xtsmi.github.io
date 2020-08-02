@@ -10111,6 +10111,12 @@ button.close {
   }
 }
 
+@media (min-width: 768px) {
+  .text-md-white {
+    color: #fff !important;
+  }
+}
+
 .blinker {
   -webkit-animation: blinker 1s linear infinite;
           animation: blinker 1s linear infinite;
@@ -10146,6 +10152,49 @@ svg {
 
 .logo {
   height: 50px;
+}
+
+.text-white-md {
+  color: #fff !important;
+}
+
+@media (max-width: 575.98px) {
+  html {
+    position: relative;
+  }
+
+  html body {
+    position: relative;
+    width: 100%;
+    padding-top: 50px;
+  }
+
+  html body .container {
+    overflow-x: hidden;
+  }
+
+  html body .site-header {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+  }
+
+  html body [data-target="main.content"] {
+    transition: 0.3s ease;
+  }
+
+  html body [data-target="main.content"] > div + div {
+    display: none;
+  }
+
+  html body [data-target="main.content"].last-news > div {
+    display: none;
+  }
+
+  html body [data-target="main.content"].last-news > div + div {
+    display: block;
+  }
 }
 
 /*
