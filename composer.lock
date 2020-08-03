@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00a749d6f336596a928bf387a0115823",
+    "content-hash": "3fec9836fafb6d1968d1a29d3815f3a5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -309,6 +309,62 @@
                 }
             ],
             "time": "2020-05-25T17:44:05+00:00"
+        },
+        {
+            "name": "donatello-za/rake-php-plus",
+            "version": "v1.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Donatello-za/rake-php-plus.git",
+                "reference": "c99dd38c79399b9bf783a740087390191eab3801"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Donatello-za/rake-php-plus/zipball/c99dd38c79399b9bf783a740087390191eab3801",
+                "reference": "c99dd38c79399b9bf783a740087390191eab3801",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "php": ">=5.5.0",
+                "phpunit/phpunit": "~4.0|~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.13-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DonatelloZa\\RakePlus\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Don Schoeman",
+                    "email": "ta.maximus@gmail.com"
+                }
+            ],
+            "description": "Yet another PHP implementation of the Rapid Automatic Keyword Extraction algorithm (RAKE).",
+            "homepage": "https://github.com/Donatello-za/rake-php-plus",
+            "keywords": [
+                "Algorithm",
+                "automatic",
+                "extraction",
+                "keyword",
+                "rake",
+                "rapid"
+            ],
+            "time": "2020-06-23T08:54:00+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -6499,7 +6555,8 @@
     "platform": {
         "php": "^7.2.5",
         "ext-json": "*",
-        "ext-simplexml": "*"
+        "ext-simplexml": "*",
+        "ext-zlib": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"

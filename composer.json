@@ -11,6 +11,8 @@
         "php": "^7.2.5",
         "ext-json": "*",
         "ext-simplexml": "*",
+        "ext-zlib": "*",
+        "donatello-za/rake-php-plus": "^1.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -18,8 +20,7 @@
         "laravel/tinker": "^2.0",
         "spatie/laravel-feed": "^2.7",
         "spatie/once": "^2.2",
-        "symfony/dom-crawler": "^5.1",
-        "ext-zlib": "*"
+        "symfony/dom-crawler": "^5.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
