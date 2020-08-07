@@ -7,12 +7,12 @@
         <p class="dropdown-header font-weight-bold">Поделиться:</p>
 
         <button data-action="click->share#openVK" class="dropdown-item d-flex align-items-center" type="button">
-            <img src="/img/icons/vk.svg"class="mr-1">
+            <img src="/img/icons/vk.svg" class="mr-1">
             ВКонтакте
         </button>
 
         <button data-action="click->share#openOk" class="dropdown-item d-flex align-items-center" type="button">
-            <img src="/img/icons/ok.svg"class="mr-1">
+            <img src="/img/icons/ok.svg" class="mr-1">
             Однокласники
         </button>
 
