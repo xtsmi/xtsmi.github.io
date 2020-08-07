@@ -9,7 +9,7 @@
                   d="M13.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm-11-6.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
         </svg>
     </button>
-    <div class="dropdown-menu dropdown-menu-lg-right">
+    <div class="dropdown-menu dropdown-menu-right">
         <p class="dropdown-header font-weight-bold">Поделиться:</p>
 
         <button data-action="click->share#openVK" class="dropdown-item d-flex align-items-center" type="button">
