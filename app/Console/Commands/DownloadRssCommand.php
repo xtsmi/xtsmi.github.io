@@ -8,6 +8,7 @@ use GuzzleHttp\Psr7\Response;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class DownloadRssCommand extends Command
 {
@@ -69,17 +70,22 @@ class DownloadRssCommand extends Command
 
         $news = collect();
 
-        foreach ($elements->channel->item as $item) {
+        if (isset($elements->channel->item)) {
+            $suites = $elements->channel->item;
+        }
+
+        if (isset($elements->entry)) {
+            $suites = $elements->entry;
+        }
+
+        foreach ($suites as $item) {
             $model = $this->createModelForXMLElement($item);
 
             if ($model === null) {
                 continue;
             }
 
-            $news->put(
-                $model->link,
-                $model
-            );
+            $news->put($model->link, $model);
         }
 
         return $news;
@@ -93,6 +99,25 @@ class DownloadRssCommand extends Command
     private function createModelForXMLElement(\SimpleXMLElement $item): ?News
     {
         $item = (array)$item;
+
+
+        $item['description'] = $item['description'] ?? $item['content'] ?? null;
+        $item['pubDate'] = $item['published'] ?? $item['pubDate'] ?? null;
+
+        if($item['link'] instanceof \SimpleXMLElement){
+            $item['link'] = (string) $item['link']['href'];
+        }
+
+        $validator = Validator::make($item, [
+            'title'       => 'required|string',
+            'pubDate'     => 'required|date',
+            'link'        => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return null;
+        }
+
         $news = new News($item);
 
         $media = collect();
