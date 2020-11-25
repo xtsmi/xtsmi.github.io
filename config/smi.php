@@ -93,6 +93,9 @@ return [
         'https://www.ng.ru/rss/',
         'https://www.rosbalt.ru/feed/',
         'https://rtvi.com/rss/',
+        'https://life.ru/rss',
+        'https://vz.ru/rss.xml',
+        'https://www.ridus.ru/rss/news',
     ],
 
 

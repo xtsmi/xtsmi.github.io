@@ -3,11 +3,11 @@
 namespace App\Console\Commands;
 
 use App\News;
-use App\Similar;
 use App\Source;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
+use Tabuna\Similar\Similar;
 
 class SimilarParseCommand extends Command
 {
@@ -32,19 +32,18 @@ class SimilarParseCommand extends Command
      */
     public function handle()
     {
+        $start = microtime(true);
         $rss = Source::getLastNews();
-
 
         $forSimilar = $rss
             ->pluck('title', 'link')
             ->toArray();
 
-
-        $similar = Similar::build($forSimilar, config('smi.story.percent'))
+        $data = Similar::build($forSimilar, config('smi.story.percent'))
             ->map(function (Collection $items) use ($rss) {
                 return $items->map(function ($item, $key) use ($rss) {
-                        return $rss->get($key);
-                    });
+                    return $rss->get($key);
+                });
             })
             ->filter(function (Collection $items) {
                 return $items->count() >= config('smi.story.minCount');
@@ -56,36 +55,26 @@ class SimilarParseCommand extends Command
                         ->unique()
                         ->count() > 1;
             })
-            /*
-            ->map(function (Collection $items) {
-
-                $fresh = $items->filter(function (News $news) {
-                    return $news->pubDate
-                        ->addHours(8)
-                        ->isAfter(now());
-                });
-
-                return $fresh->count() > 5 ? $fresh : $items;
-            })
-            */
             ->keyBy(function (Collection $items) {
                 return $items
                     ->sortBy('pubDate')
                     ->first()
                     ->title;
-            })->map(function (Collection $group, string $title) {
-
+            })
+            ->map(function (Collection $group, string $title) {
                 $main = $group->where('title', $title)->first() ?? $group->first();
 
                 return collect([
-                    'main' => $main,
+                    'main'  => $main,
                     'items' => $group->except($main->title),
                 ]);
-            });
+            })
+            ->toJson();
 
 
-        Storage::put('/api/similar-news.json', $similar->toJson());
+        Storage::put('/api/similar-news.json', $data);
 
-        $this->info('Similar News Received');
+        $time = round(microtime(true) - $start, 2);
+        $this->info("Similar News Received: $time sec.");
     }
 }
