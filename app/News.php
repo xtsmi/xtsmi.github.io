@@ -168,9 +168,9 @@ class News extends Model implements Feedable
     }
 
     /**
-     * @return array|FeedItem
+     * @return FeedItem
      */
-    public function toFeedItem()
+    public function toFeedItem(): FeedItem
     {
         $image = $this->image ?? url('/img/cover.jpg');
         $mimeTypes = (new MimeTypes())->getMimeTypes(pathinfo($image, PATHINFO_EXTENSION));
