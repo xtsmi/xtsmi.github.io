@@ -22,6 +22,7 @@ class News extends Model implements Feedable
     protected $fillable = [
         'title',
         'pubDate',
+        'timestamp',
         'description',
         'link',
         'media',
@@ -53,6 +54,7 @@ class News extends Model implements Feedable
         'favicon'     => 'string',
         'image'       => 'string',
         'keywords'    => 'array',
+        'timestamp'   => 'integer',
     ];
 
     /**
@@ -81,15 +83,15 @@ class News extends Model implements Feedable
         }
 
         $media = collect($this->media)->filter(function (array $info) {
-            if (! isset($info['type'], $info['url'])) {
+            if (!isset($info['type'], $info['url'])) {
                 return false;
             }
 
-            if (! Str::contains($info['type'], 'image')) {
+            if (!Str::contains($info['type'], 'image')) {
                 return false;
             }
 
-            return ! Str::contains($info['url'], config('smi.ignore.covers'));
+            return !Str::contains($info['url'], config('smi.ignore.covers'));
         })->first();
 
         return $media['url'] ?? null;
@@ -101,6 +103,7 @@ class News extends Model implements Feedable
     public function setPubDateAttribute($date): void
     {
         $this->attributes['pubDate'] = Carbon::parse($date, 'Europe/Moscow');
+        $this->attributes['timestamp'] = $this->attributes['pubDate']->getTimestamp();
     }
 
     /**

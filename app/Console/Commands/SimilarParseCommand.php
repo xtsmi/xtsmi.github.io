@@ -33,6 +33,23 @@ class SimilarParseCommand extends Command
         $percent = config('smi.story.percent', 51);
 
         return new Similar(function (News $a, News $b) use ($percent) {
+
+            // more 5 hours
+            if (abs($a->timestamp - $b->timestamp) > 18000) {
+                return false;
+            }
+
+            // less 1 hour
+            if (abs($a->timestamp - $b->timestamp) < 3600) {
+                $percent -= 5;
+            }
+
+            /*
+            if (soundex(\Str::ascii($a->title)) == soundex(\Str::ascii($b->title))) {
+                return true;
+            }
+            */
+
             similar_text($a->title, $b->title, $copy);
 
             return $percent < $copy;

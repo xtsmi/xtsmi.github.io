@@ -4882,16 +4882,16 @@
         },
         {
             "name": "tabuna/similar",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tabuna/similar.git",
-                "reference": "d2fc8284311988eea7707f680b12cbf9517f0a49"
+                "reference": "aa1dbf1226b29f8e7311e2b1c27653efdd723438"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tabuna/similar/zipball/d2fc8284311988eea7707f680b12cbf9517f0a49",
-                "reference": "d2fc8284311988eea7707f680b12cbf9517f0a49",
+                "url": "https://api.github.com/repos/tabuna/similar/zipball/aa1dbf1226b29f8e7311e2b1c27653efdd723438",
+                "reference": "aa1dbf1226b29f8e7311e2b1c27653efdd723438",
                 "shasum": ""
             },
             "require": {
@@ -4923,9 +4923,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tabuna/similar/issues",
-                "source": "https://github.com/tabuna/similar/tree/2.1.1"
+                "source": "https://github.com/tabuna/similar/tree/2.1.2"
             },
-            "time": "2021-01-22T15:41:49+00:00"
+            "time": "2021-01-22T22:38:17+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
