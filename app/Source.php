@@ -16,7 +16,6 @@ class Source
         return once(function () {
             return collect(self::getJsonData('/api/similar-news.json'))
                 ->map(function (array $group) {
-
                     $main = new News($group['main']);
 
                     $items = collect($group['items'])->map(function ($new) {
@@ -62,7 +61,7 @@ class Source
      */
     private static function getJsonData(string $path)
     {
-        if (!Storage::exists($path)) {
+        if (! Storage::exists($path)) {
             return [];
         }
 

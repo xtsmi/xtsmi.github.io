@@ -104,7 +104,7 @@ class DownloadRssCommand extends Command
         $item['description'] = $item['description'] ?? $item['content'] ?? null;
         $item['pubDate'] = $item['published'] ?? $item['pubDate'] ?? null;
 
-        if($item['link'] instanceof \SimpleXMLElement){
+        if ($item['link'] instanceof \SimpleXMLElement) {
             $item['link'] = (string) $item['link']['href'];
         }
 
@@ -131,7 +131,7 @@ class DownloadRssCommand extends Command
         });
 
         $news->fill([
-            'media' => $media
+            'media' => $media,
         ]);
 
         if ($news->pubDate->addHours(config('smi.period'))->isBefore(now())) {

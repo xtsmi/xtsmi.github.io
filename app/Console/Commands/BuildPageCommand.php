@@ -63,7 +63,6 @@ class BuildPageCommand extends Command
     {
         /** @var \Illuminate\Routing\Route $route */
         foreach (Route::getRoutes() as $route) {
-
             $page = Str::contains($route->getName(), 'feeds')
                 ? $route->getName() . '.xml'
                 : $page = $route->getName() . '.html';

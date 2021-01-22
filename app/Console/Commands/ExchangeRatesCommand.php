@@ -37,7 +37,6 @@ class ExchangeRatesCommand extends Command
             ->put('USD', Arr::get($data, 'Valute.USD'))
             ->put('EUR', Arr::get($data, 'Valute.EUR'))
             ->map(static function ($info) {
-
                 $infoForCamel = [];
 
                 foreach ($info as $key => $value) {
