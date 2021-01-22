@@ -64,6 +64,16 @@ class SimilarParseCommand extends Command
             ->map(function (Collection $group, string $title) {
                 $main = $group->where('title', $title)->first() ?? $group->first();
 
+
+                if (empty($main->media)) {
+                    $group->each(function (News $news) use (&$main) {
+                        if (!empty($news->media)) {
+                            $main->media = $news->media;
+                        }
+                    });
+                }
+
+
                 return collect([
                     'main'  => $main,
                     'items' => $group->except($main->title),
