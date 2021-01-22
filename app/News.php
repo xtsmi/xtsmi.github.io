@@ -86,7 +86,11 @@ class News extends Model implements Feedable
                 return false;
             }
 
-            return Str::contains($info['type'], 'image');
+            if (!Str::contains($info['type'], 'image')) {
+                return false;
+            }
+
+            return !Str::contains($info['url'], config('smi.ignore.covers'));
         })->first();
 
         return $media['url'] ?? null;

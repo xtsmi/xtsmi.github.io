@@ -65,9 +65,9 @@ class SimilarParseCommand extends Command
                 $main = $group->where('title', $title)->first() ?? $group->first();
 
 
-                if (empty($main->media)) {
+                if ($main->image === null) {
                     $group->each(function (News $news) use (&$main) {
-                        if (!empty($news->media)) {
+                        if ($news->image !== null) {
                             $main->media = $news->media;
                         }
                     });
