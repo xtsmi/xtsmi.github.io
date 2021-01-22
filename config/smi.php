@@ -96,6 +96,7 @@ return [
         'https://life.ru/rss',
         'https://vz.ru/rss.xml',
         'https://www.ridus.ru/rss/news',
+        'https://istories.media/rss/all.xml',
     ],
 
     /*
