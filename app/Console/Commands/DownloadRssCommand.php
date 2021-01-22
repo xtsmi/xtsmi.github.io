@@ -124,9 +124,7 @@ class DownloadRssCommand extends Command
 
         $enclosure = $item['enclosure'] ?? [];
 
-        collect(
-            (array)$enclosure
-        )->each(static function ($info) use ($media) {
+        collect((array)$enclosure)->each(static function ($info) use ($media) {
             $media->push((array)$info);
         });
 

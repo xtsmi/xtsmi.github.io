@@ -37,7 +37,7 @@ Route::get('/news/{id}', function (string $id) {
     // Random
     $stories = Source::getSimilarNews()
         ->filter(static function (Collection $stories) use ($story) {
-            if($story === null){
+            if ($story === null) {
                 return true;
             }
 
@@ -66,5 +66,25 @@ Route::get('/news/{id}', function (string $id) {
     ]);
 
 })->name('news');
+
+
+Route::get('/tags/{slug}', function (string $slug) {
+
+    $tag = collect(config('smi.tags'))->where('slug', $slug)->first();
+
+    abort_if($tag === null, 404);
+
+    $news = Source::getLastNews()->filter(function (News $news) use ($tag) {
+        return Str::contains($news->title, $tag['contains'])
+            || Str::contains($news->description, $tag['contains']);
+    });
+
+
+    return view('tags', [
+        'news'     => $news,
+        'lastNews' => Source::getLastNews()->take(config('smi.news.renderCount')),
+    ]);
+
+})->name('tags');
 
 Route::feeds();

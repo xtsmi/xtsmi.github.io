@@ -32,24 +32,25 @@ class BuildPageCommand extends Command
      * Execute the console command.
      *
      * @return mixed
+     * @throws \JsonException
      */
     public function handle()
     {
         $this->generatedNewsPages()
             ->generatedStaticPage()
-            ->generatedApi();
+            ->generatedApi()
+            ->generatedTagsPages();
     }
 
     /**
      * @return $this
+     * @throws \JsonException
      */
     public function generatedApi(): BuildPageCommand
     {
-        Storage::put('/api/generated.json',
-            json_encode([
-                'generated' => config('smi.generated'),
-            ])
-        );
+        Storage::put('/api/generated.json', json_encode([
+            'generated' => config('smi.generated'),
+        ], JSON_THROW_ON_ERROR));
 
         $this->info('Api generated');
 
@@ -75,10 +76,7 @@ class BuildPageCommand extends Command
                 $this->warn("Url: $url response not 200");
             }
 
-            Storage::put(
-                $page,
-                (string)$response->getContent()
-            );
+            Storage::put($page, (string)$response->getContent());
 
             $this->info("Page '$page' generated");
         }
@@ -98,10 +96,7 @@ class BuildPageCommand extends Command
 
             $page = parse_url($uri, PHP_URL_PATH) . '.html';
 
-            Storage::put(
-                $page,
-                (string)$response->getContent()
-            );
+            Storage::put($page, (string)$response->getContent());
         });
 
         $this->info('News pages generated');
@@ -132,5 +127,25 @@ class BuildPageCommand extends Command
 
         /** @var Response $response */
         return app()->handle($request);
+    }
+
+    /**
+     * @return BuildPageCommand
+     */
+    public function generatedTagsPages(): BuildPageCommand
+    {
+        collect(config('smi.tags'))->each(function ($tag) {
+            $uri = route('tags', $tag['slug']);
+
+            $response = $this->createRequest($uri);
+
+            $page = parse_url($uri, PHP_URL_PATH) . '.html';
+
+            Storage::put($page, (string)$response->getContent());
+        });
+
+        $this->info('Tags pages generated');
+
+        return $this;
     }
 }
