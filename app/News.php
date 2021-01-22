@@ -83,15 +83,15 @@ class News extends Model implements Feedable
         }
 
         $media = collect($this->media)->filter(function (array $info) {
-            if (!isset($info['type'], $info['url'])) {
+            if (! isset($info['type'], $info['url'])) {
                 return false;
             }
 
-            if (!Str::contains($info['type'], 'image')) {
+            if (! Str::contains($info['type'], 'image')) {
                 return false;
             }
 
-            return !Str::contains($info['url'], config('smi.ignore.covers'));
+            return ! Str::contains($info['url'], config('smi.ignore.covers'));
         })->first();
 
         return $media['url'] ?? null;
