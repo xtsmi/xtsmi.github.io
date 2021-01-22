@@ -31,8 +31,9 @@ class BuildPageCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
      * @throws \JsonException
+     *
+     * @return mixed
      */
     public function handle()
     {
@@ -43,8 +44,9 @@ class BuildPageCommand extends Command
     }
 
     /**
-     * @return $this
      * @throws \JsonException
+     *
+     * @return $this
      */
     public function generatedApi(): BuildPageCommand
     {
