@@ -162,7 +162,9 @@ class News extends Model implements Feedable
             ->whenEmpty(function () use ($description) {
                 $rake = RakePlus::create($description, 'ru_RU', 3);
 
-                return collect(Arr::last($rake->keywords()));
+                $scores = $rake->sortByScore('desc')->scores();
+
+                return collect($scores)->take(3)->keys();
             })
             ->toArray();
     }
@@ -213,5 +215,13 @@ class News extends Model implements Feedable
         })->take(4)->filter(function (News $news) {
             return $news->pubDate->addHours(6)->isAfter(now());
         });
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string)$this->title;
     }
 }

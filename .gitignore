@@ -19,4 +19,4 @@ yarn-error.log
 /public/*.html
 /public/news
 /public/feeds.main.xml
-
+.php_cs.cache

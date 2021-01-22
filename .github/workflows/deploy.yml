@@ -49,6 +49,7 @@ jobs:
           APP_DEBUG: false
           APP_URL: https://tsmi.live
         run: |
+          php artisan optimize
           php artisan rss:download
           php artisan rss:exchange
           php artisan rss:similar

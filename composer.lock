@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84e058bd30d07f345668df53eb6533c3",
+    "content-hash": "eeb12ecbc2703c89a857504ba0033096",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4882,16 +4882,16 @@
         },
         {
             "name": "tabuna/similar",
-            "version": "1.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tabuna/similar.git",
-                "reference": "1496a46d6f4496a1f1b9bd5cddfd2932d5d6f38c"
+                "reference": "d2fc8284311988eea7707f680b12cbf9517f0a49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tabuna/similar/zipball/1496a46d6f4496a1f1b9bd5cddfd2932d5d6f38c",
-                "reference": "1496a46d6f4496a1f1b9bd5cddfd2932d5d6f38c",
+                "url": "https://api.github.com/repos/tabuna/similar/zipball/d2fc8284311988eea7707f680b12cbf9517f0a49",
+                "reference": "d2fc8284311988eea7707f680b12cbf9517f0a49",
                 "shasum": ""
             },
             "require": {
@@ -4923,9 +4923,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tabuna/similar/issues",
-                "source": "https://github.com/tabuna/similar/tree/1.1.0"
+                "source": "https://github.com/tabuna/similar/tree/2.1.1"
             },
-            "time": "2020-11-26T17:15:10+00:00"
+            "time": "2021-01-22T15:41:49+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

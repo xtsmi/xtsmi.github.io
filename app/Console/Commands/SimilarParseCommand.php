@@ -33,37 +33,25 @@ class SimilarParseCommand extends Command
     public function handle()
     {
         $start = microtime(true);
-        $rss = Source::getLastNews();
 
-        $forSimilar = $rss
-            ->pluck('title', 'link')
-            ->toArray();
+        $percent = config('smi.story.percent', 51);
 
-        $data = Similar::build($forSimilar, config('smi.story.percent'))
-            ->map(function (Collection $items) use ($rss) {
-                return $items->map(function ($item, $key) use ($rss) {
-                    return $rss->get($key);
-                });
-            })
+        $similar = new Similar(function (News $a, News $b) use ($percent) {
+            similar_text($a->title, $b->title, $copy);
+
+            return $percent < $copy;
+        });
+
+        $data = $similar
+            ->findOut(Source::getLastNews()->all())
             ->filter(function (Collection $items) {
                 return $items->count() >= config('smi.story.minCount');
             })
             ->filter(function (Collection $items) {
-                return $items->map(function (News $news) {
-                        return parse_url($news->link, PHP_URL_HOST);
-                    })
-                        ->unique()
-                        ->count() > 1;
+                return $items->pluck('domain')->unique()->count() > 1;
             })
-            ->keyBy(function (Collection $items) {
-                return $items
-                    ->sortBy('pubDate')
-                    ->first()
-                    ->title;
-            })
-            ->map(function (Collection $group, string $title) {
-                $main = $group->where('title', $title)->first() ?? $group->first();
-
+            ->map(function (Collection $group) {
+                $main = $group->first();
 
                 if ($main->image === null) {
                     $group->each(function (News $news) use (&$main) {
@@ -73,10 +61,9 @@ class SimilarParseCommand extends Command
                     });
                 }
 
-
                 return collect([
                     'main'  => $main,
-                    'items' => $group->except($main->title),
+                    'items' => $group,
                 ]);
             })
             ->toJson();
