@@ -110,6 +110,8 @@ return [
         // foreign
         'https://gordonua.com/xml/rss_category/top.html',
         'https://nexta.news/feed/',
+        'https://www.belta.by/rss',
+        'https://telegraf.by/feed/',
 
 
         // blogs
