@@ -108,6 +108,7 @@ return [
         'https://7x7-journal.ru/rss/default.xml',
         'https://mash.ru/rss',
         'https://ria.ru/export/rss2/archive/index.xml',
+        'https://eadaily.com/ru/rss/index.xml',
 
         // foreign
         'https://gordonua.com/xml/rss_category/top.html',
