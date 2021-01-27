@@ -134,3 +134,12 @@ svg{
         column-break-inside: avoid;
     }
 }
+
+
+.badge {
+    font-weight: 500;
+}
+
+.badge.bg-secondary {
+    background-color: #c7cacd !important;
+}

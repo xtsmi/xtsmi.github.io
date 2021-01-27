@@ -135,6 +135,16 @@ return [
             'name'     => 'Вакцина от COVID-19',
             'contains' => 'коронавирус', 'ковид', 'covid', 'Спутник V', 'Спутника V',
         ],
+        [
+            'slug'     => \Illuminate\Support\Str::slug('Украина'),
+            'name'     => 'Украина',
+            'contains' => 'украи', 'Киев'
+        ],
+        [
+            'slug'     => \Illuminate\Support\Str::slug('Беларусь'),
+            'name'     => 'Беларусь',
+            'contains' => 'Беларус', 'Беларус', 'Тихановск', 'Минск', 'Лукашенк'
+        ],
     ],
 
 ];

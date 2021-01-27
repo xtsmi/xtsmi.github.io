@@ -58,7 +58,19 @@
         <div class="d-md-none py-1">
             <x-exchange/>
         </div>
-        
+
+
+        <nav class="row mb-3">
+            <div class="col-12">
+                @foreach(config('smi.tags') as $tag)
+                    <a href="/tags/{{ $tag['slug'] }}"
+                       class="badge {{ \Illuminate\Support\Str::endsWith(url()->current(), $tag['slug'])  ? 'bg-success' : 'bg-secondary' }} border">
+                        {{ $tag['name'] }}
+                    </a>
+                @endforeach
+            </div>
+        </nav>
+
         <div class="row" data-target="main.content">
             <div class="col-md-9 col-sm-12 news-ended">
                 @yield('content')
