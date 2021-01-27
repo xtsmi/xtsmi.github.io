@@ -107,8 +107,12 @@ return [
         'https://tayga.info/rss',
         'https://7x7-journal.ru/rss/default.xml',
 
+        // foreign
+        'https://gordonua.com/xml/rss_category/top.html',
+        'https://nexta.news/feed/',
 
-        //blogs
+
+        // blogs
         'https://varlamov.ru/data/rss'
     ],
 
