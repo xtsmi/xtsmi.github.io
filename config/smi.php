@@ -107,6 +107,7 @@ return [
         'https://tayga.info/rss',
         'https://7x7-journal.ru/rss/default.xml',
         'https://mash.ru/rss',
+        'https://ria.ru/export/rss2/archive/index.xml',
 
         // foreign
         'https://gordonua.com/xml/rss_category/top.html',
@@ -163,6 +164,11 @@ return [
             'slug'     => \Illuminate\Support\Str::slug('Беларусь'),
             'name'     => 'Беларусь',
             'contains' => 'Беларус', 'Беларус', 'Тихановск', 'Минск', 'Лукашенк'
+        ],
+        [
+            'slug'     => \Illuminate\Support\Str::slug('Северный поток'),
+            'name'     => 'Северный поток',
+            'contains' => 'Северный поток',
         ],
     ],
 
