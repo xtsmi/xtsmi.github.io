@@ -101,6 +101,11 @@ return [
         'https://www.fontanka.ru/rss.xml',
         'https://regnum.ru/rss/news.html',
         'https://live24.ru/rss.xml',
+        'https://takiedela.ru/feed/',
+        'https://paperpaper.ru/feed/',
+        'https://www.yuga.ru/articles.rss',
+        'https://tayga.info/rss',
+        'https://7x7-journal.ru/rss/default.xml',
 
 
         //blogs
