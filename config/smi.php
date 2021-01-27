@@ -63,6 +63,7 @@ return [
     */
 
     'rss' => [
+        // smi
         'https://www.vedomosti.ru/rss/news',
         'http://www.aif.ru/rss/news.php',
         'http://lenta.ru/rss/',
@@ -98,6 +99,12 @@ return [
         'https://www.ridus.ru/rss/news',
         'https://istories.media/rss/all.xml',
         'https://www.fontanka.ru/rss.xml',
+        'https://regnum.ru/rss/news.html',
+        'https://live24.ru/rss.xml',
+
+
+        //blogs
+        'https://varlamov.ru/data/rss'
     ],
 
     /*
