@@ -106,6 +106,7 @@ return [
         'https://www.yuga.ru/articles.rss',
         'https://tayga.info/rss',
         'https://7x7-journal.ru/rss/default.xml',
+        'https://mash.ru/rss',
 
         // foreign
         'https://gordonua.com/xml/rss_category/top.html',
