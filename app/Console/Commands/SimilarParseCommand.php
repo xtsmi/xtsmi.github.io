@@ -34,6 +34,11 @@ class SimilarParseCommand extends Command
 
         return new Similar(function (News $a, News $b) use ($percent) {
 
+            // It makes no sense to compare identical strings
+            if ($a->title === $b->title) {
+                return true;
+            }
+
             // more 5 hours
             if (abs($a->timestamp - $b->timestamp) > 18000) {
                 return false;
