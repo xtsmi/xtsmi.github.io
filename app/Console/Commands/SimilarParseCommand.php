@@ -39,21 +39,17 @@ class SimilarParseCommand extends Command
                 return true;
             }
 
+            $timeDiff = abs($a->timestamp - $b->timestamp);
+
             // more 5 hours
-            if (abs($a->timestamp - $b->timestamp) > 18000) {
+            if ($timeDiff > 18000) {
                 return false;
             }
 
             // less 1 hour
-            if (abs($a->timestamp - $b->timestamp) < 3600) {
-                $percent -= 5;
+            if ($timeDiff < 3600) {
+                $percent -= 10;
             }
-
-            /*
-            if (soundex(\Str::ascii($a->title)) == soundex(\Str::ascii($b->title))) {
-                return true;
-            }
-            */
 
             similar_text($a->title, $b->title, $copy);
 

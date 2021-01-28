@@ -105,13 +105,13 @@ class DownloadRssCommand extends Command
         $item['pubDate'] = $item['published'] ?? $item['pubDate'] ?? null;
 
         if ($item['link'] instanceof \SimpleXMLElement) {
-            $item['link'] = (string) $item['link']['href'];
+            $item['link'] = (string)$item['link']['href'];
         }
 
         $validator = Validator::make($item, [
-            'title'       => 'required|string',
-            'pubDate'     => 'required|date',
-            'link'        => 'required|string',
+            'title'   => 'required|string',
+            'pubDate' => 'required|date',
+            'link'    => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -120,17 +120,12 @@ class DownloadRssCommand extends Command
 
         $news = new News($item);
 
-        $media = collect();
-
         $enclosure = $item['enclosure'] ?? [];
 
-        collect((array)$enclosure)->each(static function ($info) use ($media) {
-            $media->push((array)$info);
-        });
-
-        $news->fill([
-            'media' => $media,
-        ]);
+        $news->media = collect((array)$enclosure)
+            ->map(static function ($info) {
+                return (array)$info;
+            });
 
         if ($news->pubDate->addHours(config('smi.period'))->isBefore(now())) {
             return null;
