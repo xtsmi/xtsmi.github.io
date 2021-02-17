@@ -79,7 +79,7 @@ class DownloadRssCommand extends Command
         }
         
         if (! isset($suites)) {
-            return [];
+            return collect();
         }
 
         foreach ($suites as $item) {
