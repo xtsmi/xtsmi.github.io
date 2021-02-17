@@ -78,7 +78,7 @@ class DownloadRssCommand extends Command
             $suites = $elements->entry;
         }
         
-        if (!isset($suites)) {
+        if (! isset($suites)) {
             return [];
         }
 
