@@ -77,6 +77,10 @@ class DownloadRssCommand extends Command
         if (isset($elements->entry)) {
             $suites = $elements->entry;
         }
+        
+        if (!isset($suites)) {
+            return [];
+        }
 
         foreach ($suites as $item) {
             $model = $this->createModelForXMLElement($item);
