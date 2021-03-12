@@ -146,11 +146,11 @@ return [
     */
 
     'tags' => [
-        [
-            'slug'     => \Illuminate\Support\Str::slug('Навальный'),
-            'name'     => 'Навальный',
-            'contains' => 'Навальный', 'ФБК', 'Навальн',
-        ],
+        //[
+        //    'slug'     => \Illuminate\Support\Str::slug('Навальный'),
+        //    'name'     => 'Навальный',
+        //    'contains' => 'Навальный', 'ФБК', 'Навальн',
+        //],
         [
             'slug'     => \Illuminate\Support\Str::slug('Вакцина от COVID-19'),
             'name'     => 'Вакцина от COVID-19',
@@ -166,11 +166,11 @@ return [
             'name'     => 'Беларусь',
             'contains' => 'Беларус', 'Беларус', 'Тихановск', 'Минск', 'Лукашенк'
         ],
-        [
-            'slug'     => \Illuminate\Support\Str::slug('Северный поток'),
-            'name'     => 'Северный поток',
-            'contains' => 'Северный поток',
-        ],
+        //[
+        //    'slug'     => \Illuminate\Support\Str::slug('Северный поток'),
+        //    'name'     => 'Северный поток',
+        //    'contains' => 'Северный поток',
+        //],
     ],
 
 ];
