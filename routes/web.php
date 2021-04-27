@@ -22,6 +22,9 @@ $index = [
 ];
 
 Route::view('/', 'index', $index)->name('index');
+Route::view('/group', 'group', $index)->name('group');
+
+
 Route::view('/404', 'index', $index)->name('404');
 
 Route::get('/news/{id}', function (string $id) {

@@ -152,8 +152,8 @@ return [
         //    'contains' => 'Навальный', 'ФБК', 'Навальн',
         //],
         [
-            'slug'     => \Illuminate\Support\Str::slug('Вакцина от COVID-19'),
-            'name'     => 'Вакцина от COVID-19',
+            'slug'     => \Illuminate\Support\Str::slug('COVID-19'),
+            'name'     => 'COVID-19',
             'contains' => 'коронавирус', 'ковид', 'covid', 'Спутник V', 'Спутника V',
         ],
         [

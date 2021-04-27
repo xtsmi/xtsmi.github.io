@@ -73,6 +73,8 @@
                 </nav>
 
                 @yield('content')
+
+                @include('particles.footer')
             </div>
             <div class="col"
                  data-controller="news"
@@ -93,10 +95,7 @@
             </div>
         </div>
     </main>
-
-    @include('particles.footer')
 </div>
-
 
 
 <script id="news-template" type="text/template">
