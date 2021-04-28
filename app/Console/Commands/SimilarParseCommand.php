@@ -42,13 +42,13 @@ class SimilarParseCommand extends Command
             $timeDiff = abs($a->timestamp - $b->timestamp);
 
             // more 5 hours
-            if ($timeDiff > 18000) {
+            if ($timeDiff > config('smi.story.diff')) {
                 return false;
             }
 
             // less 1 hour
-            if ($timeDiff < 3600) {
-                $percent -= 10;
+            if ($timeDiff < config('smi.story.increasedPercentage.diff')) {
+                $percent -= config('smi.story.increasedPercentage.percent');
             }
 
             similar_text($a->title, $b->title, $copy);

@@ -38,6 +38,15 @@ return [
     'story'  => [
         'percent'  => 75,
         'minCount' => 3,
+
+        // Time difference when groups cannot be combined at all
+        'diff' => 18000, //seconds
+
+        // If the news was published at the same time, then increase the likelihood of their similarity
+        'increasedPercentage' => [
+            'diff'    => 3600, // seconds
+            'percent' => 10,
+        ],
     ],
 
     /*

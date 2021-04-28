@@ -1,10 +1,10 @@
 {
-    "name": "laravel/laravel",
+    "name": "xtsmi/aggregator",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "According to specified criteria, the aggregator automatically collects a news feed from various media outlets' news.",
     "keywords": [
-        "framework",
-        "laravel"
+        "news",
+        "aggregator"
     ],
     "license": "MIT",
     "require": {
@@ -12,7 +12,6 @@
         "ext-json": "*",
         "ext-simplexml": "*",
         "ext-zlib": "*",
-        "atomescrochus/laravel-string-similarities": "^2.0",
         "donatello-za/rake-php-plus": "^1.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",

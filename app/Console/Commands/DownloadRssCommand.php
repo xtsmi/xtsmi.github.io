@@ -33,7 +33,12 @@ class DownloadRssCommand extends Command
      */
     public function handle()
     {
-        $client = new Client();
+        $client = new Client([
+            'headers'         => [
+                'User-Agent' => 'x-TSMI-bot',
+                'Accept'     => '*/*',
+            ],
+        ]);
 
         $rss = collect();
 
@@ -41,18 +46,17 @@ class DownloadRssCommand extends Command
             $rss->push($response->getBody());
         });
 
-        $json = $rss->map(function (string $rss) {
+        $news = $rss->map(function (string $rss) {
             return $this->transformRssToModels($rss);
         })
             ->sortBy('pubDate')
             ->mapWithKeys(function ($news) {
                 return $news;
-            })
-            ->toJson();
+            });
 
-        Storage::put('/api/last-news.json', $json);
+        Storage::put('/api/last-news.json', $news->toJson());
 
-        $this->info('Latest News Received');
+        $this->info('Latest News Received. Count:'. $news->count());
     }
 
     /**
@@ -77,7 +81,7 @@ class DownloadRssCommand extends Command
         if (isset($elements->entry)) {
             $suites = $elements->entry;
         }
-        
+
         if (! isset($suites)) {
             return collect();
         }
