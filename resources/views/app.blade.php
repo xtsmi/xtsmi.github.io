@@ -33,6 +33,7 @@
     <meta name="theme-color" content="#ffffff">
     {{-- /favicon --}}
 
+    <meta property="fb:pages" content="107147134858113" />
     <meta name="yandex-verification" content="0e693be926f4cc9c" />
 
     @include('feed::links')
