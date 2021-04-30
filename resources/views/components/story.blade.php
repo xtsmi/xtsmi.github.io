@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="pt-3 col d-flex flex-column">
                     <div class="v-center mb-1">
-                        <img src="{{ $favicon }}" class="mr-2" alt="{{ $domain }}" loading="lazy">
+                        <img src="{{ $favicon }}" class="me-2" alt="{{ $domain }}" loading="lazy">
                         <div>{{ $domain }}</div>
                     </div>
                     <h2 class="text-dark font-weight-bolder">{{$title}}</h2>
@@ -33,13 +33,13 @@
                             @include('particles.share', ['url' => $internalLink])
 
 
-                            <a href="{{ $internalLink }}" target="_blank" class="btn btn-secondary ml-2">Читать далее</a>
+                            <a href="{{ $internalLink }}" class="btn btn-secondary ml-2">Читать далее</a>
                         </div>
                     @else
-                        <div class="v-center mb-1 mr-auto">
+                        <div class="v-center mb-1 me-auto">
                             @if($sources->count() > 10)
                                 @foreach($sources->take(5) as $domain => $favicon)
-                                    <img src="{{ $favicon }}" class="mr-1" alt="{{ $domain }}" loading="lazy">
+                                    <img src="{{ $favicon }}" class="me-1" alt="{{ $domain }}" loading="lazy">
                                 @endforeach
 
                                 <small class="text-muted">И ещё {{ $sources->count() - 5 }} источников написали об
@@ -48,7 +48,7 @@
                             @else
 
                                 @foreach($sources as $domain => $favicon)
-                                    <img src="{{ $favicon }}" class="mr-1" alt="{{ $domain }}" loading="lazy">
+                                    <img src="{{ $favicon }}" class="me-1" alt="{{ $domain }}" loading="lazy">
                                 @endforeach
 
                             @endif
@@ -63,7 +63,7 @@
 
     @if($single)
         <p>
-            {!! nl2br(\Illuminate\Support\Str::limit($description, 600)) !!}
+            {!! nl2br($description) !!}
         </p>
     @endif
 

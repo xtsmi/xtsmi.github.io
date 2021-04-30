@@ -9,7 +9,10 @@ export default class extends Controller {
         }
 
         if (document.referrer.includes(baseURI)) {
-            window.location.replace(this.data.get('url'));
+            //window.open(window.location.href,'_blank');
+            //window.location.replace(this.data.get('url'));
+
+            window.open(this.data.get('url'),'_blank');
         }
     }
 }
