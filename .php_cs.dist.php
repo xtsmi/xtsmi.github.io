@@ -10,7 +10,7 @@ $finder = Symfony\Component\Finder\Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRules([
         '@PSR2' => true,
         'array_syntax' => ['syntax' => 'short'],
@@ -30,7 +30,6 @@ return PhpCsFixer\Config::create()
         'phpdoc_order' => true,
         'phpdoc_single_line_var_spacing' => true,
         'phpdoc_var_without_name' => true,
-        'phpdoc_separation' => true,
         'class_attributes_separation' => [
             'elements' => [
                 'method',
