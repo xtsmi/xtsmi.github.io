@@ -34,7 +34,7 @@ class DownloadRssCommand extends Command
     public function handle()
     {
         $client = new Client([
-            'headers'         => [
+            'headers' => [
                 'User-Agent' => 'x-TSMI-bot',
                 'Accept'     => '*/*',
             ],
