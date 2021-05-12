@@ -14,7 +14,7 @@ export default class extends Controller {
 
             //window.open(this.data.get('url'),'_blank');
 
-            fetch('/').then(() => window.open(this.data.get('url'), '_blank'))
+            setTimeout(() => window.open(this.data.get('url'), '_blank'), 100)
         }
     }
 }
