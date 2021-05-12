@@ -49,7 +49,7 @@
         @include('particles.adsense')
     @endenv
 </head>
-<body data-controller="main">
+<body data-controller="main" class="">
 
 @include('particles.navigation')
 

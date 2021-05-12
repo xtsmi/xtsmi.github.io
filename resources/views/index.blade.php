@@ -75,7 +75,7 @@
 
     <div class="bg-white p-2 mb-4 rounded shadow-sm">
         <div class="rounded bordered bg-light p-3">
-            <div class="row row-cols-md-3 g-5">
+            <div class="row row-cols-1 row-cols-md-3 g-5">
                 @foreach($stories->slice(4, 3) as $story)
                     <div class="col d-flex flex-column justify-content-start align-items-start">
 
@@ -101,7 +101,7 @@
         </div>
     </div>
 
-    <div class="row row-cols-2">
+    <div class="row row-cols-1 row-cols-md-2">
         @foreach($stories->slice(7,2) as $story)
             <div class="col mb-4">
                 <div
@@ -218,7 +218,7 @@
 
     <div class="bg-white p-2 mb-4 rounded shadow-sm">
         <div class="rounded bordered bg-light p-3">
-            <div class="row row-cols-md-3 g-5">
+            <div class="row row-cols-1 row-cols-md-3 g-5">
                 @foreach($stories->slice(13, 3) as $story)
                     <div class="col d-flex flex-column justify-content-start align-items-start">
 
@@ -244,7 +244,7 @@
         </div>
     </div>
 
-    <div class="row row-cols-2">
+    <div class="row row-cols-1 row-cols-md-2">
         @foreach($stories->slice(16, 2) as $story)
             <div class="col mb-4">
                 <div
@@ -289,7 +289,7 @@
 
     <div class="bg-white p-2 mb-4 rounded shadow-sm">
         <div class="rounded bordered bg-light p-3">
-            <div class="row row-cols-md-3 g-5">
+            <div class="row row-cols-1 row-cols-md-3 g-5">
                 @foreach($stories->slice(18, 3) as $story)
                     <div class="col d-flex flex-column justify-content-start align-items-start">
 
@@ -319,7 +319,7 @@
     <!-- dublicate -->
 
 
-    <div class="row row-cols-md-4">
+    <div class="row row-cols-1 row-cols-md-4">
         @foreach($stories->slice(21, 4) as $story)
             <div class="col mb-4">
                 <div

@@ -4,6 +4,9 @@
 // Bootstrap
 @import '~bootstrap';
 
+.body {
+    overflow-x: hidden;
+}
 
 .v-center {
     display: flex;
@@ -91,7 +94,7 @@ svg{
                 transition: 0.3s ease;
 
                 > div + div {
-                    display: none;
+//                    display: none;
                 }
 
                 &.last-news {
