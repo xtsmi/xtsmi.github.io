@@ -12,7 +12,9 @@ export default class extends Controller {
             //window.open(window.location.href,'_blank');
             //window.location.replace(this.data.get('url'));
 
-            window.open(this.data.get('url'),'_blank');
+            //window.open(this.data.get('url'),'_blank');
+
+            fetch('/').then(() => window.open(this.data.get('url'), '_blank'))
         }
     }
 }
