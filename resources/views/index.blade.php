@@ -4,7 +4,7 @@
 
 
     <div class="bg-white p-4 mb-4 rounded shadow-sm">
-        <div class="row row g-md-5">
+        <div class="row g-md-5 d-flex justify-content-center align-items-center h-100">
             <div class="col-sm-8">
                 <!-- post -->
 
@@ -22,8 +22,8 @@
                                 <div>{{ $story['main']->domain }}</div>
                             </div>
 
-
-                            <h1 class="mb-1"><a href="{{ $story['main']->internalLink }}">
+                            <h1 class="mb-1 lh-1">
+                                <a href="{{ $story['main']->internalLink }}">
                                     {{ $story['main']->title }}
                                 </a>
                             </h1>
@@ -44,10 +44,10 @@
             </div>
             <div class="col-sm-4">
                 <div class="row px-md-3 rounded bg-light row-cols-1  d-flex flex-column justify-content-start align-items-start h-100">
-                @foreach($stories->slice(1, 3) as $story)
+                @foreach($stories->slice(2, 4) as $story)
                     <!-- post -->
-                        <div class="col my-auto mb-3 mb-md-0">
-                            <div class="details clearfix">
+                        <div class="col my-auto mb-md-0">
+                            <div class="details clearfix mt-2">
                                 <div class="v-center mb-1">
                                     <img src="{{ $story['main']->favicon }}" class="me-2"
                                          alt="{{ $story['main']->domain }}" loading="lazy">
@@ -76,7 +76,7 @@
     <div class="bg-white p-2 mb-4 rounded shadow-sm">
         <div class="rounded bordered bg-light p-3">
             <div class="row row-cols-1 row-cols-md-3 g-5">
-                @foreach($stories->slice(4, 3) as $story)
+                @foreach($stories->slice(6, 3) as $story)
                     <div class="col d-flex flex-column justify-content-start align-items-start">
 
                         <div class="v-center mb-1">
@@ -102,7 +102,7 @@
     </div>
 
     <div class="row row-cols-1 row-cols-md-2">
-        @foreach($stories->slice(7,2) as $story)
+        @foreach($stories->slice(9, 2) as $story)
             <div class="col mb-4">
                 <div
                     class="row g-0 bg-white rounded mb-4 shadow-sm h-100 position-relative">
@@ -151,7 +151,7 @@
         <div class="row row g-md-5">
             <div class="col-sm-8">
                 <!-- post -->
-                @foreach($stories->slice(9, 1) as $story)
+                @foreach($stories->slice(11, 1) as $story)
                     <div class="mb-3">
                         <a href="{{ $story['main']->internalLink }}" target="_blank" class="d-block rounded mb-2">
                             <img src="{{ $story['main']->image }}"
@@ -166,10 +166,11 @@
                             </div>
 
 
-                            <h1 class="mb-1"><a href="{{ $story['main']->internalLink }}">
+                            <h2 class="mb-1 lh-1 h1">
+                                <a href="{{ $story['main']->internalLink }}">
                                     {{ $story['main']->title }}
                                 </a>
-                            </h1>
+                            </h2>
 
                             <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate }}"
                                   data-controller="news-time">
@@ -187,7 +188,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="row px-md-3 rounded bg-light row-cols-1  d-flex flex-column justify-content-start align-items-start h-100">
-                @foreach($stories->slice(10, 3) as $story)
+                @foreach($stories->slice(12, 4) as $story)
                     <!-- post -->
                         <div class="col my-auto mb-3 mb-md-0">
                             <div class="details clearfix">
@@ -219,7 +220,7 @@
     <div class="bg-white p-2 mb-4 rounded shadow-sm">
         <div class="rounded bordered bg-light p-3">
             <div class="row row-cols-1 row-cols-md-3 g-5">
-                @foreach($stories->slice(13, 3) as $story)
+                @foreach($stories->slice(16, 3) as $story)
                     <div class="col d-flex flex-column justify-content-start align-items-start">
 
                         <div class="v-center mb-1">
@@ -245,7 +246,7 @@
     </div>
 
     <div class="row row-cols-1 row-cols-md-2">
-        @foreach($stories->slice(16, 2) as $story)
+        @foreach($stories->slice(19, 2) as $story)
             <div class="col mb-4">
                 <div
                     class="row g-0 bg-white rounded mb-4 shadow-sm h-100">
@@ -290,7 +291,7 @@
     <div class="bg-white p-2 mb-4 rounded shadow-sm">
         <div class="rounded bordered bg-light p-3">
             <div class="row row-cols-1 row-cols-md-3 g-5">
-                @foreach($stories->slice(18, 3) as $story)
+                @foreach($stories->slice(21, 3) as $story)
                     <div class="col d-flex flex-column justify-content-start align-items-start">
 
                         <div class="v-center mb-1">
@@ -320,7 +321,7 @@
 
 
     <div class="row row-cols-1 row-cols-md-4">
-        @foreach($stories->slice(21, 4) as $story)
+        @foreach($stories->slice(24, 4) as $story)
             <div class="col mb-4">
                 <div
                     class="row g-0 bg-white rounded overflow-hidden flex-md-row mb-4 shadow-sm h-100 position-relative">
