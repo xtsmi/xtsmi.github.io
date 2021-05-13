@@ -30,9 +30,9 @@
                                 </a>
                             </h1>
 
-                            <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate }}"
+                            <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                                   data-controller="news-time">
-                                {{ $story['main']->pubDate }}
+                                {{ $story['main']->pubDate->jsonSerialize() }}
                             </time>
 
 
@@ -62,9 +62,9 @@
                                     </a>
                                 </h5>
 
-                                <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate }}"
+                                <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                                       data-controller="news-time">
-                                    {{ $story['main']->pubDate }}
+                                    {{ $story['main']->pubDate->jsonSerialize() }}
                                 </time>
                             </div>
                         </div>
@@ -93,9 +93,10 @@
                             </a>
                         </h5>
 
-                        <time class="mt-2 text-muted small" datetime="{{ $story['main']->pubDate }}"
+                        <time class="mt-2 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                               data-controller="news-time">
-                            {{ $story['main']->pubDate }}
+
+                            {{ $story['main']->pubDate->jsonSerialize() }}
                         </time>
                     </div>
                 @endforeach
@@ -128,9 +129,9 @@
                         </div>
 
                         <h3 class="mb-auto">{{ $story['main']->title }}</h3>
-                        <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate }}"
+                        <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                               data-controller="news-time">
-                            {{ $story['main']->pubDate }}
+                            {{ $story['main']->pubDate->jsonSerialize() }}
                         </time>
 
                         @if($story['main']->image === null)
@@ -176,9 +177,9 @@
                                 </a>
                             </h2>
 
-                            <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate }}"
+                            <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                                   data-controller="news-time">
-                                {{ $story['main']->pubDate }}
+                                {{ $story['main']->pubDate->jsonSerialize() }}
                             </time>
 
 
@@ -208,9 +209,9 @@
                                     </a>
                                 </h5>
 
-                                <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate }}"
+                                <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                                       data-controller="news-time">
-                                    {{ $story['main']->pubDate }}
+                                    {{ $story['main']->pubDate->jsonSerialize() }}
                                 </time>
                             </div>
                         </div>
@@ -239,9 +240,9 @@
                             </a>
                         </h5>
 
-                        <time class="mt-2 text-muted small" datetime="{{ $story['main']->pubDate }}"
+                        <time class="mt-2 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                               data-controller="news-time">
-                            {{ $story['main']->pubDate }}
+                            {{ $story['main']->pubDate->jsonSerialize() }}
                         </time>
                     </div>
                 @endforeach
@@ -274,9 +275,9 @@
                         </div>
 
                         <h3 class="mb-auto">{{ $story['main']->title }}</h3>
-                        <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate }}"
+                        <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                               data-controller="news-time">
-                            {{ $story['main']->pubDate }}
+                            {{ $story['main']->pubDate->jsonSerialize() }}
                         </time>
 
                         @if($story['main']->image === null)
@@ -310,9 +311,9 @@
                             </a>
                         </h5>
 
-                        <time class="mt-2 text-muted small" datetime="{{ $story['main']->pubDate }}"
+                        <time class="mt-2 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                               data-controller="news-time">
-                            {{ $story['main']->pubDate }}
+                            {{ $story['main']->pubDate->jsonSerialize() }}
                         </time>
                     </div>
                 @endforeach
@@ -347,9 +348,9 @@
                         </div>
 
                         <h3 class="mb-2">{{ $story['main']->title }}</h3>
-                        <time class="me-1 text-muted small mt-auto" datetime="{{ $story['main']->pubDate }}"
+                        <time class="me-1 text-muted small mt-auto" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                               data-controller="news-time">
-                            {{ $story['main']->pubDate }}
+                            {{ $story['main']->pubDate->jsonSerialize() }}
                         </time>
 
 
