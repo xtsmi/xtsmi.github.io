@@ -32,8 +32,7 @@
                         <div class="d-flex ml-auto">
                             @include('particles.share', ['url' => $internalLink])
 
-
-                            <a href="{{ $internalLink }}" class="btn btn-secondary ml-2">Читать далее</a>
+                            <a href="{{ $link }}" target="_blank" class="btn btn-secondary ml-2">Читать далее</a>
                         </div>
                     @else
                         <div class="v-center mb-1 me-auto">
