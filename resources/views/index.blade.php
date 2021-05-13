@@ -37,7 +37,7 @@
 
 
                             <p class="mb-2 mt-3">
-                                {!! nl2br(\Illuminate\Support\Str::words(strip_tags(htmlspecialchars_decode($story['main']->description)), 30)) !!}
+                                {!! nl2br(\Illuminate\Support\Str::words(strip_tags(htmlspecialchars_decode($story['main']->description)), 60)) !!}
                             </p>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                             <div>{{ $story['main']->domain }}</div>
                         </div>
 
-                        <h3 class="mb-auto">{{ $story['main']->title }}</h3>
+                        <h3>{{ $story['main']->title }}</h3>
                         <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                               data-controller="news-time">
                             {{ $story['main']->pubDate->jsonSerialize() }}
@@ -140,7 +140,7 @@
                             </p>
                         @endif
 
-                        <a href="{{ $story['main']->internalLink }}" class="stretched-link">Читать дальше</a>
+                        <a href="{{ $story['main']->internalLink }}" class="stretched-link mt-auto">Читать дальше</a>
                     </div>
                 </div>
             </div>
@@ -151,7 +151,7 @@
     <!-- dublicate -->
 
     <div class="bg-white p-4 mb-4 rounded shadow-sm">
-        <div class="row row g-md-5">
+        <div class="row g-md-5 d-flex justify-content-center align-items-center h-100">
             <div class="col-sm-8">
                 <!-- post -->
                 @foreach($stories->slice(11, 1) as $story)
@@ -274,7 +274,7 @@
                             <div>{{ $story['main']->domain }}</div>
                         </div>
 
-                        <h3 class="mb-auto">{{ $story['main']->title }}</h3>
+                        <h3>{{ $story['main']->title }}</h3>
                         <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                               data-controller="news-time">
                             {{ $story['main']->pubDate->jsonSerialize() }}
@@ -286,7 +286,7 @@
                             </p>
                         @endif
 
-                        <a href="{{ $story['main']->internalLink }}" class="stretched-link">Читать дальше</a>
+                        <a href="{{ $story['main']->internalLink }}" class="stretched-link mt-auto">Читать дальше</a>
                     </div>
                 </div>
             </div>
