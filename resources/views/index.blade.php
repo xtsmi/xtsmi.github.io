@@ -43,11 +43,11 @@
 
             </div>
             <div class="col-sm-4">
-                <div class="row px-md-3 rounded bg-light row-cols-1  d-flex flex-column justify-content-start align-items-start h-100">
+                <div class="row px-md-3 py-md-3 rounded bg-light row-cols-1  d-flex flex-column justify-content-start align-items-start h-100">
                 @foreach($stories->slice(2, 4) as $story)
                     <!-- post -->
-                        <div class="col my-auto mb-md-0">
-                            <div class="details clearfix mt-2">
+                        <div class="col mb-3">
+                            <div class="details clearfix">
                                 <div class="v-center mb-1">
                                     <img src="{{ $story['main']->favicon }}" class="me-2"
                                          alt="{{ $story['main']->domain }}" loading="lazy">
@@ -187,10 +187,10 @@
 
             </div>
             <div class="col-sm-4">
-                <div class="row px-md-3 rounded bg-light row-cols-1  d-flex flex-column justify-content-start align-items-start h-100">
+                <div class="row px-md-3 py-md-3 rounded bg-light row-cols-1  d-flex flex-column justify-content-start align-items-start h-100">
                 @foreach($stories->slice(12, 4) as $story)
                     <!-- post -->
-                        <div class="col my-auto mb-3 mb-md-0">
+                        <div class="col mb-3">
                             <div class="details clearfix">
                                 <div class="v-center mb-1">
                                     <img src="{{ $story['main']->favicon }}" class="me-2"
