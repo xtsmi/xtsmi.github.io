@@ -10,11 +10,13 @@
 
                 @foreach($stories->slice(0, 1) as $story)
                     <div class="mb-3">
-                        <a href="{{ $story['main']->internalLink }}" target="_blank" class="d-block rounded mb-2">
-                            <img src="{{ $story['main']->image }}"
-                                 class="img-full rounded border bg-secondary bg-gradient-secondary"
-                                 alt="post-title">
-                        </a>
+                        @empty(!$story['main']->image)
+                            <a href="{{ $story['main']->internalLink }}" target="_blank" class="d-block rounded mb-2">
+                                <img src="{{ $story['main']->image }}"
+                                     class="img-full rounded border bg-secondary bg-gradient-secondary"
+                                     alt="post-title">
+                            </a>
+                        @endempty
                         <div class="">
                             <div class="v-center mb-1">
                                 <img src="{{ $story['main']->favicon }}" class="me-2"
@@ -153,11 +155,13 @@
                 <!-- post -->
                 @foreach($stories->slice(11, 1) as $story)
                     <div class="mb-3">
-                        <a href="{{ $story['main']->internalLink }}" target="_blank" class="d-block rounded mb-2">
-                            <img src="{{ $story['main']->image }}"
-                                 class="img-full rounded border bg-secondary bg-gradient-secondary"
-                                 alt="post-title">
-                        </a>
+                        @if($story['main']->image !== null)
+                            <a href="{{ $story['main']->internalLink }}" target="_blank" class="d-block rounded mb-2">
+                                    <img src="{{ $story['main']->image }}"
+                                         class="img-full rounded border bg-secondary bg-gradient-secondary"
+                                         alt="post-title">
+                            </a>
+                        @endif
                         <div class="">
                             <div class="v-center mb-1">
                                 <img src="{{ $story['main']->favicon }}" class="me-2"
