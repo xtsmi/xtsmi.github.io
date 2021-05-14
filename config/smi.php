@@ -118,6 +118,7 @@ return [
         'https://mash.ru/rss',
         'https://ria.ru/export/rss2/archive/index.xml',
         'https://eadaily.com/ru/rss/index.xml',
+        'https://www.vtimes.io/rss',                 
 
         // foreign
         'https://gordonua.com/xml/rss_category/top.html',
