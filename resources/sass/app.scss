@@ -20,7 +20,7 @@
     height: 100%;
     object-fit: cover;
     max-height: 20em;
-    object-position: left;
+    object-position: center;
 }
 
 @include media-breakpoint-down(sm) {
