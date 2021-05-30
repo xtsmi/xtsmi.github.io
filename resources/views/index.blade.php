@@ -24,7 +24,7 @@
                                 <div>{{ $story['main']->domain }}</div>
                             </div>
 
-                            <h1 class="mb-1 lh-1">
+                            <h1 class="mb-1 lh-1 text-break">
                                 <a href="{{ $story['main']->internalLink }}">
                                     {{ $story['main']->title }}
                                 </a>
@@ -57,7 +57,8 @@
                                 </div>
 
 
-                                <h5 class="mb-1"><a href="{{ $story['main']->internalLink }}">
+                                <h5 class="mb-1 text-break">
+                                    <a href="{{ $story['main']->internalLink }}">
                                         {{ $story['main']->title }}
                                     </a>
                                 </h5>
@@ -128,7 +129,7 @@
                             <div>{{ $story['main']->domain }}</div>
                         </div>
 
-                        <h3>{{ $story['main']->title }}</h3>
+                        <h3 class="text-break">{{ $story['main']->title }}</h3>
                         <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                               data-controller="news-time">
                             {{ $story['main']->pubDate->jsonSerialize() }}
@@ -171,7 +172,7 @@
                             </div>
 
 
-                            <h2 class="mb-1 lh-1 h1">
+                            <h2 class="mb-1 lh-1 h1 text-break">
                                 <a href="{{ $story['main']->internalLink }}">
                                     {{ $story['main']->title }}
                                 </a>
@@ -204,7 +205,8 @@
                                 </div>
 
 
-                                <h5 class="mb-1"><a href="{{ $story['main']->internalLink }}">
+                                <h5 class="mb-1 text-break">
+                                    <a href="{{ $story['main']->internalLink }}">
                                         {{ $story['main']->title }}
                                     </a>
                                 </h5>
@@ -235,7 +237,8 @@
                         </div>
 
 
-                        <h5 class="mb-auto"><a href="{{ $story['main']->internalLink }}">
+                        <h5 class="mb-auto">
+                            <a href="{{ $story['main']->internalLink }}" class="text-break">
                                 {{ $story['main']->title }}
                             </a>
                         </h5>
@@ -274,7 +277,7 @@
                             <div>{{ $story['main']->domain }}</div>
                         </div>
 
-                        <h3>{{ $story['main']->title }}</h3>
+                        <h3 class="text-break">{{ $story['main']->title }}</h3>
                         <time class="me-1 text-muted small" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                               data-controller="news-time">
                             {{ $story['main']->pubDate->jsonSerialize() }}
@@ -306,7 +309,8 @@
                         </div>
 
 
-                        <h5 class="mb-auto"><a href="{{ $story['main']->internalLink }}">
+                        <h5 class="mb-auto">
+                            <a href="{{ $story['main']->internalLink }}" class="text-break">
                                 {{ $story['main']->title }}
                             </a>
                         </h5>
@@ -347,7 +351,7 @@
                             <div>{{ $story['main']->domain }}</div>
                         </div>
 
-                        <h3 class="mb-2">{{ $story['main']->title }}</h3>
+                        <h3 class="mb-2 text-break">{{ $story['main']->title }}</h3>
                         <time class="me-1 text-muted small mt-auto" datetime="{{ $story['main']->pubDate->jsonSerialize() }}"
                               data-controller="news-time">
                             {{ $story['main']->pubDate->jsonSerialize() }}
