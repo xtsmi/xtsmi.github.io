@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title','Твоё СМИ - Новостной агрегатор.')</title>
+    <title>@yield('title','Твоё СМИ - Новостной агрегатор')</title>
     <meta name="description"
           content="@yield('description','Самые горячие новости в России, в США, в мире. Последние события в мире новостей.')">
     <meta name="keywords"
